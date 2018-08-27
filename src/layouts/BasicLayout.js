@@ -1,15 +1,18 @@
-import  React, {PureComponent } from "react";
-import ReactDOM from 'react-dom';
+import React,{PureComponent} from "react";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import CustomHeader from "./CustomHeader";
+import CustomSider from "./CustomSider";
+import {Layout,Breadcrumb} from 'antd';
 import 'antd/dist/antd.css';
-import './BasicLayout.css';
-import { Layout, Menu, Icon } from 'antd';
+import './BasicLayout.css'
 
-const { Header, Sider, Content,Footer } = Layout;
-export default class BasicLayout extends PureComponent {
+const {Content,Footer} = Layout;
+
+export default class BasicLayout extends PureComponent  {
   state = {
     collapsed: false,
+    windowHeight: window.innerHeight
   };
-
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
@@ -17,30 +20,26 @@ export default class BasicLayout extends PureComponent {
   }
 
   render() {
+    console.log( windowHeight);
+    const {collapsed,windowHeight} = this.state;
     return (
-      <Layout>
-      <Sider
-      />
       <Layout >
-        <Header style={{ padding: 0 }}>
-        </Header>
-        <Content >
-          <div style={{ padding: 24, background: '#fff', minHeight: 'auto' }}>
-        
-            {/* <Components
-              isMobile={isMobile}
-              isIpad={isIpad}
-              {...this.props}
-            /> */}
-          </div>
+        <CustomSider collapsed={collapsed} />
+        <Layout style={{height:"100vh"}}>
+        <CustomHeader collapsed={collapsed} toggle={this.toggle} />
+        <Breadcrumb style={{ margin: '16px 0  10px 15px' }}>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>List</Breadcrumb.Item>
+          <Breadcrumb.Item>App</Breadcrumb.Item>
+        </Breadcrumb>
+        <Content style={{ background: '#fff', height: '100%' }}>
+           <div style={{ padding: 24, background: '#fff', height:"auto"}}>
+           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Copyright <Icon type='copyright' /> 2018
-         
-          , All Rights Reserved
-        </Footer>
+        <Footer>footer</Footer>
+        </Layout>
       </Layout>
-    </Layout>
     );
   }
 }
+
