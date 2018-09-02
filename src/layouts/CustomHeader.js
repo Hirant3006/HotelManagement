@@ -1,7 +1,7 @@
 import  React, {PureComponent } from "react";
 import { Layout,Icon } from 'antd';
 
-const { Header, Content } = Layout;
+const { Header } = Layout;
 
 export default class CustomHeader extends PureComponent {
 
