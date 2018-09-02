@@ -1,14 +1,27 @@
 import React, { PureComponent } from "react";
-import { routes } from "../configs";
+import { routes, itemSidebar } from "../configs";
 import { Route } from "react-router-dom";
+import {Breadcrumb} from 'antd';
 
 export default class RouterConfig extends PureComponent {
+  
+  // renderComponent = (item) =>{
+  //   return (
+  //     <div>
+  //       {<Breadcrumb style={{ margin: "16px 0  10px 15px" }}>
+  //         <Breadcrumb.Item{item.description}</Breadcrumb.Item>
+  //       </Breadcrumb>}
+  //       <item.component >/>
+  //     </div>
+  //   );
+  // };
+  
   renderRoute = () => {
     const route = routes();
-    console.log(typeof routes);
     return route.map((item, index) => {
       return (
         <Route
+          key={index}
           path={item.path}
           component={item.component}
           exact={item.exact ? true : false}
@@ -16,6 +29,7 @@ export default class RouterConfig extends PureComponent {
       );
     });
   };
+
 
   // _renderRoute = (multiLang) => {
   // 	const route = routes(multiLang)
@@ -33,12 +47,6 @@ export default class RouterConfig extends PureComponent {
   // }
 
   render() {
-    return (
-      <div>
-          {this.renderRoute()}
-          {/* <Route path='/room' component={Room} />
-          <Route path='/home' component={Home} exact/> */}
-      </div>
-    );
+    return <div>{this.renderRoute()}</div>;
   }
 }

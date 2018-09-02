@@ -21,17 +21,18 @@ export default class BasicLayout extends PureComponent {
 
   render() {
     const { collapsed } = this.state;
+    console.log(this.props);
     return (
       <Router>
         <Layout>
           <CustomSider collapsed={collapsed} />
           <Layout style={{ height: "100vh" }}>
             <CustomHeader collapsed={collapsed} toggle={this.toggle} />
-            <Breadcrumb style={{ margin: "16px 0  10px 15px" }}>
+            {/* <Breadcrumb style={{ margin: "16px 0  10px 15px" }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>List</Breadcrumb.Item>
               <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
+            </Breadcrumb> */}
             <Content style={{ height: "100%", padding: "24px" }}>
               <div style={{ padding: 24, background: "#fff", height: "auto" }}>
                   {/* <Route path="/room" component={Room} />
