@@ -1,0 +1,20 @@
+[
+    {
+        "Number":1,
+        "Type":"single",
+        "Status":"full"
+        
+    },
+    {
+        "Number":2,
+        "Type":"single",
+        "Status":"empty"
+    },
+    {
+        "Number":3,
+        "Type":"couple",
+        "Status":"full"
+    }
+ 
+    
+]
