@@ -5,7 +5,7 @@ import CustomSider from "../../layouts/CustomSider";
 import { Layout, Breadcrumb } from "antd";
 import "antd/dist/antd.css";
 import "../../layouts/BasicLayout";
-import RouterConfig from "../../router/index";
+import RouterConfig from "../../router";
 import { Card } from 'antd';
 const { Content, Footer } = Layout;
 
