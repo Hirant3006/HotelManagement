@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 //import { connect, Provider } from 'react-redux';
 
-import CustomerCard from './CustomerCard'
+import CustomerCard from './RoomCard'
 import CustomerCard_Data from '../../data/CustomerCard_Data.json'
 export default class App extends PureComponent {
   render() {
