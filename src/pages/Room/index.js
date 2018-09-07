@@ -1,5 +1,5 @@
 import React,{PureComponent} from 'react';
-import CustomerCard_Index from '../../component/customer_card/CustomerCard_Index'
+import CustomerCard_Index from '../../component/RoomCard/'
 export default class Room extends PureComponent {
     render() {
         return (
