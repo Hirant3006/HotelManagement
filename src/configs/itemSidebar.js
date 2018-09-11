@@ -10,6 +10,12 @@ export default () => {
       name: 'Room',
       url:'/room',
 
+    },
+    {
+      iconType: "database",
+      name: 'Customer',
+      url:'/customer',
+
     }
     // { path: 'heroes',
     //   component: HeroListComponent,

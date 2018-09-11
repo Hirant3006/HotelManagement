@@ -6,6 +6,7 @@ import { Layout } from "antd";
 import "antd/dist/antd.css";
 import "./BasicLayout.css";
 import RouterConfig from "../router/index";
+
 const { Content, Footer } = Layout;
 
 export default class BasicLayout extends PureComponent {
@@ -41,6 +42,7 @@ export default class BasicLayout extends PureComponent {
                   </Switch>
               </div>
             </Content>
+           
             <Footer>footer</Footer>
           </Layout>
         </Layout>

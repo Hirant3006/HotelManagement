@@ -1,6 +1,6 @@
 import Home from "../pages/Home";
 import Room from "../pages/Room";
-
+import Customer from "../pages/Customer";
 export default () => {
   return [
     {
@@ -18,6 +18,10 @@ export default () => {
       path: "/room",
       description: 'Quản lí phòng',
       component: Room
+    },
+    {
+      path: "/customer",
+      component: Customer
     }
   ];
 };
