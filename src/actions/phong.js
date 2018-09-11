@@ -1,4 +1,5 @@
 import axios from "axios";
+import keys from "../configs/keys";
 import {
   GET_LIST_PHONG_REQUEST,
   GET_LIST_PHONG_SUCCESS,
@@ -15,7 +16,7 @@ export const getListPhongRequest = () => async dispatch => {
   //   .catch(err => console.log(err));
 
   dispatch({ type: GET_LIST_PHONG_REQUEST });
-  const res = await axios.get("/loaiphongs");
+  const res = await axios.get(keys.backend+"/loaiphongs");
 
   if ((res.status = 200))
     dispatch({

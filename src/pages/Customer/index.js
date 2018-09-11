@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import CustomTable from './CustomTable'
-import { Table, Divider, Tag } from "antd";
+import { Divider } from "antd";
 
 const columns = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: text => <a href="javascript:;">{text}</a>
     },
     {
       title: "Age",
@@ -39,9 +37,9 @@ const columns = [
       key: "action",
       render: (text, record) => (
         <span>
-          <a href="javascript:;">Edit</a>
+          <a href="">Edit</a>
           <Divider type="vertical" />
-          <a href="javascript:;">Delete</a>
+          <a href="">Delete</a>
         </span>
       )
     }

@@ -2,12 +2,7 @@
   "name": "react3month",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "/*": {
-      "target": "https://mighty-coast-18749.herokuapp.com",
-      "changeOrigin": true
-    }
-  },
+
   "dependencies": {
     "antd": "^3.8.4",
     "axios": "^0.18.0",

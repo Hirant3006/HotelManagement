@@ -9,8 +9,12 @@ class Home extends PureComponent {
 
   componentDidMount() {
     this.props.getListPhongRequest();
+    
   }
+
+
   render() {
+    
     console.log(this.props);
     return <div>Homepages</div>;
   }
