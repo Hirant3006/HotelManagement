@@ -20,8 +20,13 @@ export const getListPhongRequest = () => async dispatch => {
     "https://mighty-coast-18749.herokuapp.com/loaiphongs"
   );
 
+    if (res.status=200)
   dispatch({
     type: GET_LIST_PHONG_SUCCESS,
     listPhong: res.data
   });
+  else dispatch({
+    type: GET_LIST_PHONG_FAILURE,
+  });
+
 };
