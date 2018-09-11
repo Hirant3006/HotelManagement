@@ -1,8 +1,6 @@
 import React, { PureComponent } from "react";
-import { routes, itemSidebar } from "../configs";
+import { routes } from "../configs";
 import { Route } from "react-router-dom";
-import {Breadcrumb} from 'antd';
-import axios from 'axios';
 
 export default class RouterConfig extends PureComponent {
   

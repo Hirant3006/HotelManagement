@@ -1,5 +1,5 @@
 import  React, {PureComponent } from "react";
-import { Layout,Icon } from 'antd';
+import { Layout } from 'antd';
 
 const { Header } = Layout;
 

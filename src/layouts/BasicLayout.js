@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { BrowserRouter as Router,Switch } from "react-router-dom";
 import CustomHeader from "./CustomHeader";
 import CustomSider from "./CustomSider";
-import { Layout, Breadcrumb } from "antd";
+import { Layout } from "antd";
 import "antd/dist/antd.css";
 import "./BasicLayout.css";
 import RouterConfig from "../router/index";
