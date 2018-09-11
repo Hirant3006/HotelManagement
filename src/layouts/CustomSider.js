@@ -8,6 +8,7 @@ export default class CustomSider extends PureComponent {
   renderItem = () => {
     const itemSidebars = itemSidebar();
     return itemSidebars.map((item, index) => {
+      console.log(index);
       return (
         <Menu.Item
           key={index}
@@ -28,9 +29,13 @@ export default class CustomSider extends PureComponent {
 
   render() {
     return (
-      <Sider trigger={null} collapsible collapsed={this.props.collapsed}>
+      <Sider
+      breakpoint="lg"
+      collapsedWidth="0"
+      onBreakpoint={(broken) => { console.log(broken); }}
+      onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
         <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["0"]}>
           {this.renderItem()}
         </Menu>
       </Sider>
