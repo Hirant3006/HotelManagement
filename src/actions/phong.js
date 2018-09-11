@@ -15,9 +15,7 @@ export const getListPhongRequest = () => async dispatch => {
   //   .catch(err => console.log(err));
 
   dispatch({ type: GET_LIST_PHONG_REQUEST });
-  const res = await axios.get(
-    "https://mighty-coast-18749.herokuapp.com/loaiphongs"
-  );
+  const res = await axios.get("/loaiphongs");
 
   if ((res.status = 200))
     dispatch({
