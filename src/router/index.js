@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { routes, itemSidebar } from "../configs";
 import { Route } from "react-router-dom";
 import {Breadcrumb} from 'antd';
+import axios from 'axios';
 
 export default class RouterConfig extends PureComponent {
   
@@ -17,6 +18,8 @@ export default class RouterConfig extends PureComponent {
   // };
   
   renderRoute = () => {
+
+   
     const route = routes();
     return route.map((item, index) => {
       return (
