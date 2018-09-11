@@ -1,6 +1,6 @@
 import Home from "../pages/Home";
 import Room from "../pages/Room";
-
+import Customer from "../pages/Customer";
 export default () => {
   return [
     {
@@ -15,6 +15,10 @@ export default () => {
     {
       path: "/room",
       component: Room
+    },
+    {
+      path: "/customer",
+      component: Customer
     }
     // { path: 'heroes',
     //   component: HeroListComponent,
