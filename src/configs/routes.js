@@ -6,30 +6,22 @@ export default () => {
     {
       path: "/",
       component: Home,
+      description: 'Trang chủ',
       exact: true
     },
     {
       path: "/home",
+      description: 'Trang chủ',
       component: Home,
     },
     {
       path: "/room",
+      description: 'Quản lí phòng',
       component: Room
     },
     {
       path: "/customer",
       component: Customer
     }
-    // { path: 'heroes',
-    //   component: HeroListComponent,
-    //   data: { title: 'Heroes List' }
-    // },
-    // { path: '',
-    //   redirectTo: '/heroes',
-    //   pathMatch: 'full'
-    // },
-    // { path: '**',
-    //   component: PageNotFoundComponent
-    // }
   ];
 };
