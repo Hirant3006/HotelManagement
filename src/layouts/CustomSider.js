@@ -8,7 +8,7 @@ export default class CustomSider extends PureComponent {
   renderItem = () => {
     const itemSidebars = itemSidebar();
     return itemSidebars.map((item, index) => {
-      console.log(index);
+      // console.log(index);
       return (
         <Menu.Item
           key={index}

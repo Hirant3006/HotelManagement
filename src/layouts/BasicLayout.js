@@ -21,7 +21,6 @@ export default class BasicLayout extends PureComponent {
 
   render() {
     const { collapsed } = this.state;
-    console.log(this.props);
     return (
       <Router>
         <Layout>

@@ -8,12 +8,9 @@ class Home extends PureComponent {
     }
 
     componentDidMount() {
-        console.log('component did mount')
         this.props.getListPhongRequest();
     }
     render() {
-        console.log(this.props);
-
         return (
             <div>
                 Homepages
