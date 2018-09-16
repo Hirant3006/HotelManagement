@@ -33,16 +33,22 @@ export const getListPhongRequest = () => async dispatch => {
     });
 };
 
-export const addLoaiPhongRequest = (TenLoai, DonGia) => async dispatch => {
+export const addLoaiPhongRequest = (TenLoai, DonGia,onCancel,getListPhongRequest) => async (dispatch,getState) => {
   dispatch({ type: ADD_LOAI_PHONG_REQUEST });
+  // const { phong } = getState();
+  // listloaiphong = phong.listloaiPhong;
+  // listloaiphong.put({TenLoai:})
   const res = await axios.post(keys.backend + "/loaiphong", {
     TenLoai,
     DonGia
   });
-  if ((res.status = 200))
+  if ((res.status = 200)){
     dispatch({
       type: ADD_LOAI_PHONG_SUCCESS
     });
+    getListPhongRequest();
+    onCancel();
+  }
   else
     dispatch({
       type: ADD_LOAI_PHONG_FAILURE

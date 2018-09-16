@@ -19,8 +19,8 @@ import {
 } from "../actions/contstants";
 
 const initialState = {
-  phong: {
-    listPhong: [],
+  loaiphong: {
+    listloaiPhong: [],
     isFetching: false
   },
   addloaiphong: {
@@ -42,21 +42,21 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GET_LIST_PHONG_REQUEST:
       return update(state, {
-        phong: {
+        loaiphong: {
           isFetching: { $set: true }
         }
       });
     case GET_LIST_PHONG_SUCCESS:
       return update(state, {
-        phong: {
-          listPhong: { $set: action.listPhong },
+        loaiphong: {
+          listloaiPhong: { $set: action.listPhong },
           isFetching: { $set: false }
         },
         error: { $set: null }
       });
     case GET_LIST_PHONG_FAILURE:
       return update(state, {
-        phong: {
+        loaiphong: {
           isFetching: { $set: false }
         },
         error: { $set: action.error }
