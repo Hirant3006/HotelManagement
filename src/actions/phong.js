@@ -6,13 +6,6 @@ import {
 } from "./contstants";
 
 export const getListPhongRequest = () => async dispatch => {
-  // const res = await axios.get("/api/current_user")
-  // axios
-  //   .get("https://mighty-coast-18749.herokuapp.com/phongs")
-  //   .then(response => {
-  //     console.log(response.data);
-  //   })
-  //   .catch(err => console.log(err));
 
   console.log("Start request");
   dispatch({ type: GET_LIST_PHONG_REQUEST });

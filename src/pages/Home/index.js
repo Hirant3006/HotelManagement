@@ -1,6 +1,8 @@
 import React,{PureComponent} from 'react';
 import { connect } from "react-redux";
 import { getListPhongRequest } from '../../actions/phong'
+import dichvu from '../../reducers/dichvu';
+import { getListDVRequest } from '../../actions/dichvu'
 class Home extends PureComponent {
     constructor(props) {
         super(props);
@@ -10,6 +12,7 @@ class Home extends PureComponent {
     componentDidMount() {
         console.log('component did mount')
         this.props.getListPhongRequest();
+        this.props.getListDVRequest();
     }
     render() {
         console.log(this.props);
@@ -24,12 +27,13 @@ class Home extends PureComponent {
 
 const mapStateToProps = state => {
     return { 
-        phong: state.phong.phong
+        phong: state.phong.phong,
+        dichvu:state.dichvu.dichvu
     }
 }
 
 const mapDispatchToProps = {
-    getListPhongRequest
+    getListPhongRequest, getListDVRequest
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home)

@@ -2,24 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CustomTable from './CustomTable'
 import { Table, Divider, Tag } from "antd";
+import { getListPhongRequest } from '../../actions/phong'
+import { getListDVRequest } from '../../actions/dichvu'
 
 const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
+      title: "TenLoai",
+      dataIndex: "TenLoai",
       key: "name",
       render: text => <a href="javascript:;">{text}</a>
     },
     {
-      title: "Age",
-      dataIndex: "age",
+      title: "DonGia",
+      dataIndex: "DonGia",
       key: "age"
     },
-    {
-      title: "Address",
-      dataIndex: "address",
-      key: "address"
-    },
+    // {
+    //   title: "Address",
+    //   dataIndex: "address",
+    //   key: "address"
+    // },
     // {
     //   title: "Tags",
     //   key: "tags",
@@ -47,38 +49,36 @@ const columns = [
     }
   ];
   
-  const data = [
-    {
-      key: "1",
-      name: "John Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-      tags: ["nice", "developer"]
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-      tags: ["loser"]
-    },
-    {
-      key: "3",
-      name: "Joe Black",
-      age: 32,
-      address: "Sidney No. 1 Lake Park",
-      tags: ["cool", "teacher"]
-    }
-  ];
-  
+   
 
-export default class index extends Component {
+class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+}
+  componentDidMount() {
+    console.log('component did mount')
+    this.props.getListPhongRequest();
+   
+}
     render() {
+      console.log(this.props.phong);
         return (
             <div>
-                <CustomTable data={data} columns={columns}/>
+                {this.props.phong ? <CustomTable isFetching={this.props.phong.isFetching} data={this.props.phong.listPhong} columns={columns}/> :null } 
             </div>
         );
     }
 }
+const mapStateToProps = state => {
+  return { 
+      phong: state.phong.phong,
+      dichvu:state.dichvu.dichvu
+  }
+}
 
+const mapDispatchToProps = {
+  getListPhongRequest, getListDVRequest
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(index)

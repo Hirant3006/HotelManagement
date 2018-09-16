@@ -7,10 +7,12 @@ import { Table, Divider, Tag } from "antd";
 
 
 export default class CustomTable extends Component {
+
   render() {
     return (
       <div>
-        <Table columns={this.props.columns} dataSource={this.props.data} />
+        <Table columns={this.props.columns} dataSource={this.props.data} loading = {this.props.isFetching}/>
+
         <ShowModal/>
       </div>
     );

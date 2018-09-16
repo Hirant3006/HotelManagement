@@ -1,6 +1,9 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
-export default class Room extends PureComponent {
+import { connect } from "react-redux";
+import { getListPhongRequest } from '../../actions/phong'
+import { getListDVRequest } from '../../actions/dichvu'
+class Room extends PureComponent {
   render() {
     // let a;
     // console.log("hello");
@@ -14,3 +17,15 @@ export default class Room extends PureComponent {
   } 
 
 }
+const mapStateToProps = state => {
+    return { 
+        phong: state.phong.phong,
+        dichvu:state.dichvu.dichvu
+    }
+}
+
+const mapDispatchToProps = {
+    getListPhongRequest, getListDVRequest
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Room)
