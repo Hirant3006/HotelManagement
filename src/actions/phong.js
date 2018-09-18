@@ -1,5 +1,6 @@
 import axios from "axios";
 import keys from "../configs/keys";
+import { message } from 'antd';
 import {
   GET_LIST_PHONG_REQUEST,
   GET_LIST_PHONG_SUCCESS,
@@ -27,10 +28,12 @@ export const getListPhongRequest = () => async dispatch => {
       type: GET_LIST_PHONG_SUCCESS,
       listPhong: res.data
     });
-  else
+  else {
     dispatch({
       type: GET_LIST_PHONG_FAILURE
     });
+    console.log(res);
+  }
 };
 
 export const addLoaiPhongRequest = (TenLoai, DonGia,onCancel,getListPhongRequest) => async (dispatch,getState) => {
@@ -47,15 +50,19 @@ export const addLoaiPhongRequest = (TenLoai, DonGia,onCancel,getListPhongRequest
       type: ADD_LOAI_PHONG_SUCCESS
     });
     getListPhongRequest();
+    message.success('Thêm loại phòng thành công');
     onCancel();
   }
-  else
+  else {
     dispatch({
       type: ADD_LOAI_PHONG_FAILURE
     });
+    message.error('Thêm loại phòng thất bại');
+  }
 };
 
-export const findLoaiPhongTheoIdRequest = id => async dispatch => {
+export const findLoaiPhongTheoIdRequest = id => async (dispatch,getState) => {
+
   dispatch({ type: FIND_LOAI_PHONG_THEO_ID_REQUEST });
   const res = await axios.get(keys.backend + "/loaiphong/" + id);
 
@@ -70,14 +77,24 @@ export const findLoaiPhongTheoIdRequest = id => async dispatch => {
     });
 };
 
-export const deleteLoaiPhongTheoIdRequest = id => async dispatch => {
+export const deleteLoaiPhongTheoIdRequest = (id,getListPhongRequest) => async (dispatch,getState) => {
   dispatch({ type: DELETE_LOAI_PHONG_THEO_ID_REQUEST });
   const res = await axios.delete(keys.backend + "/loaiphong/" + id);
+  // const { phong } = getState();
+  // console.log(phong);
+  // const listloaiphong = phong.loaiphong.listloaiPhong;
+  // console.log(listloaiphong);
+  // console.log(listloaiphong.findIndex(x=>x._id=id))
 
-  if ((res.status = 200))
+  // console.log(listloaiphong.findIndex(x=>x._id=id));
+  
+  if ((res.status = 200)){
     dispatch({
       type: DELETE_LOAI_PHONG_THEO_ID_SUCCESS
     });
+    message.success('Xóa loại phòng thành công');
+    getListPhongRequest();
+  }
   else
     dispatch({
       type: DELETE_LOAI_PHONG_THEO_ID_FAILURE

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import  { Tabs } from "antd";
+import { reset } from 'redux-form';
 import LoaiPhong from './Component/LoaiPhong';
 import {
   getListPhongRequest,
@@ -63,7 +64,8 @@ const mapDispatchToProps = {
   addLoaiPhongRequest,
   findLoaiPhongTheoIdRequest,
   deleteLoaiPhongTheoIdRequest,
-  updateLoaiPhongTheoIdRequest
+  updateLoaiPhongTheoIdRequest,
+  reset
 };
 
 export default connect(

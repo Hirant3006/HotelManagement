@@ -40,15 +40,16 @@ class ModalThemLoaiPhong extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     const { handleSubmit, visible, onCancel, addloaiphong } = this.props;
 
     return (
       <Modal
         title="Tạo loại phòng "
         visible={visible}
-        onCancel={() => {
+        onCancel={() => 
+          {
           onCancel();
+       
         }}
         footer={null}
       >
@@ -90,7 +91,9 @@ class ModalThemLoaiPhong extends React.Component {
   }
 }
 
-export default reduxForm({
-  form: "syncValidation", // a unique identifier for this form
+ModalThemLoaiPhong= reduxForm({
+  form: "them-loai-phong", // a unique identifier for this form
   validate, // <--- validation function given to redux-form
 })(ModalThemLoaiPhong);
+
+export default ModalThemLoaiPhong;
