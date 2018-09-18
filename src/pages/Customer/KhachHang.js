@@ -1,23 +1,24 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
 import { Table, Divider,Button ,Icon,Row } from "antd";
-import ModalThemLoaiPhong from "./ModalThemLoaiPhong";
-
+import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
+import khachhang from "../../reducers/khachhang";
+import CustomerTable from './CustomTable'
 const columns = [
   {
-    title: "Tên Phòng",
-    dataIndex: "TenPhong",
+    title: "Giới Tính ",
+    dataIndex: "GioiTinh",
     key: "_id"
   },
   {
-    title: "Tên Loại Phòng",
-    dataIndex: "TenLoaiPhong",
-    key: "TenLoaiPhong"
+    title: "Họ Tên",
+    dataIndex: "HoTen",
+    key: "HoTen"
   },
   {
-    title: "Trạng Thái",
-  //  dataIndex: "TrangThai",
-    key: "TrangThai",
+    title: "Ngày sinh",
+    dataIndex: "NgaySinh",
+    key: "NgaySinh",
     // render: (text, record) => (
     //   <span>
     //     <a>Sửa</a>
@@ -25,7 +26,32 @@ const columns = [
     //     <a style={{ color: "red" }}>Xóa</a>
     //   </span>
     // )
-  }
+  },
+  {
+    title: "Địa chỉ",
+    dataIndex: "DiaChi",
+    key: "Diachi"
+  },
+  {
+    title: "Quốc Tịch",
+    dataIndex: "QuocTich",
+    key: "QuocTich"
+  },
+  {
+    title: "SĐT",
+    dataIndex: "SDT",
+    key: "SDT"
+  },
+  {
+    title: "Email",
+    dataIndex: "Email",
+    key: "Email"
+  },
+  {
+    title: "CMND",
+    dataIndex: "CMND",
+    key: "CMND"
+  },
 ];
 
 export default class CustomTable extends Component {
@@ -55,7 +81,7 @@ export default class CustomTable extends Component {
 	}
  
   render() {
-    const { phong } = this.props;
+    const { khachhang } = this.props;
     console.log(this.props);
     return (
       <div>
@@ -70,14 +96,14 @@ export default class CustomTable extends Component {
         </Row>
         <Row>
         <Table
-          loading={phong.isFetching}
+          loading={khachhang.isFetching}
           columns={columns}
-          dataSource={phong.listPhong}
+          dataSource={khachhang.listKhachhang}
           rowKey="_id"
           pagination={{ pageSize: 5 }}
           {...this.props}
         />
-        <ModalThemLoaiPhong visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/>
+        <CustomerTable visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/>
         </Row>
       </div>
     );

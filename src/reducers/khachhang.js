@@ -1,15 +1,15 @@
 import update from "immutability-helper";
 
 import {
-  GET_LIST_PHONG_REQUEST,
-  GET_LIST_PHONG_SUCCESS,
-  GET_LIST_PHONG_FAILURE,
+  GET_LIST_KHACHHANG_REQUEST,
+  GET_LIST_KHACHHANG_SUCCESS,
+  GET_LIST_KHACHHANG_FAILURE,
   
 } from "../actions/contstants";
 
 const initialState = {
-  phong: {
-    listPhong: [],
+  khachhang: {
+    listKhachhang: [],
     isFetching: false
   },
  
@@ -17,23 +17,23 @@ const initialState = {
 };
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_LIST_PHONG_REQUEST:
+    case GET_LIST_KHACHHANG_REQUEST:
       return update(state, {
-        phong: {
+        khachhang: {
           isFetching: { $set: true }
         }
       });
-    case GET_LIST_PHONG_SUCCESS:
+    case GET_LIST_KHACHHANG_SUCCESS:
       return update(state, {
-        phong: {
-          listPhong: { $set: action.listPhong },
+        khachhang: {
+          listKhachhang: { $set: action.listKhachhang },
           isFetching: { $set: false }
         },
         error: { $set: null }
       });
-    case GET_LIST_PHONG_FAILURE:
+    case GET_LIST_KHACHHANG_FAILURE:
       return update(state, {
-        phong: {
+        listKhachhang: {
           isFetching: { $set: false }
         },
         error: { $set: action.error }

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import { getListPhongRequest,addLoaiPhongRequest,findLoaiPhongTheoIdRequest,deleteLoaiPhongTheoIdRequest,updateLoaiPhongTheoIdRequest } from "../../actions/phong";
+import { getListLoaiPhongRequest,addLoaiPhongRequest,findLoaiPhongTheoIdRequest,deleteLoaiPhongTheoIdRequest,updateLoaiPhongTheoIdRequest } from "../../actions/loaiphong";
 class Home extends PureComponent {
   constructor(props) {
     super(props);
@@ -26,15 +26,15 @@ class Home extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-   loaiphong: state.phong.loaiphong,
+   loaiphong: state.loaiphong.loaiphong,
     // loaiphong: state.phong.loaiphongtheoid,
-    deleteloaiphong: state.phong.deleteloaiphong,
-    updateloaiphong: state.phong.updateloaiphong,
+    deleteloaiphong: state.loaiphong.deleteloaiphong,
+    updateloaiphong: state.loaiphong.updateloaiphong,
   };
 };
 
 const mapDispatchToProps = {
-  getListPhongRequest,
+  getListLoaiPhongRequest,
   addLoaiPhongRequest,
   findLoaiPhongTheoIdRequest,
   deleteLoaiPhongTheoIdRequest,

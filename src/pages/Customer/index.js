@@ -1,82 +1,66 @@
-import React, { Component } from 'react';
-import CustomTable from './CustomTable'
-import { Divider } from "antd";
+import React from "react";
+import { connect } from "react-redux";
+import  { Tabs } from "antd";
+import KhachHang from './KhachHang'
 
-const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Age",
-      dataIndex: "age",
-      key: "age"
-    },
-    {
-      title: "Address",
-      dataIndex: "address",
-      key: "address"
-    },
-    // {
-    //   title: "Tags",
-    //   key: "tags",
-    //   dataIndex: "tags",
-    //   render: tags => (
-    //     <span>
-    //       {tags.map(tag => (
-    //         <Tag color="blue" key={tag}>
-    //           {tag}
-    //         </Tag>
-    //       ))}
-    //     </span>
-    //   )
-    // },
-    {
-      title: "Action",
-      key: "action",
-      render: (text, record) => (
-        <span>
-          <a href="">Edit</a>
-          <Divider type="vertical" />
-          <a href="">Delete</a>
-        </span>
-      )
-    }
-  ];
-  
-  const data = [
-    {
-      key: "1",
-      name: "John Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-      tags: ["nice", "developer"]
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-      tags: ["loser"]
-    },
-    {
-      key: "3",
-      name: "Joe Black",
-      age: 32,
-      address: "Sidney No. 1 Lake Park",
-      tags: ["cool", "teacher"]
-    }
-  ];
-  
+import{
+  getListKhachHangRequest,
+} from "../../actions/khachhang";
 
-export default class index extends Component {
-    render() {
-        return (
-            <div>
-                <CustomTable data={data} columns={columns}/>
-            </div>
-        );
-    }
+const TabPane = Tabs.TabPane;
+
+class Customer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+
+
+  componentDidMount() {
+    // console.log(this.props);
+    //this.props.getListLoaiPhongRequest();
+    this.props.getListKhachHangRequest();
+    // this.props.addLoaiPhongRequest('Phòng tập thể',80000);
+    // this.props.findLoaiPhongTheoIdRequest('5b94986892bf312fe4c4b729');
+    // this.props.deleteLoaiPhongTheoIdRequest('5b97a19416e89100200353e9');
+    // this.props.updateLoaiPhongTheoIdRequest('5b95b529f2b348128caef66e','Phòng VIPP',20000000)
+  }
+
+  render() {
+   console.log(this.props);
+   const {khachhang} = this.props;
+   console.log(khachhang);
+    return ( 
+      <div>
+        <Tabs defaultActiveKey="1" >
+         
+          <TabPane tab="Khách Hàng" key="1">
+           <KhachHang {...this.props} />
+          </TabPane>
+        </Tabs>
+      </div>
+    );
+  }
 }
 
+const mapStateToProps = state => {
+  return {
+   // phong : state.phong.phong,
+    //loaiphong: state.loaiphong.loaiphong,
+   khachhang: state.khachhang.khachhang,
+    // loaiphong: state.phong.loaiphongtheoid,
+    
+  };
+};
+
+const mapDispatchToProps = {
+  
+  getListKhachHangRequest,
+  
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Customer);
