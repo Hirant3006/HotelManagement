@@ -2,49 +2,29 @@ import React, { Component } from "react";
 import "antd/dist/antd.css";
 import { Table, Divider,Button ,Icon,Row } from "antd";
 import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
-import khachhang from "../../reducers/khachhang";
-import CustomerTable from './CustomTable'
+import huhong from "../../reducers/huhong";
+import CustomerTable from '../Customer/CustomTable'
 const columns = [
   {
-    title: "Giới Tính ",
-    dataIndex: "GioiTinh",
-    key: "_id"
+    title: "Mã Phòng ",
+    dataIndex: "MaPhong",
+    key: "MaPhong"
   },
   {
-    title: "Họ Tên",
-    dataIndex: "HoTen",
-    key: "HoTen"
+    title: "Chi Tiết",
+    dataIndex: "ChiTiet",
+    key: "ChiTiet"
   },
   {
-    title: "Ngày sinh",
-    dataIndex: "NgaySinh",
-    key: "NgaySinh",
+    title: "Trạng Thái",
+    dataIndex: "DaSua",
+    key: "DaSua"
   },
   {
-    title: "Địa chỉ",
-    dataIndex: "DiaChi",
-    key: "Diachi"
-  },
-  {
-    title: "Quốc Tịch",
-    dataIndex: "QuocTich",
-    key: "QuocTich"
-  },
-  {
-    title: "SĐT",
-    dataIndex: "SDT",
-    key: "SDT"
-  },
-  {
-    title: "Email",
-    dataIndex: "Email",
-    key: "Email"
-  },
-  {
-    title: "CMND",
-    dataIndex: "CMND",
-    key: "CMND"
-  },
+    title: " ",
+    dataIndex: "_v",
+    key: "_v"
+  }
 ];
 
 export default class CustomTable extends Component {
@@ -74,7 +54,7 @@ export default class CustomTable extends Component {
 	}
  
   render() {
-    const { khachhang } = this.props;
+    const {huhong} = this.props;
     console.log(this.props);
     return (
       <div>
@@ -89,9 +69,9 @@ export default class CustomTable extends Component {
         </Row>
         <Row>
         <Table
-          loading={khachhang.isFetching}
+          loading={huhong.isFetching}
           columns={columns}
-          dataSource={khachhang.listKhachhang}
+          dataSource={huhong.listHuHong}
           rowKey="_id"
           pagination={{ pageSize: 5 }}
           {...this.props}
