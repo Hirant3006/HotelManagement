@@ -5,6 +5,7 @@ import KhachHang from './KhachHang'
 
 import{
   getListKhachHangRequest,
+  addKhachHangRequest,
 } from "../../actions/khachhang";
 
 const TabPane = Tabs.TabPane;
@@ -21,6 +22,7 @@ class Customer extends React.Component {
     // console.log(this.props);
     //this.props.getListLoaiPhongRequest();
     this.props.getListKhachHangRequest();
+ //   this.props.addKhachHangRequest();
     // this.props.addLoaiPhongRequest('Phòng tập thể',80000);
     // this.props.findLoaiPhongTheoIdRequest('5b94986892bf312fe4c4b729');
     // this.props.deleteLoaiPhongTheoIdRequest('5b97a19416e89100200353e9');
@@ -50,13 +52,14 @@ const mapStateToProps = state => {
     //loaiphong: state.loaiphong.loaiphong,
    khachhang: state.khachhang.khachhang,
     // loaiphong: state.phong.loaiphongtheoid,
-    
+    addkhachhang: state.khachhang.addkhachhang,
   };
 };
 
 const mapDispatchToProps = {
   
   getListKhachHangRequest,
+  addKhachHangRequest,
   
 };
 

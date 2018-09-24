@@ -4,6 +4,7 @@ import { Table, Divider,Button ,Icon,Row } from "antd";
 import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
 import khachhang from "../../reducers/khachhang";
 import CustomerTable from './CustomTable'
+import ModalThemKhachHang from './ModalThemKhachHang/index'
 const columns = [
   {
     title: "Giới Tính ",
@@ -96,7 +97,9 @@ export default class CustomTable extends Component {
           pagination={{ pageSize: 5 }}
           {...this.props}
         />
-        <CustomerTable visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/>
+        <CustomerTable />
+        <ModalThemKhachHang visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/>
+
         </Row>
       </div>
     );
