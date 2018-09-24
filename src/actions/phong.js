@@ -2,9 +2,9 @@ import axios from "axios";
 import keys from "../configs/keys";
 import { message } from 'antd';
 import {
-  GET_LIST_PHONG_REQUEST,
-  GET_LIST_PHONG_SUCCESS,
-  GET_LIST_PHONG_FAILURE,
+  GET_LIST_LOAI_PHONG_REQUEST,
+  GET_LIST_LOAI_PHONG_SUCCESS,
+  GET_LIST_LOAI_PHONG_FAILURE,
   ADD_LOAI_PHONG_REQUEST,
   ADD_LOAI_PHONG_SUCCESS,
   ADD_LOAI_PHONG_FAILURE,
@@ -20,19 +20,18 @@ import {
 } from "./contstants";
 
 export const getListPhongRequest = () => async dispatch => {
-  dispatch({ type: GET_LIST_PHONG_REQUEST });
+  dispatch({ type: GET_LIST_LOAI_PHONG_REQUEST });
   const res = await axios.get(keys.backend + "/loaiphongs");
 
   if ((res.status = 200))
     dispatch({
-      type: GET_LIST_PHONG_SUCCESS,
+      type: GET_LIST_LOAI_PHONG_SUCCESS,
       listPhong: res.data
     });
   else {
     dispatch({
-      type: GET_LIST_PHONG_FAILURE
+      type: GET_LIST_LOAI_PHONG_FAILURE
     });
-    console.log(res);
   }
 };
 
@@ -114,7 +113,7 @@ export const updateLoaiPhongTheoIdRequest = (_id,TenLoai,DonGia) => async dispat
       type: UPDATE_LOAI_PHONG_THEO_ID_SUCCESS
     });
     dispatch({
-      type: GET_LIST_PHONG_SUCCESS,
+      type: GET_LIST_LOAI_PHONG_SUCCESS,
       listPhong: res.data
     })
   }

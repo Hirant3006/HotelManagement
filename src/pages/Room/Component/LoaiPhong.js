@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import "antd/dist/antd.css";
 import { Table, Divider, Button, Icon, Row, Popconfirm } from "antd";
 import ModalThemLoaiPhong from "./ModalThemLoaiPhong";
+import ModalSuaLoaiPhong from './ModalSuaLoaiPhong';
 
 export default class CustomTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
+      visibleSuaLoaiPhong: false,
+      dataSualoaiphong: null,
     };
   }
 
@@ -27,7 +30,7 @@ export default class CustomTable extends Component {
       key: "action",
       render: (text, record) => (
         <span>
-          <a>Sửa</a>
+          <a onClick={this.onToggleModalSuaLoaiPhong}>Sửa</a>
           <Divider type="vertical" />
           {this.props.deleteloaiphong.isFetching ? (
             <Icon type="loading" />
@@ -53,14 +56,12 @@ export default class CustomTable extends Component {
   ];
 
   handelDeleteLoaiPhong = record => {
-    console.log(record);
     const { deleteLoaiPhongTheoIdRequest,getListPhongRequest } = this.props;
     const id = record._id;
     deleteLoaiPhongTheoIdRequest(id,getListPhongRequest);
   };
 
   handleOk = e => {
-    console.log("Ok");
     this.setState({
       visible: false
     });
@@ -73,8 +74,25 @@ export default class CustomTable extends Component {
     this.props.reset('them-loai-phong')
   };
 
+  handleOkSuaLoaiPhong = e => {
+    this.setState({
+      visibleSuaLoaiPhong: false
+    });
+  };
+
+  handleCancelSuaLoaiPhong = e => {
+    this.setState({
+      visibleSuaLoaiPhong: false
+    });
+    this.props.reset('sua-loai-phong')
+  };
+
   onToggleModal = e => {
     this.setState({ visible: !this.state.visible });
+  };
+
+  onToggleModalSuaLoaiPhong = e => {
+    this.setState({ visibleSuaLoaiPhong: !this.state.visibleSuaLoaiPhong });
   };
 
   render() {
@@ -101,9 +119,16 @@ export default class CustomTable extends Component {
           />
           <ModalThemLoaiPhong
             visible={this.state.visible}
-            showModal={this.showModal}
+            // showModal={this.showModal}
             onCancel={this.handleCancel}
             onOk={this.handleOk}
+            {...this.props}
+          />
+          <ModalSuaLoaiPhong
+            visible={this.state.visibleSuaLoaiPhong}
+            // showModal={this.showModal}
+            onCancel={this.handleCancelSuaLoaiPhong}
+            onOk={this.handleOkSuaLoaiPhong}
             {...this.props}
           />
         </Row>

@@ -19,7 +19,7 @@ const validate = values => {
   return errors;
 };
 
-class ModalThemLoaiPhong extends React.Component {
+class ModalSuaLoaiPhong extends React.Component {
   formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -31,11 +31,12 @@ class ModalThemLoaiPhong extends React.Component {
     }
   };
 
-  handleThemLoaiPhong = (values,onCancel) => {
-    const { addLoaiPhongRequest,getListPhongRequest } = this.props;
-    const TenLoai = values.tenloai;
-    const DonGia = values.dongia;
-    addLoaiPhongRequest(TenLoai,DonGia,onCancel,getListPhongRequest);
+  handleSuaLoaiPhong = (values,onCancel) => {
+    // console.log(values);
+    // const { addLoaiPhongRequest,getListPhongRequest } = this.props;
+    // const TenLoai = values.tenloai;
+    // const DonGia = values.dongia;
+    // updateLoaiPhongRequest(TenLoai,DonGia,onCancel,getListPhongRequest);
   };
 
   render() {
@@ -43,7 +44,7 @@ class ModalThemLoaiPhong extends React.Component {
 
     return (
       <Modal
-        title="Tạo loại phòng "
+        title="Sửa loại phòng"
         visible={visible}
         onCancel={() => 
           {
@@ -90,9 +91,9 @@ class ModalThemLoaiPhong extends React.Component {
   }
 }
 
-ModalThemLoaiPhong= reduxForm({
-  form: "them-loai-phong", // a unique identifier for this form
+ModalSuaLoaiPhong= reduxForm({
+  form: "sua-loai-phong", // a unique identifier for this form
   validate, // <--- validation function given to redux-form
-})(ModalThemLoaiPhong);
+})(ModalSuaLoaiPhong);
 
-export default ModalThemLoaiPhong;
+export default ModalSuaLoaiPhong;

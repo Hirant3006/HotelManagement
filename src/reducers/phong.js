@@ -1,9 +1,9 @@
 import update from "immutability-helper";
 
 import {
-  GET_LIST_PHONG_REQUEST,
-  GET_LIST_PHONG_SUCCESS,
-  GET_LIST_PHONG_FAILURE,
+  GET_LIST_LOAI_PHONG_REQUEST,
+  GET_LIST_LOAI_PHONG_SUCCESS,
+  GET_LIST_LOAI_PHONG_FAILURE,
   ADD_LOAI_PHONG_REQUEST,
   ADD_LOAI_PHONG_SUCCESS,
   ADD_LOAI_PHONG_FAILURE,
@@ -40,13 +40,13 @@ const initialState = {
 };
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_LIST_PHONG_REQUEST:
+    case GET_LIST_LOAI_PHONG_REQUEST:
       return update(state, {
         loaiphong: {
           isFetching: { $set: true }
         }
       });
-    case GET_LIST_PHONG_SUCCESS:
+    case GET_LIST_LOAI_PHONG_SUCCESS:
       return update(state, {
         loaiphong: {
           listloaiPhong: { $set: action.listPhong },
@@ -54,7 +54,7 @@ export default function(state = initialState, action) {
         },
         error: { $set: null }
       });
-    case GET_LIST_PHONG_FAILURE:
+    case GET_LIST_LOAI_PHONG_FAILURE:
       return update(state, {
         loaiphong: {
           isFetching: { $set: false }
