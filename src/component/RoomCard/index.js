@@ -1,12 +1,10 @@
 import React, { PureComponent } from "react";
-//import { connect, Provider } from 'react-redux';
 
 import CustomerCard from './RoomCard'
 import CustomerCard_Data from '../../data/CustomerCard_Data.json'
 export default class App extends PureComponent {
   render() {
     return (
-     // <Provider store={store}>
     <div>
    
     <div className="row">
@@ -24,7 +22,6 @@ export default class App extends PureComponent {
                             </div>
                             </div>
     </div>
-    //</Provider>
     )
   }
 }

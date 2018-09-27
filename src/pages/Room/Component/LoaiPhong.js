@@ -43,12 +43,6 @@ export default class CustomTable extends Component {
             >
               <a style={{color:"red"}}>Xóa</a>
             </Popconfirm>
-            // <a
-            //   style={{ color: "red" }}
-            //   onClick={() => this.handelDeleteLoaiPhong(record)}
-            // >
-            //   Xóa
-            // </a>
           )}
         </span>
       )
