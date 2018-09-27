@@ -92,7 +92,6 @@ export default class CustomTable extends Component {
   };
 
   onToggleModalSuaLoaiPhong = (record) => {
-    console.log(record);
     this.setState({ visibleSuaLoaiPhong: !this.state.visibleSuaLoaiPhong , dataSualoaiphong: record});
   };
 

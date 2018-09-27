@@ -7,19 +7,9 @@ class Home extends PureComponent {
     this.state = {};
   }
 
-  componentDidMount() {
-    // console.log(this.props);
-    // this.props.getListPhongRequest();
-    // this.props.addLoaiPhongRequest('Phòng tập thể',80000);
-    // this.props.findLoaiPhongTheoIdRequest('5b94986892bf312fe4c4b729');
-    // this.props.deleteLoaiPhongTheoIdRequest('5b97a19416e89100200353e9');
-    // this.props.updateLoaiPhongTheoIdRequest('5b95b529f2b348128caef66e','Phòng VIPP',20000000)
-  }
-
 
   render() {
     
-    // console.log(this.props);
     return <div>Homepages</div>;
   }
 }

@@ -20,7 +20,6 @@ class ModalSuaLoaiPhong extends React.Component {
   };
 
   handleSuaLoaiPhong = (values,id,onCancel) => {
-    console.log(id);;
     const { updateLoaiPhongTheoIdRequest } = this.props;
     const TenLoai = values.tenloai;
     const DonGia = values.dongia;
@@ -29,7 +28,6 @@ class ModalSuaLoaiPhong extends React.Component {
 
   render() {
     const { handleSubmit, visible, onCancel, addloaiphong,data } = this.props;
-    console.log(this.props.data);
     return (
       <Modal
         title="Sửa loại phòng"

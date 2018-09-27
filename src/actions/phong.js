@@ -79,13 +79,6 @@ export const findLoaiPhongTheoIdRequest = id => async (dispatch,getState) => {
 export const deleteLoaiPhongTheoIdRequest = (id,getListPhongRequest) => async (dispatch,getState) => {
   dispatch({ type: DELETE_LOAI_PHONG_THEO_ID_REQUEST });
   const res = await axios.delete(keys.backend + "/loaiphong/" + id);
-  // const { phong } = getState();
-  // console.log(phong);
-  // const listloaiphong = phong.loaiphong.listloaiPhong;
-  // console.log(listloaiphong);
-  // console.log(listloaiphong.findIndex(x=>x._id=id))
-
-  // console.log(listloaiphong.findIndex(x=>x._id=id));
   
   if ((res.status = 200)){
     dispatch({
