@@ -2,22 +2,9 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Modal, Row, Button, Form } from "antd";
 import CustomInput from '../../../../component/CustomInput'
+import validate from './validate'
 const FormItem = Form.Item;
 
-const validate = values => {
-  const errors = {};
-  if (!values.tenloai) {
-    errors.tenloai = "Không được bỏ trống ô này";
-  } else if (values.tenloai.length > 15) {
-    errors.tenloai = "Must be 15 characters or less";
-  }
-  if (!values.dongia) {
-    errors.dongia = "Không được bỏ trống ô này";
-  } else if (isNaN(Number(values.dongia))) {
-    errors.dongia = "Đơn giá phải là một con số";
-  }
-  return errors;
-};
 
 class ModalThemLoaiPhong extends React.Component {
   formItemLayout = {
@@ -31,15 +18,15 @@ class ModalThemLoaiPhong extends React.Component {
     }
   };
 
-  handleThemLoaiPhong = (values,onCancel) => {
-    const { addLoaiPhongRequest,getListPhongRequest } = this.props;
-    const TenLoai = values.tenloai;
-    const DonGia = values.dongia;
-    addLoaiPhongRequest(TenLoai,DonGia,onCancel,getListPhongRequest);
+  handleSuaLoaiPhong = (values,onCancel) => {
+    // const { addLoaiPhongRequest,getListPhongRequest } = this.props;
+    // const TenLoai = values.tenloai;
+    // const DonGia = values.dongia;
+    // addLoaiPhongRequest(TenLoai,DonGia,onCancel,getListPhongRequest);
   };
 
   render() {
-    const { handleSubmit, visible, onCancel, addloaiphong } = this.props;
+    const { handleSubmit, visible, onCancel, addloaiphong} = this.props;
 
     return (
       <Modal
@@ -52,8 +39,8 @@ class ModalThemLoaiPhong extends React.Component {
         }}
         footer={null}
       >
-        <form
-          onSubmit={handleSubmit(values => this.handleThemLoaiPhong(values,onCancel))}
+        <Form
+          onSubmit={handleSubmit(values => this.handleSuaLoaiPhong(values,onCancel))}
         >
           <FormItem label="Tên loại phòng" {...this.formItemLayout}>
             <Field
@@ -84,7 +71,7 @@ class ModalThemLoaiPhong extends React.Component {
               Tạo
             </Button>
           </Row>
-        </form>
+        </Form>
       </Modal>
     );
   }

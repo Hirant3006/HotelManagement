@@ -100,7 +100,7 @@ export const deleteLoaiPhongTheoIdRequest = (id,getListPhongRequest) => async (d
     });
 };
 
-export const updateLoaiPhongTheoIdRequest = (_id,TenLoai,DonGia) => async dispatch => {
+export const updateLoaiPhongTheoIdRequest = (_id,TenLoai,DonGia,onCancel) => async dispatch => {
   dispatch({ type: UPDATE_LOAI_PHONG_THEO_ID_REQUEST });
   const res = await axios.put(keys.backend + "/loaiphong", {
     _id,
@@ -116,6 +116,8 @@ export const updateLoaiPhongTheoIdRequest = (_id,TenLoai,DonGia) => async dispat
       type: GET_LIST_LOAI_PHONG_SUCCESS,
       listPhong: res.data
     })
+    message.success('SỬA loại phòng thành công');
+    onCancel();
   }
   else
     dispatch({

@@ -10,7 +10,7 @@ export default class CustomTable extends Component {
     this.state = {
       visible: false,
       visibleSuaLoaiPhong: false,
-      dataSualoaiphong: null,
+      dataSualoaiphong: {TenLoai:'',DonGia:0},
     };
   }
 
@@ -30,7 +30,7 @@ export default class CustomTable extends Component {
       key: "action",
       render: (text, record) => (
         <span>
-          <a onClick={this.onToggleModalSuaLoaiPhong}>Sửa</a>
+          <a onClick={() => this.onToggleModalSuaLoaiPhong(record)}>Sửa</a>
           <Divider type="vertical" />
           {this.props.deleteloaiphong.isFetching ? (
             <Icon type="loading" />
@@ -91,12 +91,14 @@ export default class CustomTable extends Component {
     this.setState({ visible: !this.state.visible });
   };
 
-  onToggleModalSuaLoaiPhong = e => {
-    this.setState({ visibleSuaLoaiPhong: !this.state.visibleSuaLoaiPhong });
+  onToggleModalSuaLoaiPhong = (record) => {
+    console.log(record);
+    this.setState({ visibleSuaLoaiPhong: !this.state.visibleSuaLoaiPhong , dataSualoaiphong: record});
   };
 
   render() {
     const { loaiphong } = this.props;
+    const { visibleSuaLoaiPhong } = this.state;
     return (
       <div>
         <Row>
@@ -124,13 +126,15 @@ export default class CustomTable extends Component {
             onOk={this.handleOk}
             {...this.props}
           />
+          {visibleSuaLoaiPhong ?
           <ModalSuaLoaiPhong
             visible={this.state.visibleSuaLoaiPhong}
             // showModal={this.showModal}
             onCancel={this.handleCancelSuaLoaiPhong}
             onOk={this.handleOkSuaLoaiPhong}
+            data={this.state.dataSualoaiphong}
             {...this.props}
-          />
+          /> : null }
         </Row>
       </div>
     );
