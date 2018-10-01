@@ -3,10 +3,11 @@ import { Field, reduxForm } from "redux-form";
 import { Modal, Row, Button, Form } from "antd";
 import CustomInput from '../../../../component/CustomInput'
 import validate from './validate'
+
 const FormItem = Form.Item;
 
 
-class ModalThemLoaiPhong extends React.Component {
+class ModalSuaLoaiPhong extends React.Component {
   formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -18,24 +19,18 @@ class ModalThemLoaiPhong extends React.Component {
     }
   };
 
-<<<<<<< HEAD
-  handleThemLoaiPhong = (values,onCancel) => {
-    console.log(values);
-    const { addLoaiPhongRequest,getListLoaiPhongRequest } = this.props;
+  handleSuaLoaiPhong = (values,id,onCancel) => {
+    const { updateLoaiPhongTheoIdRequest } = this.props;
     const TenLoai = values.tenloai;
     const DonGia = values.dongia;
-    addLoaiPhongRequest(TenLoai,DonGia,onCancel,getListLoaiPhongRequest);
-=======
-  handleSuaLoaiPhong = (values,onCancel) => {
->>>>>>> 04a9204937dc0fa3ca0e481af69a0ec9edfa29c5
+    updateLoaiPhongTheoIdRequest(id,TenLoai,DonGia,onCancel);
   };
 
   render() {
-    const { handleSubmit, visible, onCancel, addloaiphong} = this.props;
-
+    const { handleSubmit, visible, onCancel, addloaiphong,data } = this.props;
     return (
       <Modal
-        title="Tạo loại phòng "
+        title="Sửa loại phòng"
         visible={visible}
         onCancel={() => 
           {
@@ -45,14 +40,14 @@ class ModalThemLoaiPhong extends React.Component {
         footer={null}
       >
         <Form
-          onSubmit={handleSubmit(values => this.handleSuaLoaiPhong(values,onCancel))}
+          onSubmit={handleSubmit(values => this.handleSuaLoaiPhong(values,data._id,onCancel))}
         >
           <FormItem label="Tên loại phòng" {...this.formItemLayout}>
             <Field
               name="tenloai"
               type="text"
               component={CustomInput}
-              placeholder="Nhập tên loại phòng"
+              placeholder={data!=null?data.TenLoai:null}
             />
           </FormItem>
 
@@ -61,10 +56,9 @@ class ModalThemLoaiPhong extends React.Component {
               name="dongia"
               type="number"
               component={CustomInput}
-              placeholder="Nhập dơn giá"
+              placeholder={data!=null?data.DonGia:null}
             />
           </FormItem>
-          {/* <Field name="age" type="number" component={renderField} label="Age" /> */}
           <Row type="flex" justify="end">
             <Button
               type="primary"
@@ -82,9 +76,13 @@ class ModalThemLoaiPhong extends React.Component {
   }
 }
 
-ModalThemLoaiPhong= reduxForm({
-  form: "them-loai-phong", // a unique identifier for this form
+ModalSuaLoaiPhong= reduxForm({
+  form: "sua-loai-phong", // a unique identifier for this form
   validate, // <--- validation function given to redux-form
-})(ModalThemLoaiPhong);
+  forceUnregisterOnUnmount: true,
+  // initialValues: {
+  //   tenloai:this.props.data.TenLoai,
+  // }
+})(ModalSuaLoaiPhong);
 
-export default ModalThemLoaiPhong;
+export default ModalSuaLoaiPhong;

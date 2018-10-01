@@ -1,35 +1,39 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
+<<<<<<< HEAD
 import { getListLoaiPhongRequest,addLoaiPhongRequest,findLoaiPhongTheoIdRequest,deleteLoaiPhongTheoIdRequest,updateLoaiPhongTheoIdRequest } from "../../actions/loaiphong";
+=======
+import {
+  getListPhongRequest,
+  addLoaiPhongRequest,
+  findLoaiPhongTheoIdRequest,
+  deleteLoaiPhongTheoIdRequest,
+  updateLoaiPhongTheoIdRequest
+} from "../../actions/phong";
+>>>>>>> 04a9204937dc0fa3ca0e481af69a0ec9edfa29c5
 class Home extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  componentDidMount() {
-    // console.log(this.props);
-    // this.props.getListPhongRequest();
-    // this.props.addLoaiPhongRequest('Phòng tập thể',80000);
-    // this.props.findLoaiPhongTheoIdRequest('5b94986892bf312fe4c4b729');
-    // this.props.deleteLoaiPhongTheoIdRequest('5b97a19416e89100200353e9');
-    // this.props.updateLoaiPhongTheoIdRequest('5b95b529f2b348128caef66e','Phòng VIPP',20000000)
-  }
-
-
   render() {
-    
-    // console.log(this.props);
     return <div>Homepages</div>;
   }
 }
 
 const mapStateToProps = state => {
   return {
+<<<<<<< HEAD
    loaiphong: state.loaiphong.loaiphong,
     // loaiphong: state.phong.loaiphongtheoid,
     deleteloaiphong: state.loaiphong.deleteloaiphong,
     updateloaiphong: state.loaiphong.updateloaiphong,
+=======
+    loaiphong: state.phong.loaiphong,
+    deleteloaiphong: state.phong.deleteloaiphong,
+    updateloaiphong: state.phong.updateloaiphong
+>>>>>>> 04a9204937dc0fa3ca0e481af69a0ec9edfa29c5
   };
 };
 
@@ -38,7 +42,7 @@ const mapDispatchToProps = {
   addLoaiPhongRequest,
   findLoaiPhongTheoIdRequest,
   deleteLoaiPhongTheoIdRequest,
-  updateLoaiPhongTheoIdRequest,
+  updateLoaiPhongTheoIdRequest
 };
 
 export default connect(
