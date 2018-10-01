@@ -27,21 +27,15 @@ class Room extends React.Component {
 
 
   componentDidMount() {
-<<<<<<< HEAD
     // console.log(this.props);
     this.props.getListLoaiPhongRequest();
-=======
->>>>>>> 04a9204937dc0fa3ca0e481af69a0ec9edfa29c5
     this.props.getListPhongRequest();
   }
 
   render() {
-<<<<<<< HEAD
    console.log(this.props);
    const {phong,loaiphong} = this.props;
    console.log(loaiphong);
-=======
->>>>>>> 04a9204937dc0fa3ca0e481af69a0ec9edfa29c5
     return ( 
       <div>
         <Tabs defaultActiveKey="2" >

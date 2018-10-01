@@ -1,12 +1,6 @@
 import update from "immutability-helper";
 
 import {
-<<<<<<< HEAD
-  GET_LIST_PHONG_REQUEST,
-  GET_LIST_PHONG_SUCCESS,
-  GET_LIST_PHONG_FAILURE,
-  
-=======
   GET_LIST_LOAI_PHONG_REQUEST,
   GET_LIST_LOAI_PHONG_SUCCESS,
   GET_LIST_LOAI_PHONG_FAILURE,
@@ -22,7 +16,6 @@ import {
   UPDATE_LOAI_PHONG_THEO_ID_REQUEST,
   UPDATE_LOAI_PHONG_THEO_ID_SUCCESS,
   UPDATE_LOAI_PHONG_THEO_ID_FAILURE
->>>>>>> 04a9204937dc0fa3ca0e481af69a0ec9edfa29c5
 } from "../actions/contstants";
 
 const initialState = {

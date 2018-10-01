@@ -2,17 +2,6 @@ import axios from "axios";
 import keys from "../configs/keys";
 import { message } from 'antd';
 import {
-<<<<<<< HEAD
-  GET_LIST_PHONG_REQUEST,
-  GET_LIST_PHONG_SUCCESS,
-  GET_LIST_PHONG_FAILURE,
- 
-} from "./contstants";
-
-export const getListPhongRequest = () => async dispatch => {
-  dispatch({ type: GET_LIST_PHONG_REQUEST });
-  const res = await axios.get(keys.backend + "/phongs");
-=======
   GET_LIST_LOAI_PHONG_REQUEST,
   GET_LIST_LOAI_PHONG_SUCCESS,
   GET_LIST_LOAI_PHONG_FAILURE,
@@ -33,7 +22,7 @@ export const getListPhongRequest = () => async dispatch => {
 export const getListPhongRequest = () => async dispatch => {
   dispatch({ type: GET_LIST_LOAI_PHONG_REQUEST });
   const res = await axios.get(keys.backend + "/loaiphongs");
->>>>>>> 04a9204937dc0fa3ca0e481af69a0ec9edfa29c5
+
 
   if ((res.status = 200))
     dispatch({
@@ -47,9 +36,8 @@ export const getListPhongRequest = () => async dispatch => {
   }
 };
 
-<<<<<<< HEAD
 
-=======
+
 export const addLoaiPhongRequest = (TenLoai, DonGia,onCancel,getListPhongRequest) => async (dispatch,getState) => {
   dispatch({ type: ADD_LOAI_PHONG_REQUEST });
   const res = await axios.post(keys.backend + "/loaiphong", {
@@ -129,4 +117,3 @@ export const updateLoaiPhongTheoIdRequest = (_id,TenLoai,DonGia,onCancel) => asy
       type: UPDATE_LOAI_PHONG_THEO_ID_FAILURE
     });
 };
->>>>>>> 04a9204937dc0fa3ca0e481af69a0ec9edfa29c5
