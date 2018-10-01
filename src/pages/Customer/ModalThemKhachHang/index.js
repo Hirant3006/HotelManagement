@@ -15,7 +15,7 @@ const validate = values => {
   }
   if (!values.HoTen) {
     errors.HoTen = "Không được bỏ trống ô này";
-  } else if (values.HoTen.length>15) {
+  } else if (values.HoTen.length>55) {
     errors.HoTen = "Must be 15 characters or less";
   }
   return errors;
@@ -43,8 +43,9 @@ class ModalThemKhachHang extends React.Component {
     const QuocTich = values.QuocTich;
     const Email =values.Email;
     const CMND = values.CMND;
+    const SDT = values.SDT;
 
-    addKhachHangRequest(GioiTinh,HoTen,NgaySinh,DiaChi,QuocTich,Email,CMND,onCancel,getListKhachHangRequest);
+    addKhachHangRequest(GioiTinh,HoTen,NgaySinh,DiaChi,QuocTich,SDT,Email,CMND,onCancel,getListKhachHangRequest);
   };
 
   render() {
