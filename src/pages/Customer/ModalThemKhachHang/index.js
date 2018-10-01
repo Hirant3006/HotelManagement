@@ -89,6 +89,52 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
+          <FormItem label="Địa chỉ" {...this.formItemLayout}>
+            <Field
+              name="DiaChi"
+              type="text"
+              component={CustomInput}
+              placeholder="Nhập địa chỉ khách hàng"
+            />
+          </FormItem>
+
+          <FormItem label="Địa chỉ" {...this.formItemLayout}>
+            <Field
+              name="QuocTich"
+              type="text"
+              component={CustomInput}
+              placeholder="Nhập quốc tịch khách hàng"
+            />
+          </FormItem>
+
+          <FormItem label="SĐT" {...this.formItemLayout}>
+            <Field
+              name="SDT"
+              type="defaultValue"
+              component={CustomInput}
+              placeholder="Nhập SDT khách hàng"
+            />
+          </FormItem>
+
+
+          <FormItem label="Email" {...this.formItemLayout}>
+            <Field
+              name="Email"
+              type="text"
+              component={CustomInput}
+              placeholder="Nhập Email khách hàng"
+            />
+          </FormItem>
+
+          <FormItem label="CMND" {...this.formItemLayout}>
+            <Field
+              name="CMND"
+              type="defaultValue"
+              component={CustomInput}
+              placeholder="Nhập số CMND khách hàng"
+            />
+          </FormItem>
+
           <Row type="flex" justify="end">
             <Button
               type="primary"
@@ -100,6 +146,9 @@ class ModalThemKhachHang extends React.Component {
               Add
             </Button>
           </Row>
+
+
+         
         </form>
       </Modal>
     );
