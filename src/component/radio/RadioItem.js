@@ -1,6 +1,5 @@
 import { Radio, Input } from 'antd';
 import React, { PureComponent } from "react";
-
 const RadioGroup = Radio.Group;
 
 export default class RadioItem extends React.Component {
@@ -21,13 +20,18 @@ export default class RadioItem extends React.Component {
       height: '30px',
       lineHeight: '30px',
     };
+    const {
+     
+     value,
+     type,
+    //  onChange
+     } = this.props;
     return (
-      <RadioGroup onChange={this.onChange} value={this.state.value}>
+      <RadioGroup onChange={this.onChange} value={this.state.value} type={type}>
         <Radio style={radioStyle} value={1}>Male</Radio>
-        <Radio style={radioStyle} value={2}>Female</Radio>       
+        <Radio style={radioStyle} value={0}>Female</Radio>       
       </RadioGroup>
     );
   }
 }
 
-//ReactDOM.render(<App />, mountNode);

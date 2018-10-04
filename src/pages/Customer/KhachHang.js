@@ -9,7 +9,7 @@ const columns = [
   {
     title: "Giới Tính ",
     dataIndex: "GioiTinh",
-    key: "_id"
+    key: "GioiTinh"
   },
   {
     title: "Họ Tên",

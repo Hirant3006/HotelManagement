@@ -1,18 +1,35 @@
 import React, { PureComponent } from "react";
-import { Calendar } from 'antd'; 
+import { Calendar,Alert } from 'antd'; 
 import ReactDOM from 'react-dom'
-function onPanelChange(value, mode) {
-  console.log(value, mode);
-}
+import moment from 'moment';
+
 
   export default class Calendars extends React.Component {
+    state = {
+      value: moment('2017-01-25'),
+      selectedValue: moment('2017-01-25'),
+    }
+
+    onSelect = (value) => {
+      this.setState({
+        value,
+        selectedValue: value,
+      });
+    }
   
-    render() {
-      
+    onPanelChange = (value) => {
+      this.setState({ value });
+    }
+    render() { 
+      const { value, selectedValue } = this.state;
       return (
-        <div style={{ width: 300, border: '1px solid #d9d9d9', borderRadius: 4 }}>
-        <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+        <div style={{ width: 400, border: '1px solid #d9d9d9', borderRadius: 4 }}>
+        <Alert message={`You selected date: ${ moment(selectedValue) && moment(selectedValue).format('DD-MM-YYYY')}`} />
+        <Calendar value={value} onSelect={this.onSelect} onPanelChange={this.onPanelChange} />
         </div>
       );
     }
   }
+
+
+  
