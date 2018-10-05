@@ -43,7 +43,7 @@ class ModalThemKhachHang extends React.Component {
     const CMND = values.CMND;
     const SDT = values.SDT;
 
-    addKhachHangRequest(GioiTinh,HoTen,NgaySinh,DiaChi,QuocTich,SDT,Email,CMND,onCancel,getListKhachHangRequest);
+    addKhachHangRequest(GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,onCancel,getListKhachHangRequest);
   };
 
   render() {
@@ -116,14 +116,14 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-          <FormItem label="SĐT" {...this.formItemLayout}>
+          {/* <FormItem label="SĐT" {...this.formItemLayout}>
             <Field
               name="SDT"
               type="text"
               component={CustomInput}
               placeholder="Nhập SDT khách hàng"
             />
-          </FormItem>
+          </FormItem> */}
 
 
           <FormItem label="Email" {...this.formItemLayout}>

@@ -24,13 +24,13 @@ export const getListKhachHangRequest = () => async dispatch => {
     });
 };
 
-export const addKhachHangRequest = ( GioiTinh,HoTen,NgaySinh,DiaChi,QuocTich,SDT,Email,CMND,onCancel,getListKhachHangRequest) => async (dispatch,getState) => {
+export const addKhachHangRequest = ( GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,onCancel,getListKhachHangRequest) => async (dispatch,getState) => {
   dispatch({ type: ADD_KHACHHANG_REQUEST });
   // const { phong } = getState();
   // listloaiphong = phong.listloaiPhong;
   // listloaiphong.put({TenLoai:})
   const res = await axios.post(keys.backend + "/khachhangs", {
-    GioiTinh,HoTen,NgaySinh,DiaChi,QuocTich,SDT,Email,CMND
+    GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email
   });
   if ((res.status = 200)){
     dispatch({
