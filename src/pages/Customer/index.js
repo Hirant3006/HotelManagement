@@ -20,9 +20,9 @@ class Customer extends React.Component {
 
   componentDidMount() {
     // console.log(this.props);
-    //this.props.getListLoaiPhongRequest();
+    // this.props.getListLoaiPhongRequest();
     this.props.getListKhachHangRequest();
- //   this.props.addKhachHangRequest();
+    // this.props.addKhachHangRequest();
     // this.props.addLoaiPhongRequest('Phòng tập thể',80000);
     // this.props.findLoaiPhongTheoIdRequest('5b94986892bf312fe4c4b729');
     // this.props.deleteLoaiPhongTheoIdRequest('5b97a19416e89100200353e9');
@@ -34,11 +34,11 @@ class Customer extends React.Component {
    const {khachhang} = this.props;
    console.log(khachhang);
     return ( 
-      <div>
+     
+       <div>
         <Tabs defaultActiveKey="1" >
-         
-          <TabPane tab="Khách Hàng" key="1">
-           <KhachHang {...this.props} />
+          <TabPane>
+            <KhachHang {...this.props}/>
           </TabPane>
         </Tabs>
       </div>

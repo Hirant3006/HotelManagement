@@ -14,7 +14,12 @@ const columns = [
   {
     title: "Họ Tên",
     dataIndex: "HoTen",
-    key: "HoTen"
+    key: "_id"
+  },
+  {
+    title: "CMND",
+    dataIndex: "CMND",
+    key: "CMND"
   },
   {
     title: "Ngày sinh",
@@ -31,21 +36,17 @@ const columns = [
     dataIndex: "QuocTich",
     key: "QuocTich"
   },
-  {
-    title: "SĐT",
-    dataIndex: "SDT",
-    key: "SDT"
-  },
+  // {
+  //   title: "SĐT",
+  //   dataIndex: "SDT",
+  //   key: "SDT"
+  // },
   {
     title: "Email",
     dataIndex: "Email",
     key: "Email"
   },
-  {
-    title: "CMND",
-    dataIndex: "CMND",
-    key: "CMND"
-  },
+
 ];
 
 export default class CustomTable extends Component {
@@ -97,7 +98,7 @@ export default class CustomTable extends Component {
           pagination={{ pageSize: 5 }}
           {...this.props}
         />
-        <CustomerTable />
+      
         <ModalThemKhachHang visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/>
 
         </Row>

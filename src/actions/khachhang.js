@@ -29,7 +29,7 @@ export const addKhachHangRequest = ( GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTic
   // const { phong } = getState();
   // listloaiphong = phong.listloaiPhong;
   // listloaiphong.put({TenLoai:})
-  const res = await axios.post(keys.backend + "/khachhangs", {
+  const res = await axios.post(keys.backend + "/khachhang", {
     GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email
   });
   if ((res.status = 200)){
