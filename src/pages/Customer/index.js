@@ -36,11 +36,11 @@ class Customer extends React.Component {
     return ( 
      
        <div>
-        <Tabs defaultActiveKey="1" >
-          <TabPane>
+        {/* <Tabs defaultActiveKey="1" >
+          <TabPane> */}
             <KhachHang {...this.props}/>
-          </TabPane>
-        </Tabs>
+          {/* </TabPane>
+        </Tabs> */}
       </div>
     );
   }

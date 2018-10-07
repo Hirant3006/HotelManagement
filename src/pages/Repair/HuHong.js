@@ -76,7 +76,7 @@ export default class CustomTable extends Component {
           pagination={{ pageSize: 5 }}
           {...this.props}
         />
-        <CustomerTable visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/>
+      {/* <CustomerTable visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/> */}
         </Row>
       </div>
     );
