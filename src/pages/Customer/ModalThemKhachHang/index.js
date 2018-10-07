@@ -3,14 +3,8 @@ import { Field, reduxForm } from "redux-form";
 import { Modal, Row, Button, Form} from "antd";
 import CustomInput from '../../../component/CustomInput'
 import RadioItem from '../../../component/radio/RadioItem'
-<<<<<<< HEAD
 // import Calendars from '../../../component/calendar/Calendars'
 // import moment from "moment"
-=======
-import Calendars from '../../../component/calendar/Calendars'
-import moment from "moment"
-import validate from './validate'
->>>>>>> e24a208817e686afaca11ed27f5aa2fbf6c99e7f
 const FormItem = Form.Item;
 
 
