@@ -50,9 +50,9 @@ export default class CustomTable extends Component {
   ];
 
   handelDeleteLoaiPhong = record => {
-    const { deleteLoaiPhongTheoIdRequest,getListPhongRequest } = this.props;
+    const { deleteLoaiPhongTheoIdRequest,getListLoaiPhongRequest } = this.props;
     const id = record._id;
-    deleteLoaiPhongTheoIdRequest(id,getListPhongRequest);
+    deleteLoaiPhongTheoIdRequest(id,getListLoaiPhongRequest);
   };
 
   handleOk = e => {
@@ -90,6 +90,7 @@ export default class CustomTable extends Component {
   };
 
   render() {
+    console.log(this.props);
     const { loaiphong } = this.props;
     const { visibleSuaLoaiPhong } = this.state;
     return (

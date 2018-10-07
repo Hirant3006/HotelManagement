@@ -2,9 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import  { Tabs } from "antd";
 import { reset } from 'redux-form';
-import LoaiPhong from './Component/LoaiPhong';
+import LoaiPhong from './LoaiPhong';
+import Phong from './Phong'
 import {
   getListPhongRequest,
+  getListLoaiPhongRequest,
   addLoaiPhongRequest,
   findLoaiPhongTheoIdRequest,
   deleteLoaiPhongTheoIdRequest,
@@ -19,20 +21,20 @@ class Room extends React.Component {
     this.state = {};
   }
 
-
-
   componentDidMount() {
+    this.props.getListLoaiPhongRequest();
     this.props.getListPhongRequest();
   }
 
   render() {
     return ( 
       <div>
-        <Tabs defaultActiveKey="2" >
+        <Tabs defaultActiveKey="1" >
           <TabPane tab="Phòng" key="1">
-            Content of Tab Pane 1
+            <Phong {...this.props}/>
           </TabPane>
           <TabPane tab="Loại phòng" key="2">
+
            <LoaiPhong {...this.props} />
           </TabPane>
         </Tabs>
@@ -44,7 +46,7 @@ class Room extends React.Component {
 const mapStateToProps = state => {
   return {
     loaiphong: state.phong.loaiphong,
-    // loaiphong: state.phong.loaiphongtheoid,
+    phong: state.phong.phong,
     addloaiphong : state.phong.addloaiphong,
     deleteloaiphong: state.phong.deleteloaiphong,
     updateloaiphong: state.phong.updateloaiphong
@@ -53,6 +55,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   getListPhongRequest,
+  getListLoaiPhongRequest,
   addLoaiPhongRequest,
   findLoaiPhongTheoIdRequest,
   deleteLoaiPhongTheoIdRequest,

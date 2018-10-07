@@ -4,6 +4,9 @@ import {
   GET_LIST_LOAI_PHONG_REQUEST,
   GET_LIST_LOAI_PHONG_SUCCESS,
   GET_LIST_LOAI_PHONG_FAILURE,
+  GET_LIST_PHONG_REQUEST,
+  GET_LIST_PHONG_SUCCESS,
+  GET_LIST_PHONG_FAILURE,
   ADD_LOAI_PHONG_REQUEST,
   ADD_LOAI_PHONG_SUCCESS,
   ADD_LOAI_PHONG_FAILURE,
@@ -21,6 +24,10 @@ import {
 const initialState = {
   loaiphong: {
     listloaiPhong: [],
+    isFetching: false
+  },
+  phong: {
+    listPhong: [],
     isFetching: false
   },
   addloaiphong: {
@@ -49,7 +56,7 @@ export default function(state = initialState, action) {
     case GET_LIST_LOAI_PHONG_SUCCESS:
       return update(state, {
         loaiphong: {
-          listloaiPhong: { $set: action.listPhong },
+          listloaiPhong: { $set: action.listLoaiPhong },
           isFetching: { $set: false }
         },
         error: { $set: null }
@@ -57,6 +64,27 @@ export default function(state = initialState, action) {
     case GET_LIST_LOAI_PHONG_FAILURE:
       return update(state, {
         loaiphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
+    case GET_LIST_PHONG_REQUEST:
+      return update(state, {
+        phong: {
+          isFetching: { $set: true }
+        }
+      });
+    case GET_LIST_PHONG_SUCCESS:
+      return update(state, {
+        phong: {
+          listPhong: { $set: action.listPhong },
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case GET_LIST_PHONG_FAILURE:
+      return update(state, {
+        phong: {
           isFetching: { $set: false }
         },
         error: { $set: action.error }
@@ -122,7 +150,7 @@ export default function(state = initialState, action) {
         },
         error: { $set: action.error }
       });
-      case UPDATE_LOAI_PHONG_THEO_ID_REQUEST:
+    case UPDATE_LOAI_PHONG_THEO_ID_REQUEST:
       return update(state, {
         updateloaiphong: {
           isFetching: { $set: true }

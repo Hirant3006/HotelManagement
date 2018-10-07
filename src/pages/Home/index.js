@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import {
-  getListPhongRequest,
+  getListLoaiPhongRequest,
   addLoaiPhongRequest,
   findLoaiPhongTheoIdRequest,
   deleteLoaiPhongTheoIdRequest,
@@ -27,7 +27,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  getListPhongRequest,
+  getListLoaiPhongRequest,
   addLoaiPhongRequest,
   findLoaiPhongTheoIdRequest,
   deleteLoaiPhongTheoIdRequest,
