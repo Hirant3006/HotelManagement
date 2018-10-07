@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
-import { Table, Divider,Button ,Icon,Row } from "antd";
-import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
-import khachhang from "../../reducers/khachhang";
-import CustomerTable from './CustomTable'
+import { Table, Button ,Icon,Row } from "antd";
+//import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
+//import khachhang from "../../reducers/khachhang";
+//import CustomerTable from './CustomTable'
 import ModalThemKhachHang from './ModalThemKhachHang/index'
 const columns = [
   {

@@ -1,6 +1,6 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { Calendar,Alert } from 'antd'; 
-import ReactDOM from 'react-dom'
+//import ReactDOM from 'react-dom'
 import moment from 'moment';
 
 

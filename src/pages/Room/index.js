@@ -34,7 +34,7 @@ class Room extends React.Component {
 
   render() {
    console.log(this.props);
-   const {phong,loaiphong} = this.props;
+   const {loaiphong} = this.props;
    console.log(loaiphong);
     return ( 
       <div>
