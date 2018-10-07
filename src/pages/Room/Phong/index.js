@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Row, Col, Spin, Select } from "antd";
+import { Row, Col, Spin, Select, Button } from "antd";
 import ListPhong from "./ListPhong";
 
 const Option = Select.Option;
@@ -12,13 +12,12 @@ export default class Phong extends PureComponent {
   render() {
     this.props.phong ? console.log(this.props.phong) : null;
     return (
-      <Row>
         <Col span={18}>
-          <Row style={{ position:'relative'}}>
+          <Row >
             <Select
               showSearch
               style={{ width: 200 }}
-              placeholder="Select a person"
+              placeholder="Select room type"
               optionFilterProp="children"
               // onChange={handleChange}
               // onFocus={handleFocus}
@@ -29,10 +28,11 @@ export default class Phong extends PureComponent {
                   .indexOf(input.toLowerCase()) >= 0
               }
             >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="tom">Tom</Option>
+              <Option value="jack">Phòng đơn</Option>
+              <Option value="lucy">Phòng đôi</Option>
+              <Option value="tom">Phòng vip</Option>
             </Select>
+            <Button style={{float:'right'}} type="primary">Đặt phòng</Button>
           </Row>
           ,
           {this.props.phong.isFetching ? (
@@ -50,10 +50,6 @@ export default class Phong extends PureComponent {
             <ListPhong {...this.props} />
           )}
         </Col>
-        <Col span={5} style={{ marginLeft: "20px" }}>
-          Hello
-        </Col>
-      </Row>
     );
   }
 }
