@@ -22,7 +22,7 @@ export default class CustomCard extends PureComponent {
             <Icon type="book" style={{ fontSize: '32px',color: '#F9F400' }}/>            
           }
           title={this.props.title}
-          description={this.props.description}
+          // description={this.props.description}
           // <Ellipsis className={styles.item} lines={3}>
         />
       </Card>
