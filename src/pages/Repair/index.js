@@ -1,16 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import  { Tabs } from "antd";
-import KhachHang from './KhachHang'
+import HuHong from './HuHong'
 
 import{
-  getListKhachHangRequest,
-  addKhachHangRequest,
-} from "../../actions/khachhang";
+  getListHuHongRequest,
+} from "../../actions/huhong";
 
-const TabPane = Tabs.TabPane;
 
-class Customer extends React.Component {
+
+class Repair extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -20,9 +19,8 @@ class Customer extends React.Component {
 
   componentDidMount() {
     // console.log(this.props);
-    // this.props.getListLoaiPhongRequest();
-    this.props.getListKhachHangRequest();
-    // this.props.addKhachHangRequest();
+    //this.props.getListLoaiPhongRequest();
+    this.props.getListHuHongRequest();
     // this.props.addLoaiPhongRequest('Phòng tập thể',80000);
     // this.props.findLoaiPhongTheoIdRequest('5b94986892bf312fe4c4b729');
     // this.props.deleteLoaiPhongTheoIdRequest('5b97a19416e89100200353e9');
@@ -31,16 +29,14 @@ class Customer extends React.Component {
 
   render() {
    console.log(this.props);
-   const {khachhang} = this.props;
-   console.log(khachhang);
+   const {huhong} = this.props;
+   console.log(huhong);
     return ( 
-     
-       <div>
-        <Tabs defaultActiveKey="1" >
-          <TabPane>
-            <KhachHang {...this.props}/>
-          </TabPane>
-        </Tabs>
+      <div>
+   
+         
+           <HuHong {...this.props} />
+
       </div>
     );
   }
@@ -50,20 +46,19 @@ const mapStateToProps = state => {
   return {
    // phong : state.phong.phong,
     //loaiphong: state.loaiphong.loaiphong,
-   khachhang: state.khachhang.khachhang,
+  // khachhang: state.khachhang.khachhang,
     // loaiphong: state.phong.loaiphongtheoid,
-    addkhachhang: state.khachhang.addkhachhang,
+    huhong: state.huhong.huhong
   };
 };
 
 const mapDispatchToProps = {
   
-  getListKhachHangRequest,
-  addKhachHangRequest,
+  getListHuHongRequest,
   
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Customer);
+)(Repair);

@@ -16,6 +16,12 @@ export default () => {
       name: 'Customer',
       url:'/customer',
 
+    },
+    {
+      iconType: "database",
+      name: 'Repair',
+      url:'/repair',
+
     }
     // { path: 'heroes',
     //   component: HeroListComponent,

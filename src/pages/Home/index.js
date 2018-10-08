@@ -20,9 +20,10 @@ class Home extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-    loaiphong: state.phong.loaiphong,
-    deleteloaiphong: state.phong.deleteloaiphong,
-    updateloaiphong: state.phong.updateloaiphong
+   loaiphong: state.loaiphong.loaiphong,
+    // loaiphong: state.phong.loaiphongtheoid,
+    deleteloaiphong: state.loaiphong.deleteloaiphong,
+    updateloaiphong: state.loaiphong.updateloaiphong,
   };
 };
 

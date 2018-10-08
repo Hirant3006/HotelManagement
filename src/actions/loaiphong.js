@@ -1,6 +1,5 @@
 import axios from "axios";
 import keys from "../configs/keys";
-import { message } from 'antd';
 import {
   GET_LIST_LOAI_PHONG_REQUEST,
   GET_LIST_LOAI_PHONG_SUCCESS,
@@ -16,47 +15,29 @@ import {
   DELETE_LOAI_PHONG_THEO_ID_FAILURE,
   UPDATE_LOAI_PHONG_THEO_ID_REQUEST,
   UPDATE_LOAI_PHONG_THEO_ID_SUCCESS,
-  UPDATE_LOAI_PHONG_THEO_ID_FAILURE,
-  GET_LIST_PHONG_REQUEST,
-  GET_LIST_PHONG_SUCCESS,
-  GET_LIST_PHONG_FAILURE,
+  UPDATE_LOAI_PHONG_THEO_ID_FAILURE
 } from "./contstants";
 
 export const getListLoaiPhongRequest = () => async dispatch => {
   dispatch({ type: GET_LIST_LOAI_PHONG_REQUEST });
   const res = await axios.get(keys.backend + "/loaiphongs");
 
-
   if ((res.status = 200))
     dispatch({
       type: GET_LIST_LOAI_PHONG_SUCCESS,
-      listLoaiPhong: res.data
+      listPhong: res.data
     });
-  else {
+  else
     dispatch({
       type: GET_LIST_LOAI_PHONG_FAILURE
     });
-  }
-};
-
-export const getListPhongRequest = () => async dispatch => {
-  dispatch({ type: GET_LIST_PHONG_REQUEST });
-  const res = await axios.get(keys.backend + "/phongs");
-
-  if ((res.status = 200))
-    dispatch({
-      type: GET_LIST_PHONG_SUCCESS,
-      listPhong: res.data
-    });
-  else {
-    dispatch({
-      type: GET_LIST_PHONG_FAILURE
-    });
-  }
 };
 
 export const addLoaiPhongRequest = (TenLoai, DonGia,onCancel,getListLoaiPhongRequest) => async (dispatch,getState) => {
   dispatch({ type: ADD_LOAI_PHONG_REQUEST });
+  // const { phong } = getState();
+  // listloaiphong = phong.listloaiPhong;
+  // listloaiphong.put({TenLoai:})
   const res = await axios.post(keys.backend + "/loaiphong", {
     TenLoai,
     DonGia
@@ -66,19 +47,15 @@ export const addLoaiPhongRequest = (TenLoai, DonGia,onCancel,getListLoaiPhongReq
       type: ADD_LOAI_PHONG_SUCCESS
     });
     getListLoaiPhongRequest();
-    message.success('Thêm loại phòng thành công');
     onCancel();
   }
-  else {
+  else
     dispatch({
       type: ADD_LOAI_PHONG_FAILURE
     });
-    message.error('Thêm loại phòng thất bại');
-  }
 };
 
-export const findLoaiPhongTheoIdRequest = id => async (dispatch,getState) => {
-
+export const findLoaiPhongTheoIdRequest = id => async dispatch => {
   dispatch({ type: FIND_LOAI_PHONG_THEO_ID_REQUEST });
   const res = await axios.get(keys.backend + "/loaiphong/" + id);
 
@@ -93,24 +70,21 @@ export const findLoaiPhongTheoIdRequest = id => async (dispatch,getState) => {
     });
 };
 
-export const deleteLoaiPhongTheoIdRequest = (id,getListLoaiPhongRequest) => async (dispatch,getState) => {
+export const deleteLoaiPhongTheoIdRequest = id => async dispatch => {
   dispatch({ type: DELETE_LOAI_PHONG_THEO_ID_REQUEST });
   const res = await axios.delete(keys.backend + "/loaiphong/" + id);
-  
-  if ((res.status = 200)){
+
+  if ((res.status = 200))
     dispatch({
       type: DELETE_LOAI_PHONG_THEO_ID_SUCCESS
     });
-    message.success('Xóa loại phòng thành công');
-    getListLoaiPhongRequest();
-  }
   else
     dispatch({
       type: DELETE_LOAI_PHONG_THEO_ID_FAILURE
     });
 };
 
-export const updateLoaiPhongTheoIdRequest = (_id,TenLoai,DonGia,onCancel) => async dispatch => {
+export const updateLoaiPhongTheoIdRequest = (_id,TenLoai,DonGia) => async dispatch => {
   dispatch({ type: UPDATE_LOAI_PHONG_THEO_ID_REQUEST });
   const res = await axios.put(keys.backend + "/loaiphong", {
     _id,
@@ -124,10 +98,8 @@ export const updateLoaiPhongTheoIdRequest = (_id,TenLoai,DonGia,onCancel) => asy
     });
     dispatch({
       type: GET_LIST_LOAI_PHONG_SUCCESS,
-      listLoaiPhong: res.data
+      listPhong: res.data
     })
-    message.success('SỬA loại phòng thành công');
-    onCancel();
   }
   else
     dispatch({

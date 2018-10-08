@@ -18,7 +18,12 @@ class ModalThemLoaiPhong extends React.Component {
     }
   };
 
-  handleSuaLoaiPhong = (values,onCancel) => {
+  handleThemLoaiPhong = (values,onCancel) => {
+    console.log(values);
+    const { addLoaiPhongRequest,getListLoaiPhongRequest } = this.props;
+    const TenLoai = values.tenloai;
+    const DonGia = values.dongia;
+    addLoaiPhongRequest(TenLoai,DonGia,onCancel,getListLoaiPhongRequest);
   };
 
   render() {

@@ -13,6 +13,7 @@ import {
   updateLoaiPhongTheoIdRequest
 } from "../../actions/phong";
 
+
 const TabPane = Tabs.TabPane;
 
 class Room extends React.Component {
@@ -27,6 +28,9 @@ class Room extends React.Component {
   }
 
   render() {
+   console.log(this.props);
+   const {phong,loaiphong} = this.props;
+   console.log(loaiphong);
     return ( 
       <div>
         <Tabs defaultActiveKey="1" >
@@ -54,6 +58,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
+  
   getListPhongRequest,
   getListLoaiPhongRequest,
   addLoaiPhongRequest,

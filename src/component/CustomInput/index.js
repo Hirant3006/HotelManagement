@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 // import { change } from 'redux-form';
-import { Input, Alert } from "antd";
+import { Input, Alert,Col } from "antd";
 
 class CustomInput extends PureComponent{
 
@@ -21,6 +21,10 @@ class CustomInput extends PureComponent{
             <Alert type="error" message={error} banner />
           ) : null}
         </div>
+
+         
+       
+        
       </div>
     );
   }
