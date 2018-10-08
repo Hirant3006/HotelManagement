@@ -1,6 +1,6 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { Calendar,Alert } from 'antd'; 
-import ReactDOM from 'react-dom'
+//import ReactDOM from 'react-dom'
 import moment from 'moment';
 
 
@@ -24,7 +24,7 @@ import moment from 'moment';
       const { value, selectedValue } = this.state;
       return (
         <div style={{ width: 400, border: '1px solid #d9d9d9', borderRadius: 4 }}>
-        <Alert message={`You selected date: ${ moment(selectedValue) && moment(selectedValue).format('DD-MM-YYYY')}`} />
+        <Alert message={`You selected date: ${ selectedValue&& selectedValue.format('DD-MM-YYYY')}`} />
         <Calendar value={value} onSelect={this.onSelect} onPanelChange={this.onPanelChange} />
         </div>
       );

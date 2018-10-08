@@ -1,5 +1,5 @@
-import { Radio, Input } from 'antd';
-import React, { PureComponent } from "react";
+import { Radio } from 'antd';
+import React from "react";
 const RadioGroup = Radio.Group;
 
 export default class RadioItem extends React.Component {
@@ -20,9 +20,7 @@ export default class RadioItem extends React.Component {
       height: '30px',
       lineHeight: '30px',
     };
-    const {
-     
-     value,
+    const { 
      type,
     //  onChange
      } = this.props;

@@ -1,29 +1,30 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
-import { Table, Divider,Button ,Icon,Row } from "antd";
-// import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
-// import huhong from "../../reducers/huhong";
-import CustomerTable from '../Customer/CustomTable'
+import { Table,Button ,Icon,Row } from "antd";
+import ModalThemLoaiPhong from "./ModalThemLoaiPhong";
+
 const columns = [
   {
-    title: "Mã Phòng ",
-    dataIndex: "MaPhong",
-    key: "MaPhong"
+    title: "Tên Phòng",
+    dataIndex: "TenPhong",
+    key: "_id"
   },
   {
-    title: "Chi Tiết",
-    dataIndex: "ChiTiet",
-    key: "ChiTiet"
+    title: "Tên Loại Phòng",
+    dataIndex: "TenLoaiPhong",
+    key: "TenLoaiPhong"
   },
   {
     title: "Trạng Thái",
-    dataIndex: "DaSua",
-    key: "DaSua"
-  },
-  {
-    title: " ",
-    dataIndex: "_v",
-    key: "_v"
+  //  dataIndex: "TrangThai",
+    key: "TrangThai",
+    // render: (text, record) => (
+    //   <span>
+    //     <a>Sửa</a>
+    //     <Divider type="vertical" />
+    //     <a style={{ color: "red" }}>Xóa</a>
+    //   </span>
+    // )
   }
 ];
 
@@ -54,7 +55,7 @@ export default class CustomTable extends Component {
 	}
  
   render() {
-    const {huhong} = this.props;
+    const { phong } = this.props;
     console.log(this.props);
     return (
       <div>
@@ -69,14 +70,14 @@ export default class CustomTable extends Component {
         </Row>
         <Row>
         <Table
-          loading={huhong.isFetching}
+          loading={phong.isFetching}
           columns={columns}
-          dataSource={huhong.listHuHong}
+          dataSource={phong.listPhong}
           rowKey="_id"
           pagination={{ pageSize: 5 }}
           {...this.props}
         />
-      {/* <CustomerTable visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/> */}
+        <ModalThemLoaiPhong visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/>
         </Row>
       </div>
     );

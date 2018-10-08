@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import  { Tabs } from "antd";
+//import  { Tabs } from "antd";
 import KhachHang from './KhachHang'
 
 import{
@@ -8,7 +8,7 @@ import{
   addKhachHangRequest,
 } from "../../actions/khachhang";
 
-const TabPane = Tabs.TabPane;
+//onst TabPane = Tabs.TabPane;
 
 class Customer extends React.Component {
   constructor(props) {
@@ -36,11 +36,11 @@ class Customer extends React.Component {
     return ( 
      
        <div>
-        <Tabs defaultActiveKey="1" >
-          <TabPane>
+        {/* <Tabs defaultActiveKey="1" >
+          <TabPane> */}
             <KhachHang {...this.props}/>
-          </TabPane>
-        </Tabs>
+          {/* </TabPane>
+        </Tabs> */}
       </div>
     );
   }
