@@ -3,7 +3,6 @@ import "antd/dist/antd.css";
 import { Table, Divider,Button ,Icon,Row } from "antd";
 // import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
 // import huhong from "../../reducers/huhong";
-import CustomerTable from '../Customer/CustomTable'
 const columns = [
   {
     title: "Mã Phòng ",

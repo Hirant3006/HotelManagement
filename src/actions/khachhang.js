@@ -11,7 +11,7 @@ import {
 
 export const getListKhachHangRequest = () => async dispatch => {
   dispatch({ type: GET_LIST_KHACHHANG_REQUEST });
-  const res = await axios.get(keys.backend + "/khachhangs");
+  const res = await axios.get(keys.backend + "/khachhang");
 
   if ((res.status = 200))
     dispatch({

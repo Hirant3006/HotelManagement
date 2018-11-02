@@ -19,14 +19,7 @@ class Customer extends React.Component {
 
 
   componentDidMount() {
-    // console.log(this.props);
-    // this.props.getListLoaiPhongRequest();
     this.props.getListKhachHangRequest();
-    // this.props.addKhachHangRequest();
-    // this.props.addLoaiPhongRequest('Phòng tập thể',80000);
-    // this.props.findLoaiPhongTheoIdRequest('5b94986892bf312fe4c4b729');
-    // this.props.deleteLoaiPhongTheoIdRequest('5b97a19416e89100200353e9');
-    // this.props.updateLoaiPhongTheoIdRequest('5b95b529f2b348128caef66e','Phòng VIPP',20000000)
   }
 
   render() {
