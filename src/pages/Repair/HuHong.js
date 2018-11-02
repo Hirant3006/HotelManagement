@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
 import { Table,Button ,Icon,Row } from "antd";
-//import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
+import ModalThemHuHong from "./ModalThemHuHong/index";
 //import huhong from "../../reducers/huhong";
 //import CustomerTable from '../Customer/CustomTable'
 const columns = [
@@ -76,7 +76,7 @@ export default class CustomTable extends Component {
           pagination={{ pageSize: 5 }}
           {...this.props}
         />
-      {/* <CustomerTable visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/> */}
+      <ModalThemHuHong visible={this.state.visible} showModal={this.showModal} onCancel={this.handleCancel} onOk={this.handleOk} {...this.props}/>
         </Row>
       </div>
     );

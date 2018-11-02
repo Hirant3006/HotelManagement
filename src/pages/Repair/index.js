@@ -5,6 +5,7 @@ import HuHong from './HuHong'
 
 import{
   getListHuHongRequest,
+  addHuHongRequest,
 } from "../../actions/huhong";
 
 
@@ -48,14 +49,15 @@ const mapStateToProps = state => {
     //loaiphong: state.loaiphong.loaiphong,
   // khachhang: state.khachhang.khachhang,
     // loaiphong: state.phong.loaiphongtheoid,
-    huhong: state.huhong.huhong
+    huhong: state.huhong.huhong,
+    addHuHong : state.huhong.addHuHong
   };
 };
 
 const mapDispatchToProps = {
   
   getListHuHongRequest,
-  
+  addHuHongRequest,
 };
 
 export default connect(
