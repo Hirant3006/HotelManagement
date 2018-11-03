@@ -8,15 +8,15 @@ import { Table, Divider, Button, Icon, Row } from "antd";
 import ModalThemKhachHang from "./ModalThemKhachHang/index";
 const columns = [
   {
+    title: "Họ Tên",
+    dataIndex: "HoTen",
+    key: "_id"
+  },
+  {
     title: "Giới Tính ",
     dataIndex: "GioiTinh",
     key: "GioiTinh",
     render: sex => (sex == true ? "Nam" : "Nữ")
-  },
-  {
-    title: "Họ Tên",
-    dataIndex: "HoTen",
-    key: "_id"
   },
   {
     title: "Ngày sinh",
@@ -24,7 +24,7 @@ const columns = [
     key: "NgaySinh",
     render: date => {
       var dateTime = new Date(date);
-      return dateTime = moment(dateTime).format("YYYY-MM-DD");
+      return dateTime = moment(dateTime).format("DD-MM-YYYY");
     }
   },
   {

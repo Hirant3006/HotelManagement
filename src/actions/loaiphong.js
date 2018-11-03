@@ -20,7 +20,7 @@ import {
 
 export const getListLoaiPhongRequest = () => async dispatch => {
   dispatch({ type: GET_LIST_LOAI_PHONG_REQUEST });
-  const res = await axios.get(keys.backend + "/loaiphongs");
+  const res = await axios.get(keys.backend + "/loaiphong");
 
   if ((res.status = 200))
     dispatch({

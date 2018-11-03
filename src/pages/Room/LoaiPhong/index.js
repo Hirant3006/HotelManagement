@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "antd/dist/antd.css";
 import { Table, Divider, Button, Icon, Row, Popconfirm } from "antd";
 import ModalThemLoaiPhong from "./ModalThemLoaiPhong";
-import ModalSuaLoaiPhong from './ModalSuaLoaiPhong';
+import ModalSuaLoaiPhong from './ModalSuaLoaiPhong/';
 
 export default class CustomTable extends Component {
   constructor(props) {
