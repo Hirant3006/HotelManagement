@@ -15,9 +15,12 @@ export default class CustomCard extends PureComponent {
       >
         <Card.Meta
           avatar={
-            <Icon type="book" style={{ fontSize: "32px", color: "#F9F400" }} />
+            this.props.status == true ?
+            <Icon type="book" style={{ fontSize: "32px", color: "#5BBD2B" }} /> :
+            <Icon type="book" style={{ fontSize: "32px", color: "#C82E31" }} />
           }
           title={this.props.title}
+          description={this.props.description}
          />
       </Card>
        );

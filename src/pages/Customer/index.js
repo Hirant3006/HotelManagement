@@ -11,6 +11,7 @@ import{
 //onst TabPane = Tabs.TabPane;
 
 class Customer extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {};

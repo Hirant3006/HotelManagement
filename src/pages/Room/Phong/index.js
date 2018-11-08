@@ -13,7 +13,6 @@ export default class Phong extends React.PureComponent {
   }
 
   handleChange = value => {
-    console.log(value);
     let listphongfilter = this.state.Phong;
     listphongfilter=listphongfilter.filter(phong => phong.TenLoaiPhong === value);
     console.log(listphongfilter)

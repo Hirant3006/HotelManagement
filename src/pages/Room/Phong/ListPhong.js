@@ -16,7 +16,7 @@ export default class ListPhong extends React.Component {
         dataSource={this.props.dataSource}
         renderItem={item => (
           <List.Item>
-              <CustomCard status={item.TrangThai} title={item.TenPhong} description={item.TenLoaiPhong}/>
+              <CustomCard status={item.TrangThai} title={item.SoPhong} description={item.LoaiPhong[0].TenLoaiPhong}/>
           </List.Item>
         )}
       />

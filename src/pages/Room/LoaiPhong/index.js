@@ -17,7 +17,7 @@ export default class CustomTable extends Component {
   columns = [
     {
       title: "Tên",
-      dataIndex: "TenLoai",
+      dataIndex: "TenLoaiPhong",
       key: "_id"
     },
     {
@@ -93,6 +93,7 @@ export default class CustomTable extends Component {
     console.log(this.props);
     const { loaiphong } = this.props;
     const { visibleSuaLoaiPhong } = this.state;
+    
     return (
       <div>
         <Row>
