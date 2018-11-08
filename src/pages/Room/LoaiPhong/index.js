@@ -90,7 +90,6 @@ export default class CustomTable extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { loaiphong } = this.props;
     const { visibleSuaLoaiPhong } = this.state;
     

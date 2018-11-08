@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
 import moment from "moment";
-import { Table, Divider, Button, Icon, Row } from "antd";
+import { Table, Button, Icon, Row } from "antd";
 // import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
 // import khachhang from "../../reducers/khachhang";
 // import CustomerTable from './CustomTable'
@@ -16,7 +16,7 @@ const columns = [
     title: "Giới Tính ",
     dataIndex: "GioiTinh",
     key: "GioiTinh",
-    render: sex => (sex == true ? "Nam" : "Nữ")
+    render: sex => (sex === true ? "Nam" : "Nữ")
   },
   {
     title: "Ngày sinh",

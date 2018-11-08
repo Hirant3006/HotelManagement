@@ -28,13 +28,11 @@ class ModalSuaLoaiPhong extends React.Component {
     }
   };
   render() {
-    console.log(this.props.data);
 
     const {
       visible,
       onCancel,
       data,
-      editPositionStatus,
       handleSubmit
     } = this.props;
     return (

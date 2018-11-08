@@ -24,7 +24,7 @@ export default class Phong extends React.PureComponent {
       ? this.setState({ Phong: this.props.phong.listPhong })
       : null;
     return (
-      <Col span={18}>
+      <Col span={24}>
         <Row>
           <Select
             showSearch
