@@ -18,7 +18,8 @@ import {
   DELETE_LOAI_PHONG_THEO_ID_FAILURE,
   UPDATE_LOAI_PHONG_THEO_ID_REQUEST,
   UPDATE_LOAI_PHONG_THEO_ID_SUCCESS,
-  UPDATE_LOAI_PHONG_THEO_ID_FAILURE
+  UPDATE_LOAI_PHONG_THEO_ID_FAILURE,
+  PICK_CARD_PHONG
 } from "../actions/contstants";
 
 const initialState = {
@@ -43,7 +44,7 @@ const initialState = {
   updateloaiphong: {
     isFetching: false
   },
- 
+  dataPhongforCard: null,
   error: null
 };
 export default function(state = initialState, action) {
@@ -171,7 +172,11 @@ export default function(state = initialState, action) {
         },
         error: { $set: action.error }
       });
-    
+    case PICK_CARD_PHONG:
+      return update(state, {
+        dataPhongforCard: { $set: action.dataPhong }
+        
+      })
     default:
       return state;
   }
