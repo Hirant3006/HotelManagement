@@ -54,7 +54,7 @@ class Home extends React.PureComponent {
                           <b style={{ marginLeft: "2rem" }}>
                             Loại phòng :
                           </b>{" "}
-                          {dataPhong.LoaiPhong[0].TenLoaiPhong}
+                          {/* {dataPhong.LoaiPhong[0].TenLoaiPhong} */}
                           <List
                             title="DS dịch vụ"
                             itemLayout="horizontal"
