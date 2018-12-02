@@ -16,18 +16,21 @@ import {
   DELETE_LOAI_PHONG_THEO_ID_FAILURE,
   UPDATE_LOAI_PHONG_THEO_ID_REQUEST,
   UPDATE_LOAI_PHONG_THEO_ID_SUCCESS,
-  UPDATE_LOAI_PHONG_THEO_ID_FAILURE
+  UPDATE_LOAI_PHONG_THEO_ID_FAILURE,
+  GET_LIST_PHONG_REQUEST,
+  GET_LIST_PHONG_SUCCESS,
+  GET_LIST_PHONG_FAILURE,
 } from "./contstants";
 
-export const getListPhongRequest = () => async dispatch => {
+export const getListLoaiPhongRequest = () => async dispatch => {
   dispatch({ type: GET_LIST_LOAI_PHONG_REQUEST });
-  const res = await axios.get(keys.backend + "/loaiphongs");
+  const res = await axios.get(keys.backend + "/loaiphong");
 
 
   if ((res.status = 200))
     dispatch({
       type: GET_LIST_LOAI_PHONG_SUCCESS,
-      listPhong: res.data
+      listLoaiPhong: res.data
     });
   else {
     dispatch({
@@ -36,9 +39,23 @@ export const getListPhongRequest = () => async dispatch => {
   }
 };
 
+export const getListPhongRequest = () => async dispatch => {
+  dispatch({ type: GET_LIST_PHONG_REQUEST });
+  const res = await axios.get(keys.backend + "/phong");
 
+  if ((res.status = 200))
+    dispatch({
+      type: GET_LIST_PHONG_SUCCESS,
+      listPhong: res.data
+    });
+  else {
+    dispatch({
+      type: GET_LIST_PHONG_FAILURE
+    });
+  }
+};
 
-export const addLoaiPhongRequest = (TenLoai, DonGia,onCancel,getListPhongRequest) => async (dispatch,getState) => {
+export const addLoaiPhongRequest = (TenLoai, DonGia,onCancel,getListLoaiPhongRequest) => async (dispatch,getState) => {
   dispatch({ type: ADD_LOAI_PHONG_REQUEST });
   const res = await axios.post(keys.backend + "/loaiphong", {
     TenLoai,
@@ -48,7 +65,7 @@ export const addLoaiPhongRequest = (TenLoai, DonGia,onCancel,getListPhongRequest
     dispatch({
       type: ADD_LOAI_PHONG_SUCCESS
     });
-    getListPhongRequest();
+    getListLoaiPhongRequest();
     message.success('Thêm loại phòng thành công');
     onCancel();
   }
@@ -76,7 +93,7 @@ export const findLoaiPhongTheoIdRequest = id => async (dispatch,getState) => {
     });
 };
 
-export const deleteLoaiPhongTheoIdRequest = (id,getListPhongRequest) => async (dispatch,getState) => {
+export const deleteLoaiPhongTheoIdRequest = (id,getListLoaiPhongRequest) => async (dispatch,getState) => {
   dispatch({ type: DELETE_LOAI_PHONG_THEO_ID_REQUEST });
   const res = await axios.delete(keys.backend + "/loaiphong/" + id);
   
@@ -85,7 +102,7 @@ export const deleteLoaiPhongTheoIdRequest = (id,getListPhongRequest) => async (d
       type: DELETE_LOAI_PHONG_THEO_ID_SUCCESS
     });
     message.success('Xóa loại phòng thành công');
-    getListPhongRequest();
+    getListLoaiPhongRequest();
   }
   else
     dispatch({
@@ -107,7 +124,7 @@ export const updateLoaiPhongTheoIdRequest = (_id,TenLoai,DonGia,onCancel) => asy
     });
     dispatch({
       type: GET_LIST_LOAI_PHONG_SUCCESS,
-      listPhong: res.data
+      listLoaiPhong: res.data
     })
     message.success('SỬA loại phòng thành công');
     onCancel();

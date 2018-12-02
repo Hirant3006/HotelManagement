@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-// import { change } from 'redux-form';
+import { change } from 'redux-form';
 import { Input, Alert } from "antd";
 
 class CustomInput extends PureComponent{

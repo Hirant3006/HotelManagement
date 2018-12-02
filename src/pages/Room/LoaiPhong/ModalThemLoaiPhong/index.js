@@ -28,20 +28,18 @@ class ModalThemLoaiPhong extends React.Component {
 
   render() {
     const { handleSubmit, visible, onCancel, addloaiphong} = this.props;
-
     return (
       <Modal
         title="Tạo loại phòng "
         visible={visible}
         onCancel={() => 
           {
-          onCancel();
-       
+          onCancel();   
         }}
         footer={null}
       >
         <Form
-          onSubmit={handleSubmit(values => this.handleSuaLoaiPhong(values,onCancel))}
+          onSubmit={handleSubmit(values => this.handleThemLoaiPhong(values,onCancel))}
         >
           <FormItem label="Tên loại phòng" {...this.formItemLayout}>
             <Field

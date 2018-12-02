@@ -1,19 +1,14 @@
 import axios from "axios";
 import keys from "../configs/keys";
 import {
-  GET_LIST_KHACHHANG_REQUEST,
-  GET_LIST_KHACHHANG_SUCCESS,
-  GET_LIST_KHACHHANG_FAILURE,
-  ADD_KHACHHANG_REQUEST,
-  ADD_KHACHHANG_SUCCESS,
-  ADD_KHACHHANG_FAILURE,
     GET_LIST_LOAIKHACHHANG_REQUEST,
     GET_LIST_LOAIKHACHHANG_SUCCESS,
     GET_LIST_LOAIKHACHHANG_FAILURE,
+
     ADD_LOAIKHACHHANG_REQUEST,
     ADD_LOAIKHACHHANG_SUCCESS,
     ADD_LOAIKHACHHANG_FAILURE,
-
+ 
     FIND_LOAIKHACHHANG_REQUEST,
     FIND_LOAIKHACHHANG_SUCCESS,
     FIND_LOAIKHACHHANG_FAILURE ,
@@ -27,36 +22,18 @@ import {
     UPDATE_LOAIKHACHHANG_FAILURE ,
 } from "./contstants";
 
-export const getListKhachHangRequest = () => async dispatch => {
-  dispatch({ type: GET_LIST_KHACHHANG_REQUEST });
-  const res = await axios.get(keys.backend + "/khachhang");
+export const getListLoaiKhachHangRequest = () => async dispatch => {
+  dispatch({ type: GET_LIST_LOAIKHACHHANG_REQUEST });
+  const res = await axios.get(keys.backend + "/loaikhachhang");
 
   if ((res.status = 200))
     dispatch({
-      type: GET_LIST_KHACHHANG_SUCCESS,
-      listKhachhang: res.data
+      type: GET_LIST_LOAIKHACHHANG_SUCCESS,
+      listLoaiKH: res.data
     });
   else
     dispatch({
-      type: GET_LIST_KHACHHANG_FAILURE
-    });
-};
-
-export const addKhachHangRequest = ( TenLoaiKhach,GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,SDT,onCancel,getListKhachHangRequest) => async (dispatch,getState) => {
-  dispatch({ type: ADD_KHACHHANG_REQUEST });
-  const res = await axios.post(keys.backend + "/khachhang", {
-    TenLoaiKhach,GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,SDT
-  });
-  if ((res.status = 200)){
-    dispatch({
-      type: ADD_KHACHHANG_SUCCESS
-    });
-    getListKhachHangRequest();
-    onCancel();
-  }
-  else
-    dispatch({
-      type: ADD_KHACHHANG_FAILURE
+      type: GET_LIST_LOAIKHACHHANG_FAILURE
     });
 };
 
@@ -130,4 +107,3 @@ export const updateLoaiKHRequest = (_id,TenLoaiKhach) => async dispatch => {
       type: UPDATE_LOAIKHACHHANG_FAILURE
     });
 };
-

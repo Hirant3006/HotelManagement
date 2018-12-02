@@ -1,13 +1,13 @@
 import React, { PureComponent } from "react";
+import {Button} from "antd";
 import { connect } from "react-redux";
-import {Button} from 'antd';
 import {
   getListLoaiPhongRequest,
   addLoaiPhongRequest,
   findLoaiPhongTheoIdRequest,
   deleteLoaiPhongTheoIdRequest,
   updateLoaiPhongTheoIdRequest
-} from "../../actions/loaiphong";
+} from "../../actions/phong";
 class Home extends PureComponent {
   constructor(props) {
     super(props);

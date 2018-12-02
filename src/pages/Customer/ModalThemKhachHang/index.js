@@ -5,7 +5,7 @@ import CustomInput from '../../../component/CustomInput'
 import RadioItem from '../../../component/radio/RadioItem'
 import Calendars from '../../../component/calendar/Calendars'
 import validate from './validate'
-// import moment from "moment"
+import moment from "moment"
 const FormItem = Form.Item;
 
 
@@ -25,6 +25,7 @@ class ModalThemKhachHang extends React.Component {
   handleThemKhachHang = (values,onCancel) => {
     console.log(values);
     const { addKhachHangRequest,getListKhachHangRequest } = this.props;
+    const TenLoaiKhach= values.TenLoaiKhach;
     const GioiTinh = values.GioiTinh;
     const HoTen = values.HoTen;
     const CMND = values.CMND;    
@@ -32,7 +33,8 @@ class ModalThemKhachHang extends React.Component {
     const DiaChi = values.DiaChi;
     const QuocTich = values.QuocTich;
     const Email =values.Email;
-    addKhachHangRequest(GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,onCancel,getListKhachHangRequest);
+    const SDT = values.SDT;
+    addKhachHangRequest(TenLoaiKhach,GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,SDT,onCancel,getListKhachHangRequest);
   };
 
   render() {
@@ -51,6 +53,16 @@ class ModalThemKhachHang extends React.Component {
         <form
           onSubmit={handleSubmit(values => this.handleThemKhachHang(values,onCancel))}
         >
+
+         <FormItem label="Loại Khách Hàng" {...this.formItemLayout}>
+            <Field
+              name="TenLoaiKhach"
+              type="text"
+              component={CustomInput}
+              placeholder="Nhập loại khách hàng"
+            />
+          </FormItem>
+
           <FormItem label="Giới Tính" {...this.formItemLayout}>
             <RadioItem
               name="GioiTinh"
@@ -69,7 +81,6 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-
   <FormItem label="CMND" {...this.formItemLayout}>
             <Field
               name="CMND"
@@ -78,8 +89,6 @@ class ModalThemKhachHang extends React.Component {
               placeholder="Nhập số CMND khách hàng"
             />
           </FormItem>
-
-
 
   {/* <FormItem label="Ngày Sinh" {...this.formItemLayout}>
             <Field
@@ -93,9 +102,9 @@ class ModalThemKhachHang extends React.Component {
           <FormItem label="Ngày Sinh" {...this.formItemLayout}>
             <Field
               name = "NgaySinh"
-              type="text"
-              component={Calendars}
-             // placeholder="Nhập ngày sinh khách hàng"
+              type="default"
+              component={Calendars}  
+             
             />
           </FormItem>
 
@@ -117,14 +126,14 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-          {/* <FormItem label="SĐT" {...this.formItemLayout}>
+          <FormItem label="SĐT" {...this.formItemLayout}>
             <Field
               name="SDT"
               type="text"
               component={CustomInput}
               placeholder="Nhập SDT khách hàng"
             />
-          </FormItem> */}
+          </FormItem>
 
 
           <FormItem label="Email" {...this.formItemLayout}>
@@ -146,9 +155,9 @@ class ModalThemKhachHang extends React.Component {
               loading={addkhachhang.isFetching} // true
               disabled={addkhachhang.isFetching}
             >
-              Add
+            Add
             </Button>
-          </Row>
+         </Row>
         </form>
       </Modal>
     );
