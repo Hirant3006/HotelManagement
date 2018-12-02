@@ -42,4 +42,10 @@ export const ADD_LOAI_HUHONG_REQUEST = 'ADD_LOAI_HUHONG_REQUEST';
 export const ADD_LOAI_HUHONG_SUCCESS = 'ADD_LOAI_HUHONG_SUCCESS';
 export const ADD_LOAI_HUHONG_FAILURE = 'ADD_LOAI_HUHONG_FAILURE';
 
+//=====================================BOOKING=======================================//
+export const GET_DATPHONG_BY_PHONG_REQUEST = 'GET_DATPHONG_BY_PHONG_REQUEST';
+export const GET_DATPHONG_BY_PHONG_SUCCESS = 'GET_DATPHONG_BY_PHONG_SUCCESS';
+export const GET_DATPHONG_BY_PHONG_FAILURE = 'GET_DATPHONG_BY_PHONG_FAILURE';
+
+//=====================================BOOKING=======================================//
 export const PICK_CARD_PHONG = 'PICK_CARD_PHONG';

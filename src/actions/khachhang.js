@@ -24,7 +24,7 @@ export const getListKhachHangRequest = () => async dispatch => {
     });
 };
 
-export const addKhachHangRequest = ( GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,onCancel,getListKhachHangRequest) => async (dispatch,getState) => {
+export const addKhachHangRequest = ( GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,onCancel,getListKhachHangRequest ) => async (dispatch,getState) => {
   dispatch({ type: ADD_KHACHHANG_REQUEST });
   // const { phong } = getState();
   // listloaiphong = phong.listloaiPhong;

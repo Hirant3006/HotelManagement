@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import CustomCard from "./CustomCard";
-import { List, Col, Row, Button } from "antd";
-import { getListPhongRequest,pickCardPhong } from "../../actions/phong";
-import ModalPhong from "./ModalPhong";
+import { List, Col, Row, Button, Layout, Avatar, Spin } from "antd";
+import { getListPhongRequest, pickCardPhong } from "../../actions/phong";
+import { getDatPhongByPhongRequest } from "../../actions/datphong";
 
-class Home extends React.Component {
+class Home extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,91 +14,130 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    console.log("component did mount ");
     this.props.getListPhongRequest();
   }
 
-  ontoggleModalOpen = data => {
-    console.log({data});
-    console.log('hello')
+  ontoggleModalOpen = () => {
     // pickCardPhong(data);
     this.setState({
       visibleModalPhong: true
     });
-
   };
 
   ontoggleModalClose = () => {
-    this.setState ({
+    this.setState({
       visibleModalPhong: false
     });
   };
 
   render() {
-    const { phong } = this.props;
+    const { phong, dataPhong, datphongbyphong } = this.props;
+    console.log('Index ',this.props);
     return (
       <div>
         <Row>
           <Col span={18}>
-            <List
-              grid={{ gutter: 16, xs: 1, sm: 2, md: 3, lg: 3, xl: 4, xxl: 3 }}
-              dataSource={this.props.phong.listPhong}
-              renderItem={item => (
-                <List.Item>
-                  <CustomCard
-                    data={item}
-                    onOpenModal={this.ontoggleModalOpen}
-                    {...this.props}
-                    // status={item.TrangThai}
-                    // title={item.SoPhong}
-                    // description={item.LoaiPhong[0].TenLoaiPhong}
-                  />
-                </List.Item>
-              )}
-            />
+            <Layout.Content
+              style={{ height: "100%", padding: "24px 24px 0px 24px" }}
+            >
+              <div style={{ padding: 24, background: "#fff", height: "25em" }}>
+                {dataPhong === null ? (
+                  <b>Hotel Management Application 0.1</b>
+                ) : (
+                  // <div style={{ padding: 24, background: "#fff", height: "auto" }}>
+                  <Row>
+                    <Col span={18}>
+                      {dataPhong != null ? (
+                        <div>
+                          <b>Tầng :</b> {dataPhong.Tang[0].TenTang}
+                          <b style={{ marginLeft: "2rem" }}>
+                            Loại phòng :
+                          </b>{" "}
+                          {dataPhong.LoaiPhong[0].TenLoaiPhong}
+                          <List
+                            title="DS dịch vụ"
+                            itemLayout="horizontal"
+                            dataSource={datphongbyphong.listdatphong.ChiTietSuDungDichVu}
+                            pagination={{
+                              onChange: page => {
+                                console.log(page);
+                              },
+                              pageSize: 3
+                            }}
+                            renderItem={item => (
+                              <List.Item>
+                                <List.Item.Meta description={item.DichVu[0]} />
+                              </List.Item>
+                            )}
+                          />
+                        </div>
+                      ) : (
+                        "Không có dữ liệu"
+                      )}
+                    </Col>
+                    <Col span={6}>Hello</Col>
+                  </Row>
+                  // </div>
+                )}
+              </div>
+            </Layout.Content>
           </Col>
-          <Col
-            span={5}
-            style={{
-              textAlign: "center",
-              marginLeft: "1rem",
-              marginRight: "1rem"
-            }}
-          >
-            <Button type="primary" size="large" block>
-              Đặt phòng
-            </Button>
-            <Button
-              type="primary"
-              style={{ marginTop: "1rem" }}
-              size="large"
-              block
+          <Col span={6}>
+            <Layout.Content
+              style={{ height: "100%", padding: "24px 24px 0px 0px" }}
             >
-              Thanh Toán
-            </Button>
-            <Button
-              type="primary"
-              style={{ marginTop: "1rem" }}
-              size="large"
-              block
-            >
-              Dịch vụ
-            </Button>
-            <Button
-              type="primary"
-              style={{ marginTop: "1rem" }}
-              size="large"
-              block
-            >
-              Khách hàng
-            </Button>
+              <div
+                style={{ padding: 24, background: "#fff", height: "25em" }}
+              >
+              Hello
+              </div>
+            </Layout.Content>
           </Col>
         </Row>
-        <ModalPhong
-          visible={this.state.visibleModalPhong}
-          onCancel={this.ontoggleModalClose}
-          onOpen={this.ontoggleModalOpen}
-          {...this.props}
-        />
+        <Layout.Content
+          style={{ height: "100%", padding: "10px 24px 24px 24px" }}
+        >
+          <div style={{ padding: 24, background: "#fff", height: "auto" }}>
+            <Row>
+              <Col span={24}>
+                {phong.isFetching === true ? (
+                  <Spin />
+                ) : (
+                  <List
+                    grid={{
+                      gutter: 16,
+                      xs: 1,
+                      sm: 2,
+                      md: 3,
+                      lg: 3,
+                      xl: 4,
+                      xxl: 3
+                    }}
+                    dataSource={phong.listPhong}
+                    renderItem={item => (
+                      <List.Item>
+                        <CustomCard
+                          data={item}
+                          onOpenModal={this.ontoggleModalOpen}
+                          {...this.props}
+                        />
+                      </List.Item>
+                    )}
+                  />
+                )}
+              </Col>
+              <Col
+                span={5}
+                style={{
+                  textAlign: "center",
+                  marginLeft: "1rem",
+                  marginRight: "1rem"
+                }}
+              />
+            </Row>
+          </div>
+        </Layout.Content>
       </div>
     );
   }
@@ -107,12 +146,14 @@ class Home extends React.Component {
 const mapStateToProps = state => {
   return {
     phong: state.phong.phong,
-    dataCardPhong: state.phong.dataPhongforCard
+    dataPhong: state.phong.dataPhong,
+    datphongbyphong: state.datphong.datphongbyphong
   };
 };
 
 const mapDispatchToProps = {
   getListPhongRequest,
+  getDatPhongByPhongRequest,
   pickCardPhong
 };
 

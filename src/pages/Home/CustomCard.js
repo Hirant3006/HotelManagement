@@ -3,15 +3,22 @@ import { Card, Icon } from "antd";
 import styles from "./CardList.less";
 export default class CustomCard extends PureComponent {
 
+  handleOnClick = () => {
+    console.log('Custom card ',this.props);
+    this.props.getDatPhongByPhongRequest(this.props.data._id);
+    this.props.pickCardPhong(this.props.data);
+    // this.props.onOpenModal();
+  }
+
   render() {
     const { data,onOpenModal } = this.props ;
-    console.log(this.props);
+    console.log("Render ",this.props)
     return (
       <Card
         hoverable
         className={styles.card}
         onClick={() => {
-          onOpenModal(data);
+          this.handleOnClick();
         }}
       >
         <Card.Meta
@@ -21,7 +28,7 @@ export default class CustomCard extends PureComponent {
             <Icon type="book" style={{ fontSize: "32px", color: "#C82E31" }} />
           }
           title={data.SoPhong}
-          description={data.LoaiPhong[0].TenLoaiPhong}
+          // description={data!==null ? data.LoaiPhong[0].TenLoaiPhong :null}
          />
       </Card>
        );

@@ -44,7 +44,7 @@ const initialState = {
   updateloaiphong: {
     isFetching: false
   },
-  dataPhongforCard: null,
+  dataPhong: null,
   error: null
 };
 export default function(state = initialState, action) {
@@ -70,12 +70,14 @@ export default function(state = initialState, action) {
         },
         error: { $set: action.error }
       });
-    case GET_LIST_PHONG_REQUEST:
+    case GET_LIST_PHONG_REQUEST: {
+      console.log("Reducer");
       return update(state, {
         phong: {
           isFetching: { $set: true }
         }
       });
+    }
     case GET_LIST_PHONG_SUCCESS:
       return update(state, {
         phong: {
@@ -172,11 +174,11 @@ export default function(state = initialState, action) {
         },
         error: { $set: action.error }
       });
-    case PICK_CARD_PHONG:
+    case PICK_CARD_PHONG: {
       return update(state, {
-        dataPhongforCard: { $set: action.dataPhong }
-        
-      })
+        dataPhong: { $set: action.dataPhong }
+      });
+    }
     default:
       return state;
   }

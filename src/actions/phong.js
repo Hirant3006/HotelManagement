@@ -144,14 +144,18 @@ export const updateLoaiPhongTheoIdRequest = (
     });
 };
 
-// export const pickCardPhong = data => async dispatch => {
-//   console.log("adwadadawfwafwafwafwa");
-//   dispatch({ type: PICK_CARD_PHONG, dataPhong: data });
-// };
-
-export const pickCardPhong = data => {
-  console.log(data);
+export function pickCardPhong(data) {
   return (dispatch, getState) => {
-    dispatch({ type: PICK_CARD_PHONG, dataPhong: data });
+    const { phong } = getState();
+    if (phong.dataPhong === data) {
+      dispatch({
+        type: PICK_CARD_PHONG,
+        dataPhong: null
+      });
+    } else
+      dispatch({
+        type: PICK_CARD_PHONG,
+        dataPhong: data
+      });
   };
-};
+}
