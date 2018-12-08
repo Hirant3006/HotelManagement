@@ -23,18 +23,15 @@ class ModalThemKhachHang extends React.Component {
   };
 
   handleThemKhachHang = (values,onCancel) => {
+
     console.log("Values: ",values);
     const { addKhachHangRequest,getListKhachHangRequest } = this.props;
-    const TenLoaiKhach= values.TenLoaiKhach;
-    const GioiTinh = values.GioiTinh;
+    const LoaiKhachHang= values.LoaiKhachHang;
     const HoTen = values.HoTen;
     const CMND = values.CMND;    
     const NgaySinh = values.NgaySinh;
-    const DiaChi = values.DiaChi;
-    const QuocTich = values.QuocTich;
-    const Email =values.Email;
-    const SDT = values.SDT;
-    addKhachHangRequest(TenLoaiKhach,GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,SDT,onCancel,getListKhachHangRequest);
+ 
+    addKhachHangRequest(HoTen,CMND,NgaySinh,LoaiKhachHang,onCancel,getListKhachHangRequest);
   };
 
   render() {
@@ -63,14 +60,7 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-          <FormItem label="Giới Tính" {...this.formItemLayout}>
-            <RadioItem
-              name="GioiTinh"
-              type="radio"
-          //    value={this.state.isFetching}
-              component={RadioItem}
-            />
-          </FormItem> 
+        
 
           <FormItem label="Họ Tên" {...this.formItemLayout}>
             <Field
@@ -90,14 +80,7 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-  {/* <FormItem label="Ngày Sinh" {...this.formItemLayout}>
-            <Field
-              name="NgaySinh"
-              type="text"
-              component={CustomInput}
-              placeholder="Nhập họ tên khách hàng"
-            />
-          </FormItem> */}
+  
 
           <FormItem label="Ngày Sinh" {...this.formItemLayout}>
             <Field
@@ -108,43 +91,7 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-          <FormItem label="Địa chỉ" {...this.formItemLayout}>
-            <Field
-              name="DiaChi"
-              type="text"
-              component={CustomInput}
-              placeholder="Nhập địa chỉ khách hàng"
-            />
-          </FormItem>
-
-          <FormItem label="Quốc Tịch" {...this.formItemLayout}>
-            <Field
-              name="QuocTich"
-              type="text"
-              component={CustomInput}
-              placeholder="Nhập quốc tịch khách hàng"
-            />
-          </FormItem>
-
-          <FormItem label="SĐT" {...this.formItemLayout}>
-            <Field
-              name="SDT"
-              type="text"
-              component={CustomInput}
-              placeholder="Nhập SDT khách hàng"
-            />
-          </FormItem>
-
-
-          <FormItem label="Email" {...this.formItemLayout}>
-            <Field
-              name="Email"
-              type="text"
-              component={CustomInput}
-              placeholder="Nhập Email khách hàng"
-            />
-          </FormItem>
-
+        
         
 
           <Row type="flex" justify="end">

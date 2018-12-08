@@ -72,18 +72,22 @@ export const findLoaiKHRequest = id => async dispatch => {
     });
 };
 
-export const deleteLoaiKHRequest = id => async dispatch => {
+export const deleteLoaiKHRequest = (id, getListLoaiKhachHangRequest) => async dispatch => {
   dispatch({ type: DELETE_LOAIKHACHHANG_REQUEST });
   const res = await axios.delete(keys.backend + "/loaikhachhang/" + id);
 
-  if ((res.status = 200))
+  if ((res.status = 200)){
     dispatch({
       type: DELETE_LOAIKHACHHANG_SUCCESS
-    });
+    }
+  );
+  getListLoaiKhachHangRequest();
+}
   else
     dispatch({
       type: DELETE_LOAIKHACHHANG_FAILURE
     });
+   
 };
 
 export const updateLoaiKHRequest = (_id,TenLoaiKhach) => async dispatch => {

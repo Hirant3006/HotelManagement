@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
+import { Field, reduxForm } from "redux-form";
 import moment from "moment";
-import { Table, Divider, Button, Icon, Row, Popconfirm } from "antd";
+import { Table, Divider, Button, Icon, Row, Popconfirm, Form } from "antd";
 import ModalThemLoaiKhachHang from "./ModalThemLoaiKhachHang";
 import ModalSuaLoaiKhachHang from "./ModalSuaLoaiKhachHang";
+import ModalThemKhachHang from "../ModalThemKhachHang"
 
 export default class CustomTable extends Component {
   constructor(props) {
@@ -27,7 +29,7 @@ export default class CustomTable extends Component {
       key: "action",
       render: (text, record) => (
         <span>
-          <a onClick={() => this.onToggleModalSuaLoaiKhachHang(record)}>Sửa</a>
+          <a onClick={() => this.onToggleModalSuaLoaiKH(record)}>Sửa</a>
           <Divider type="vertical" />
           {this.props.deleteloaikhachhang.isFetching ? (
             <Icon type="loading" />
@@ -40,19 +42,25 @@ export default class CustomTable extends Component {
             >
               <a style={{color:"red"}}>Xóa</a>
             </Popconfirm>
+
+            
           )}
+        
+
+        {/* <a style={{color:"green"}} onClick={() => this.handleThemKhachHang(record)}>Thêm Khách Hàng</a>
+          */}
+
+
         </span>
       )
     }
   ];
   
   handelDeleteLoaiKH = record => {
-    const { deleteloaikhachhang,getListLoaiKhachHangRequest } = this.props;
+    const { deleteLoaiKHRequest,getListLoaiKhachHangRequest } = this.props;
     const id = record._id;
-    const deleteLoaiKHRequest = id => async dispatch => {
-  deleteLoaiKHRequest(id,getListLoaiKhachHangRequest);
-  };
-  }
+    deleteLoaiKHRequest(id,getListLoaiKhachHangRequest);
+    }
   handleOk = e => {
     this.setState({
       visible: false
@@ -88,7 +96,8 @@ export default class CustomTable extends Component {
   }
   
   render() {
-    const { loaikhachhang } = this.props;
+    const { loaikhachhang ,khachhang} = this.props;
+    console.log(this.props);
     const { visibleSuaLoaiKH } = this.state;
     console.log(this.props);
     return (
@@ -119,6 +128,10 @@ export default class CustomTable extends Component {
             onOk={this.handleOk}
             {...this.props}
           />
+
+
+        
+        
        {visibleSuaLoaiKH ?
           <ModalSuaLoaiKhachHang
             visible={this.state.visibleSuaLoaiKH}
@@ -129,6 +142,7 @@ export default class CustomTable extends Component {
             {...this.props}
           /> : null }
           </Row>
+          
       </div>
     );
   }

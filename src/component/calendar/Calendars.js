@@ -24,17 +24,16 @@ const { MonthPicker, RangePicker, onChange } = DatePicker;
      // value = moment(value).format("YYYY-MM-DD");
       value,
       this.setState({ value });
-    console.log(value);
+     console.log(value);
     }
-  
+    
     render() { 
       const { value, selectedValue } = this.state;
        return (
      
         <DatePicker value={value} onSelect={this.onSelect} onChange={this.onChange}  />
    
-     
-      );
+           );
     }
   }
 

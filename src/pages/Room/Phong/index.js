@@ -29,7 +29,7 @@ class Room extends React.PureComponent {
       ? this.setState({ Phong: this.props.phong.listPhong })
       : null;
     return (
-      <Col span={24}>
+      <Col span={20}>
         <Row>
           <Select
             showSearch

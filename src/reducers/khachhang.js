@@ -34,6 +34,21 @@ const initialState = {
   addkhachhang: {
     isFetching: false
   },
+  addloaikhachhang: { 
+    isFetching: false
+  },
+  
+loaikhachhangtheoid: {
+  loaikhachhang: null,
+  isFetching: false
+},
+deleteloaikhachhang: {
+  isFetching: false
+},
+updateloaikhachhang: {
+  isFetching: false
+},
+
   error: null
 };
 export default function(state = initialState, action) {
@@ -84,7 +99,7 @@ export default function(state = initialState, action) {
       case ADD_LOAIKHACHHANG_REQUEST:
       return update(state, {
         addloaikhachhang: {
-          isFetching: { $set: true }
+          isFetching: { $set: true}
         }
       });
     case ADD_LOAIKHACHHANG_SUCCESS:
@@ -165,5 +180,9 @@ export default function(state = initialState, action) {
    });
     default:
       return state;
+  }
+
+  function newFunction() {
+    return true;
   }
 }

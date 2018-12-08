@@ -62,3 +62,9 @@ export const GET_LIST_HUHONG_FAILURE = 'GET_LIST_HUHONG_FAILURE';
 export const ADD_HUHONG_REQUEST = 'ADD_HUHONG_REQUEST';
 export const ADD_HUHONG_SUCCESS = 'ADD_HUHONG_SUCCESS';
 export const ADD_HUHONG_FAILURE = 'ADD_HUHONG_FAILURE';
+//=====================================BOOKING=======================================//
+export const GET_DATPHONG_BY_PHONG_REQUEST = 'GET_DATPHONG_BY_PHONG_REQUEST';
+export const GET_DATPHONG_BY_PHONG_SUCCESS = 'GET_DATPHONG_BY_PHONG_SUCCESS';
+export const GET_DATPHONG_BY_PHONG_FAILURE = 'GET_DATPHONG_BY_PHONG_FAILURE';
+//==================================BOOKED==============================//
+export const PICK_CARD_PHONG = 'PICK_CARD_PHONG';

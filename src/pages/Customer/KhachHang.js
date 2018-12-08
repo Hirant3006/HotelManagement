@@ -9,27 +9,15 @@ import ModalThemKhachHang from "./ModalThemKhachHang/index";
 const columns = [
   {
     title: "Loại Khách Hàng",
-    dataIndex: "TenLoaiKhach",
-    key: "TenLoaiKhach"
-  },
-  {
-    title: "Giới Tính ",
-    dataIndex: "GioiTinh",
-    key: "GioiTinh",
-    render: sex => (sex == true ? "Nam" : "Nữ")
+    dataIndex: "LoaiKhachHang",
+    key: "LoaiKhachHang"
   },
   {
     title: "Họ Tên",
     dataIndex: "HoTen",
     key: "_id"
   },
-  {
-    title: "Giới Tính ",
-    dataIndex: "GioiTinh",
-    key: "GioiTinh",
-    render: sex => (sex === true ? "Nam" : "Nữ")
-  },
-  {
+   {
     title: "Ngày sinh",
     dataIndex: "NgaySinh",
     key: "NgaySinh",
@@ -39,20 +27,10 @@ const columns = [
     }
   },
   {
-    title: "Địa chỉ",
-    dataIndex: "DiaChi",
-    key: "Diachi"
+    title: "CMND",
+    dataIndex: "CMND",
+    key: "CMND"
   },
-  {
-    title: "Quốc Tịch",
-    dataIndex: "QuocTich",
-    key: "QuocTich"
-  },
-  {
-    title: "Email",
-    dataIndex: "Email",
-    key: "Email"
-  }
 ];
 
 export default class CustomTable extends Component {
