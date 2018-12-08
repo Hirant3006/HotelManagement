@@ -18,7 +18,6 @@ class Room extends React.PureComponent {
   }
  
   handleChange = value => {
-    console.log(value);
     let listphongfilter = this.state.Phong;
     listphongfilter=listphongfilter.filter(phong => phong.TenLoaiPhong === value);
     console.log(listphongfilter)
@@ -30,7 +29,7 @@ class Room extends React.PureComponent {
       ? this.setState({ Phong: this.props.phong.listPhong })
       : null;
     return (
-      <Col span={18}>
+      <Col span={24}>
         <Row>
           <Select
             showSearch

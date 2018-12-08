@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
 import moment from "moment";
-import { Table, Divider, Button, Icon, Row } from "antd";
+import { Table, Button, Icon, Row } from "antd";
 // import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
 // import khachhang from "../../reducers/khachhang";
 // import CustomerTable from './CustomTable'
@@ -24,12 +24,18 @@ const columns = [
     key: "_id"
   },
   {
+    title: "Giới Tính ",
+    dataIndex: "GioiTinh",
+    key: "GioiTinh",
+    render: sex => (sex === true ? "Nam" : "Nữ")
+  },
+  {
     title: "Ngày sinh",
     dataIndex: "NgaySinh",
     key: "NgaySinh",
     render: date => {
       var dateTime = new Date(date);
-      return dateTime = moment(dateTime).format("YYYY-MM-DD");
+      return dateTime = moment(dateTime).format("DD-MM-YYYY");
     }
   },
   {
@@ -93,7 +99,7 @@ export default class CustomTable extends Component {
      
           <Table
             loading={khachhang.isFetching}
-            columns={columns}
+            columns={this.columns}
             dataSource={khachhang.listKhachhang}
             rowKey="_id"
             pagination={{ pageSize: 5 }}

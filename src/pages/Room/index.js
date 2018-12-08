@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import  { Tabs } from "antd";
 import { reset } from 'redux-form';
+import  { Tabs } from "antd";
 import LoaiPhong from './LoaiPhong';
 import Phong from './Phong'
 import {
@@ -28,21 +28,15 @@ class Room extends React.Component {
   }
 
   render() {
-   console.log(this.props);
-   const {loaiphong} = this.props;
-   console.log(loaiphong);
     return ( 
-      <div>
         <Tabs defaultActiveKey="1" >
           <TabPane tab="Phòng" key="1">
             <Phong {...this.props}/>
           </TabPane>
           <TabPane tab="Loại phòng" key="2">
-
            <LoaiPhong {...this.props} />
           </TabPane>
         </Tabs>
-      </div>
     );
   }
 }

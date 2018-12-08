@@ -23,7 +23,7 @@ class ModalThemKhachHang extends React.Component {
   };
 
   handleThemKhachHang = (values,onCancel) => {
-    console.log(values);
+    console.log("Values: ",values);
     const { addKhachHangRequest,getListKhachHangRequest } = this.props;
     const TenLoaiKhach= values.TenLoaiKhach;
     const GioiTinh = values.GioiTinh;

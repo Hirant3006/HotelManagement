@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "antd/dist/antd.css";
 import { Table, Divider, Button, Icon, Row, Popconfirm } from "antd";
 import ModalThemLoaiPhong from "./ModalThemLoaiPhong";
-import ModalSuaLoaiPhong from './ModalSuaLoaiPhong';
+import ModalSuaLoaiPhong from './ModalSuaLoaiPhong/';
 
 export default class CustomTable extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class CustomTable extends Component {
   columns = [
     {
       title: "Tên",
-      dataIndex: "TenLoai",
+      dataIndex: "TenLoaiPhong",
       key: "_id"
     },
     {
@@ -90,9 +90,9 @@ export default class CustomTable extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { loaiphong } = this.props;
     const { visibleSuaLoaiPhong } = this.state;
+    
     return (
       <div>
         <Row>

@@ -1,13 +1,22 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
-import { Modal, Row, Button, Form } from "antd";
-import CustomInput from '../../../../component/CustomInput'
-import validate from './validate'
+import { Form as ReduxForm, Field, reduxForm } from "redux-form";
+import { Form, Row, Button, Modal } from "antd";
+import CustomInput from "../../../../component/CustomInput";
+
+import validate from "./validate";
 
 const FormItem = Form.Item;
 
-
 class ModalSuaLoaiPhong extends React.Component {
+  state = {
+    disabled: true
+  };
+
+  editPosition = ({ name }) => {
+    const { editPositionRequest, data } = this.props;
+    const { onToggleModalClose } = this.props;
+    editPositionRequest({ data, name, callback: () => onToggleModalClose() });
+  };
   formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -18,71 +27,64 @@ class ModalSuaLoaiPhong extends React.Component {
       sm: { span: 20 }
     }
   };
-
-  handleSuaLoaiPhong = (values,id,onCancel) => {
-    const { updateLoaiPhongTheoIdRequest } = this.props;
-    const TenLoai = values.tenloai;
-    const DonGia = values.dongia;
-    updateLoaiPhongTheoIdRequest(id,TenLoai,DonGia,onCancel);
-  };
-
   render() {
-    const { handleSubmit, visible, onCancel, addloaiphong,data } = this.props;
+
+    const {
+      visible,
+      onCancel,
+      data,
+      handleSubmit
+    } = this.props;
     return (
       <Modal
-        title="Sửa loại phòng"
+        title="Chỉnh sửa loại phòng"
         visible={visible}
-        onCancel={() => 
-          {
+        onCancel={() => {
           onCancel();
-       
         }}
         footer={null}
       >
-        <Form
-          onSubmit={handleSubmit(values => this.handleSuaLoaiPhong(values,data._id,onCancel))}
-        >
-          <FormItem label="Tên loại phòng" {...this.formItemLayout}>
+        <ReduxForm onSubmit={handleSubmit(values => this.editPosition(values))}>
+          <FormItem label="Tên " {...this.formItemLayout}>
             <Field
-              name="tenloai"
-              type="text"
+              name="loaiphong"
               component={CustomInput}
-              placeholder={data!=null?data.TenLoai:null}
+              placeholder="Nhập tên loại phòng"
+              defaultValue={data.TenLoai}
             />
           </FormItem>
 
           <FormItem label="Đơn giá" {...this.formItemLayout}>
             <Field
               name="dongia"
-              type="number"
               component={CustomInput}
-              placeholder={data!=null?data.DonGia:null}
+							placeholder="DonGia"
+              type="number"							
+              defaultValue={data.DonGia}
             />
           </FormItem>
+
           <Row type="flex" justify="end">
             <Button
               type="primary"
               htmlType="submit"
               className="button"
-              loading={addloaiphong.isFetching} // true
-              disabled={addloaiphong.isFetching}
+              //   loading={editPositionStatus.isFetching()} // true
+              //   disabled={editPositionStatus.isFetching()}
             >
-              Tạo
+              Lưu
             </Button>
           </Row>
-        </Form>
+        </ReduxForm>
       </Modal>
     );
   }
 }
 
-ModalSuaLoaiPhong= reduxForm({
-  form: "sua-loai-phong", // a unique identifier for this form
-  validate, // <--- validation function given to redux-form
-  forceUnregisterOnUnmount: true,
-  // initialValues: {
-  //   tenloai:this.props.data.TenLoai,
-  // }
+ModalSuaLoaiPhong = reduxForm({
+  form: "edit-loaiphong",
+  validate,
+  forceUnregisterOnUnmount: true
 })(ModalSuaLoaiPhong);
 
 export default ModalSuaLoaiPhong;

@@ -1,14 +1,10 @@
 import React, { PureComponent } from "react";
-import {Button} from "antd";
 import { connect } from "react-redux";
-import {
-  getListLoaiPhongRequest,
-  addLoaiPhongRequest,
-  findLoaiPhongTheoIdRequest,
-  deleteLoaiPhongTheoIdRequest,
-  updateLoaiPhongTheoIdRequest
-} from "../../actions/phong";
-class Home extends PureComponent {
+import CustomCard from "./CustomCard";
+import { List, Col, Row, Button } from "antd";
+import { getListPhongRequest } from "../../actions/phong";
+
+class Repair extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -53,14 +49,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  getListLoaiPhongRequest,
-  addLoaiPhongRequest,
-  findLoaiPhongTheoIdRequest,
-  deleteLoaiPhongTheoIdRequest,
-  updateLoaiPhongTheoIdRequest
+  getListPhongRequest
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(Repair);

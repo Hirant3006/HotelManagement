@@ -21,6 +21,7 @@ const Option = Select.Option;
 //onst TabPane = Tabs.TabPane;
 const TabPane = Tabs.TabPane;
 class Customer extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {};
