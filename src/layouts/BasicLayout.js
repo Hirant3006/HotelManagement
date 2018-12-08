@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { BrowserRouter as Router,Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import CustomHeader from "./CustomHeader";
 import CustomSider from "./CustomSider";
 import { Layout } from "antd";
@@ -28,21 +28,26 @@ export default class BasicLayout extends PureComponent {
           <CustomSider collapsed={collapsed} />
           <Layout style={{ height: "100vh" }}>
             <CustomHeader collapsed={collapsed} toggle={this.toggle} />
-            {/* <Breadcrumb style={{ margin: "16px 0  10px 15px" }}>
+            <Layout.Content
+              style={{ height: "100%", padding: "24px 24px 0px 24px" }}
+            >
+              <div style={{ padding: 24, background: "#fff", height: "25em" }}>
+                {/* <Breadcrumb style={{ margin: "16px 0  10px 15px" }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>List</Breadcrumb.Item>
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb> */}
-            <Content style={{ height: "100%", padding: "24px" }}>
-              <div style={{ padding: 24, background: "#fff", height: "auto" }}>
-                  {/* <Route path="/room" component={Room} />
+                {/* <Content style={{ height: "100%", padding: "24px" }}>
+              <div style={{ padding: 24, background: "#fff", height: "auto" }}> */}
+                {/* <Route path="/room" component={Room} />
                   <Route path="/home" component={Home} exact /> */}
-                  <Switch>
+                <Switch>
                   <RouterConfig />
-                  </Switch>
+                </Switch>
+                {/* </div>
+            </Content> */}
               </div>
-            </Content>
-           
+            </Layout.Content>
             <Footer>footer</Footer>
           </Layout>
         </Layout>

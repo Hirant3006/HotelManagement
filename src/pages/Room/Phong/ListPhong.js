@@ -10,7 +10,7 @@ export default class ListPhong extends React.Component {
         <CustomCard
           status={item.TrangThai}
           title={item.SoPhong}
-          description={item.LoaiPhong[0].TenLoaiPhong}
+          description={item.LoaiPhong.TenLoaiPhong}
         />
       );
     });
@@ -19,7 +19,7 @@ export default class ListPhong extends React.Component {
   render() {
     console.log(this.props.dataSource);
     return (
-      <div>
+      <div style={{ background: '#ECECEC', padding: '30px' }}>
         <List
           grid={{ gutter: 16, xs: 1, sm: 2, md: 3, lg: 3, xl: 4, xxl: 3 }}
           dataSource={this.props.dataSource}
@@ -28,7 +28,7 @@ export default class ListPhong extends React.Component {
               <CustomCard
                 status={item.TrangThai}
                 title={item.SoPhong}
-                description={item.LoaiPhong[0].TenLoaiPhong}
+                description={item.LoaiPhong.TenLoaiPhong}
               />
             </List.Item>
           )}

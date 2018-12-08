@@ -1,13 +1,16 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import CustomCard from "./CustomCard";
-import { List, Col, Row, Button } from "antd";
-import { getListPhongRequest } from "../../actions/phong";
+import { List, Col, Row, Button, Layout, Avatar, Spin } from "antd";
+import { getListPhongRequest, pickCardPhong } from "../../actions/phong";
+import { getDatPhongByPhongRequest } from "../../actions/datphong";
 
-class Repair extends React.Component {
+class Home extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      visibleModalPhong: false
+    };
   }
 
   componentWillmount() {
@@ -22,6 +25,19 @@ class Repair extends React.Component {
     console.log('Prespros :' + prespros);
     console.log('Nextpros :' )
   }
+
+  ontoggleModalOpen = () => {
+    // pickCardPhong(data);
+    this.setState({
+      visibleModalPhong: true
+    });
+  };
+
+  ontoggleModalClose = () => {
+    this.setState({
+      visibleModalPhong: false
+    });
+  };
 
   render() {
     console.log('render !!!!');
@@ -49,10 +65,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  getListPhongRequest
+  getListPhongRequest,
+  getDatPhongByPhongRequest,
+  pickCardPhong
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Repair);
+)(Home);
