@@ -31,6 +31,7 @@ class Home extends React.PureComponent {
   };
 
   ontoggleModalClose = () => {
+    console.log('Close modal')
     this.setState({
       visibleModalPhong: false
     });
@@ -40,7 +41,7 @@ class Home extends React.PureComponent {
     data.map(item => {
       console.log("Data ", item);
       return (
-        <Card.Grid key={item._id} style={gridStyle}>
+        <Card.Grid key={item._id} style={gridStyle} onClick={this.ontoggleModalOpen}>
           {item.SoPhong}
         </Card.Grid>
       );
@@ -78,8 +79,7 @@ class Home extends React.PureComponent {
         <ModalPhong
           visible={this.state.visibleModalPhong}
           showModal={this.ontoggleModalOpen}
-          onCancel={this.ontoggleModalOpen}
-          // onOk={this.handleOkSuaLoaiPhong}
+          onCancel={this.ontoggleModalClose}
           data={this.state.dataPhong}
           {...this.props}
         />
