@@ -6,9 +6,15 @@ import { getListPhongRequest, pickCardPhong } from "../../actions/phong";
 import { getDatPhongByPhongRequest } from "../../actions/datphong";
 import ModalPhong from "./ModalPhong";
 
-const gridStyle = {
+const gridStyleEmpty = {
   width: "25%",
   textAlign: "center"
+};
+
+const gridStyleBook = {
+  width: "25%",
+  textAlign: "center",
+  color: "yellow"
 };
 
 class Home extends React.PureComponent {
@@ -23,15 +29,17 @@ class Home extends React.PureComponent {
     this.props.getListPhongRequest();
   }
 
+  handleOnclick = data => {
+    pickCardPhong(data);
+  };
+
   ontoggleModalOpen = () => {
-    // pickCardPhong(data);
     this.setState({
       visibleModalPhong: true
     });
   };
 
   ontoggleModalClose = () => {
-    console.log('Close modal')
     this.setState({
       visibleModalPhong: false
     });
@@ -40,11 +48,33 @@ class Home extends React.PureComponent {
   handleRenderList = data =>
     data.map(item => {
       console.log("Data ", item);
-      return (
-        <Card.Grid key={item._id} style={gridStyle} onClick={this.ontoggleModalOpen}>
-          {item.SoPhong}
-        </Card.Grid>
-      );
+      if (item.TrangThai == "false")
+        return (
+          <Card.Grid
+            key={item._id}
+            style={{ width: "25%", textAlign: "center" ,backgroundColor:"#FFFA51",border:"solid"}}
+            onClick={() => {
+              this.ontoggleModalOpen();
+              this.props.pickCardPhong(item);
+              this.props.getDatPhongByPhongRequest(item._id);
+            }}
+          >
+            {item.SoPhong}
+          </Card.Grid>
+        );
+      else
+        return (
+          <Card.Grid
+            key={item._id}
+            style={{ width: "25%", textAlign: "center",backgroundColor:"#A8FFD4",border:"solid"}}
+            // onClick={() => {
+            //   this.ontoggleModalOpen();
+            //   this.props.pickCardPhong(item);
+            // }}
+          >
+            {item.SoPhong}
+          </Card.Grid>
+        );
     });
 
   render() {
