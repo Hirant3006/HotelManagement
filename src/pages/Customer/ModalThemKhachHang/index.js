@@ -1,14 +1,12 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { Modal, Row, Button, Form} from "antd";
-import CustomInput from '../../../component/CustomInput'
-import RadioItem from '../../../component/radio/RadioItem'
-import Calendars from '../../../component/calendar/Calendars'
-import validate from './validate'
+import { Modal, Row, Button, Form } from "antd";
+import CustomInput from "../../../component/CustomInput";
+import RadioItem from "../../../component/radio/RadioItem";
+import Calendars from "../../../component/calendar/Calendars";
+import validate from "./validate";
 // import moment from "moment"
 const FormItem = Form.Item;
-
-
 
 class ModalThemKhachHang extends React.Component {
   formItemLayout = {
@@ -22,17 +20,27 @@ class ModalThemKhachHang extends React.Component {
     }
   };
 
-  handleThemKhachHang = (values,onCancel) => {
-    console.log("Values: ",values);
-    const { addKhachHangRequest,getListKhachHangRequest } = this.props;
+  handleThemKhachHang = (values, onCancel) => {
+    console.log("Values: ", values);
+    const { addKhachHangRequest, getListKhachHangRequest } = this.props;
     const GioiTinh = values.GioiTinh;
     const HoTen = values.HoTen;
-    const CMND = values.CMND;    
+    const CMND = values.CMND;
     const NgaySinh = values.NgaySinh;
     const DiaChi = values.DiaChi;
     const QuocTich = values.QuocTich;
-    const Email =values.Email;
-    addKhachHangRequest(GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,onCancel,getListKhachHangRequest);
+    const Email = values.Email;
+    addKhachHangRequest(
+      GioiTinh,
+      HoTen,
+      CMND,
+      NgaySinh,
+      DiaChi,
+      QuocTich,
+      Email,
+      onCancel,
+      getListKhachHangRequest
+    );
   };
 
   render() {
@@ -46,19 +54,20 @@ class ModalThemKhachHang extends React.Component {
         onCancel={() => {
           onCancel();
         }}
-        
       >
         <form
-          onSubmit={handleSubmit(values => this.handleThemKhachHang(values,onCancel))}
+          onSubmit={handleSubmit(values =>
+            this.handleThemKhachHang(values, onCancel)
+          )}
         >
           <FormItem label="Giới Tính" {...this.formItemLayout}>
             <RadioItem
               name="GioiTinh"
               type="radio"
-          //    value={this.state.isFetching}
+              //    value={this.state.isFetching}
               component={RadioItem}
             />
-          </FormItem> 
+          </FormItem>
 
           <FormItem label="Họ Tên" {...this.formItemLayout}>
             <Field
@@ -69,8 +78,7 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-
-  <FormItem label="CMND" {...this.formItemLayout}>
+          <FormItem label="CMND" {...this.formItemLayout}>
             <Field
               name="CMND"
               type="text"
@@ -79,9 +87,7 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-
-
-  {/* <FormItem label="Ngày Sinh" {...this.formItemLayout}>
+          {/* <FormItem label="Ngày Sinh" {...this.formItemLayout}>
             <Field
               name="NgaySinh"
               type="text"
@@ -92,10 +98,10 @@ class ModalThemKhachHang extends React.Component {
 
           <FormItem label="Ngày Sinh" {...this.formItemLayout}>
             <Field
-              name = "NgaySinh"
+              name="NgaySinh"
               type="text"
               component={Calendars}
-             // placeholder="Nhập ngày sinh khách hàng"
+              // placeholder="Nhập ngày sinh khách hàng"
             />
           </FormItem>
 
@@ -126,7 +132,6 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem> */}
 
-
           <FormItem label="Email" {...this.formItemLayout}>
             <Field
               name="Email"
@@ -135,8 +140,6 @@ class ModalThemKhachHang extends React.Component {
               placeholder="Nhập Email khách hàng"
             />
           </FormItem>
-
-        
 
           <Row type="flex" justify="end">
             <Button
@@ -157,5 +160,5 @@ class ModalThemKhachHang extends React.Component {
 
 export default reduxForm({
   form: "syncValidation", // a unique identifier for this form
-  validate, // <--- validation function given to redux-form
+  validate // <--- validation function given to redux-form
 })(ModalThemKhachHang);
