@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "antd/dist/antd.css";
 import { Table, Divider, Button, Icon, Row, Popconfirm } from "antd";
 import { Field, reduxForm } from "redux-form";
-
+import ModalThemLoaiThiteBi from "./ModalThemLoaiThietBi/index"
 export default class CustomTable extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +60,7 @@ export default class CustomTable extends Component {
     this.setState({
       visible: false
     });
-    this.props.reset('them-loai-phong')
+   // this.props.reset('them-loai-phong')
   };
 
   handleOkSuaLoaiPhong = e => {
@@ -90,7 +90,7 @@ export default class CustomTable extends Component {
     
     return (
       <div>
-        {/* <Row>
+        <Row>
           <Button
             type="primary"
             onClick={this.onToggleModal}
@@ -98,7 +98,7 @@ export default class CustomTable extends Component {
           >
             <Icon type="file-add" />
           </Button>
-        </Row> */}
+        </Row>
         <Row>
           <Table
             loading={loaithietbi.isFectching}
@@ -108,13 +108,15 @@ export default class CustomTable extends Component {
             pagination={{ pageSize: 5 }}
             {...this.props}
           />
-          {/* <ModalThemLoaiPhong
+          <ModalThemLoaiThiteBi
             visible={this.state.visible}
             // showModal={this.showModal}
             onCancel={this.handleCancel}
             onOk={this.handleOk}
             {...this.props}
           />
+
+{/*
           {visibleSuaLoaiPhong ?
           <ModalSuaLoaiPhong
             visible={this.state.visibleSuaLoaiPhong}

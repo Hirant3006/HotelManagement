@@ -147,7 +147,6 @@ export const updateLoaiPhongTheoIdRequest = (
 export function pickCardPhong(data) {
   return (dispatch, getState) => {
     const { phong } = getState();
-<<<<<<< HEAD
     if (phong.dataPhong === data) {
       dispatch({
         type: PICK_CARD_PHONG,
@@ -158,17 +157,5 @@ export function pickCardPhong(data) {
         type: PICK_CARD_PHONG,
         dataPhong: data
       });
-=======
-    // if (phong.dataPhong === data) {
-    //   dispatch({
-    //     type: PICK_CARD_PHONG,
-    //     dataPhong: null
-    //   });
-    // } else
-    dispatch({
-      type: PICK_CARD_PHONG,
-      dataPhong: data
-    });
->>>>>>> c0af9e70f6047743cb8cd00d72abef37b9f3877c
   };
 }

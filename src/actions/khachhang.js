@@ -42,11 +42,7 @@ export const getListKhachHangRequest = () => async dispatch => {
     });
 };
 
-<<<<<<< HEAD
-export const addKhachHangRequest = ( HoTen,NgaySinh,CMND,TenLoaiKhach,onCancel,getListKhachHangRequest) => async (dispatch,getState) => {
-=======
-export const addKhachHangRequest = ( GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,onCancel,getListKhachHangRequest ) => async (dispatch,getState) => {
->>>>>>> c0af9e70f6047743cb8cd00d72abef37b9f3877c
+export const addKhachHangRequest = ( HoTen,NgaySinh,CMND,TenLoaiKhach,onCancel,getListKhachHangRequest ) => async (dispatch,getState) => {
   dispatch({ type: ADD_KHACHHANG_REQUEST });
   const res = await axios.post(keys.backend + "/khachhang", {
     HoTen,NgaySinh,CMND,TenLoaiKhach

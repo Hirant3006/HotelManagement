@@ -33,7 +33,7 @@ export const getListLoaiTBRequest = () => async dispatch => {
     });
 };
 
-export const addLoaiTBRequest = (TenLoaiTB,onCancel,getListLoaiTBRequest) => async (dispatch,getState) => {
+export const addLoaiTB = (TenLoaiTB,onCancel,getListLoaiTBRequest) => async (dispatch,getState) => {
   dispatch({ type: ADD_LOAITHIETBI_REQUEST });
   const res = await axios.post(keys.backend + "/loaithietbi", {
     TenLoaiTB
@@ -43,7 +43,7 @@ export const addLoaiTBRequest = (TenLoaiTB,onCancel,getListLoaiTBRequest) => asy
       type: ADD_LOAITHIETBI_SUCCESS
     });
     getListLoaiTBRequest();
-    onCancel();
+   // onCancel();
   }
   else
     dispatch({

@@ -6,7 +6,7 @@ import LoaiThietBi from './LoaiThietBi/index';
 //import Phong from './Phong'
 import {
     getListLoaiTBRequest,
-    addLoaiTBRequest,
+    addLoaiTB,
   findLoaiTBTheoIdRequest,
   deleteLoaiTBRequest,
   updateLoaiTBRequest
@@ -52,7 +52,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   getListLoaiTBRequest,
-  addLoaiTBRequest,
+  addLoaiTB,
   findLoaiTBTheoIdRequest,
   deleteLoaiTBRequest,
   updateLoaiTBRequest
