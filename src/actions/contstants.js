@@ -33,7 +33,6 @@ export const GET_LIST_KHACHHANG_FAILURE = 'GET_LIST_KHACHHANG_FAILURE';
 export const ADD_KHACHHANG_REQUEST = 'ADD_KHACHHANG_REQUEST';
 export const ADD_KHACHHANG_SUCCESS = 'ADD_KHACHHANG_SUCCESS';
 export const ADD_KHACHHANG_FAILURE = 'ADD_KHACHHANG_FAILURE';
-<<<<<<< HEAD
 //=====================================CUSTOMER TYPE=======================================//
 export const GET_LIST_LOAIKHACHHANG_REQUEST = 'GET_LIST_LOAIKHACHHANG_REQUEST';
 export const GET_LIST_LOAIKHACHHANG_SUCCESS = 'GET_LIST_LOAIKHACHHANG_SUCCESS';
@@ -85,25 +84,10 @@ export const UPDATE_LOAITHIETBI_REQUEST = 'UPDATE_LOAITHIETBI_REQUEST';
 export const UPDATE_LOAITHIETBI_SUCCESS = 'UPDATE_LOAITHIETBI_SUCCESS';
 export const UPDATE_LOAITHIETBI_FAILURE = 'UPDATE_LOAITHIETBI_FAILURE';
 
-=======
-//=====================================REPAIR=======================================//
-export const GET_LIST_HUHONG_REQUEST = 'GET_LIST_HUHONG_REQUEST';
-export const GET_LIST_HUHONG_SUCCESS = 'GET_LIST_HUHONG_SUCCESS';
-export const GET_LIST_HUHONG_FAILURE = 'GET_LIST_HUHONG_FAILURE';
-
-export const ADD_LOAI_HUHONG_REQUEST = 'ADD_LOAI_HUHONG_REQUEST';
-export const ADD_LOAI_HUHONG_SUCCESS = 'ADD_LOAI_HUHONG_SUCCESS';
-export const ADD_LOAI_HUHONG_FAILURE = 'ADD_LOAI_HUHONG_FAILURE';
->>>>>>> c0af9e70f6047743cb8cd00d72abef37b9f3877c
 
 //=====================================BOOKING=======================================//
 export const GET_DATPHONG_BY_PHONG_REQUEST = 'GET_DATPHONG_BY_PHONG_REQUEST';
 export const GET_DATPHONG_BY_PHONG_SUCCESS = 'GET_DATPHONG_BY_PHONG_SUCCESS';
 export const GET_DATPHONG_BY_PHONG_FAILURE = 'GET_DATPHONG_BY_PHONG_FAILURE';
-<<<<<<< HEAD
 //==================================BOOKED==============================//
-=======
-
-//=====================================BOOKING=======================================//
->>>>>>> c0af9e70f6047743cb8cd00d72abef37b9f3877c
 export const PICK_CARD_PHONG = 'PICK_CARD_PHONG';
