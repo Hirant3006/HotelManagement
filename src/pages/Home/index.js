@@ -4,12 +4,9 @@ import CustomCard from "./CustomCard";
 import { List, Col, Row, Button, Layout, Avatar, Spin } from "antd";
 import { getListPhongRequest, pickCardPhong } from "../../actions/phong";
 import { getDatPhongByPhongRequest } from "../../actions/datphong";
-<<<<<<< HEAD
-=======
 import { getListKhachHangRequest } from "../../actions/khachhang"
 import ModalPhong from "./ModalPhong";
 import ModalDatPhong from "./ModalDatPhong";
->>>>>>> 0f7f5b96787c779cad62685f22ea9454d0b86ab3
 
 class Home extends React.PureComponent {
   constructor(props) {
@@ -25,12 +22,8 @@ class Home extends React.PureComponent {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
-    console.log('component will did mount !!!')
-=======
     this.props.getListKhachHangRequest();
     this.props.getListPhongRequest();
->>>>>>> 0f7f5b96787c779cad62685f22ea9454d0b86ab3
   }
 
   componentWillReceiveProps(prespros,nextpros) {
