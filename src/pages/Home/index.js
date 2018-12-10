@@ -4,28 +4,21 @@ import { connect } from "react-redux";
 import { Card, List, Col, Row, Button, Layout, Avatar, Spin } from "antd";
 import { getListPhongRequest, pickCardPhong } from "../../actions/phong";
 import { getDatPhongByPhongRequest } from "../../actions/datphong";
+import { getListKhachHangRequest } from "../../actions/khachhang"
 import ModalPhong from "./ModalPhong";
-
-const gridStyleEmpty = {
-  width: "25%",
-  textAlign: "center"
-};
-
-const gridStyleBook = {
-  width: "25%",
-  textAlign: "center",
-  color: "yellow"
-};
+import ModalDatPhong from "./ModalDatPhong";
 
 class Home extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      visibleModalPhong: false
+      visibleModalPhong: false,
+      visibleModalDatPhong: false,
     };
   }
 
   componentDidMount() {
+    this.props.getListKhachHangRequest();
     this.props.getListPhongRequest();
   }
 
@@ -42,6 +35,18 @@ class Home extends React.PureComponent {
   ontoggleModalClose = () => {
     this.setState({
       visibleModalPhong: false
+    });
+  };
+
+  ontoggleModalDatPhongOpen = () => {
+    this.setState({
+      visibleModalDatPhong: true
+    });
+  };
+
+  ontoggleModalDatPhongClose = () => {
+    this.setState({
+      visibleModalDatPhong: false
     });
   };
 
@@ -95,6 +100,7 @@ class Home extends React.PureComponent {
           <Col span="3">
             <Button
               style={{ float: "right", marginBottom: "0.5rem", width: "6rem" }}
+              onClick={this.ontoggleModalDatPhongOpen}
             >
               Đặt phòng
             </Button>
@@ -113,6 +119,12 @@ class Home extends React.PureComponent {
           data={this.state.dataPhong}
           {...this.props}
         />
+        <ModalDatPhong
+          visible={this.state.visibleModalDatPhong}
+          showModal={this.ontoggleModalDatPhongOpen}
+          onCancel={this.ontoggleModalDatPhongClose}
+          {...this.props}
+        />
       </div>
     );
   }
@@ -122,14 +134,16 @@ const mapStateToProps = state => {
   return {
     phong: state.phong.phong,
     dataPhong: state.phong.dataPhong,
-    datphongbyphong: state.datphong.datphongbyphong
+    datphongbyphong: state.datphong.datphongbyphong,
+    khachhang: state.khachhang.khachhang,
   };
 };
 
 const mapDispatchToProps = {
   getListPhongRequest,
   getDatPhongByPhongRequest,
-  pickCardPhong
+  pickCardPhong,
+  getListKhachHangRequest,
 };
 
 export default connect(

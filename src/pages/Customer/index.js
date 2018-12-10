@@ -42,9 +42,9 @@ class Customer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-   // phong : state.phong.phong,
+    // phong : state.phong.phong,
     //loaiphong: state.loaiphong.loaiphong,
-   khachhang: state.khachhang.khachhang,
+    khachhang: state.khachhang.khachhang,
     // loaiphong: state.phong.loaiphongtheoid,
     addkhachhang: state.khachhang.addkhachhang,
   };
