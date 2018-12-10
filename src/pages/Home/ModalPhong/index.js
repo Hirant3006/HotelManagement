@@ -1,5 +1,10 @@
 import React from "react";
+<<<<<<< HEAD
 import { Modal, Col, Row,List,Avatar } from "antd";
+=======
+import { Modal, Col, Row,List,Avatar,Spin } from "antd";
+import datphong from "../../../reducers/datphong";
+>>>>>>> c0af9e70f6047743cb8cd00d72abef37b9f3877c
 
 const data = [
   {
@@ -18,8 +23,13 @@ const data = [
 
 class ModalPhong extends React.Component {
   render() {
+<<<<<<< HEAD
     const { visible, onCancel, dataPhong } = this.props;
     console.log("ModalPhong", dataPhong);
+=======
+    const { visible, onCancel, dataPhong,datphongbyphong } = this.props;
+    console.log("ModalPhong :", this.props);;
+>>>>>>> c0af9e70f6047743cb8cd00d72abef37b9f3877c
     return (
       <Modal
         title={dataPhong != null ? dataPhong.SoPhong : "None"}
@@ -28,6 +38,7 @@ class ModalPhong extends React.Component {
           onCancel();
         }}
         footer={null}
+<<<<<<< HEAD
       >
         <Row>
           <Col span={18}>
@@ -56,6 +67,21 @@ class ModalPhong extends React.Component {
           )}
         />
         ,
+=======
+        width="80rem"
+      >
+        <Row>
+          <Col span={18}>
+            {!datphongbyphong.isFetching ? (
+              <div>
+                Data cần điền ở đây 
+              </div>
+            ) : (
+              <Spin/>
+            )}
+          </Col>
+        </Row>
+>>>>>>> c0af9e70f6047743cb8cd00d72abef37b9f3877c
       </Modal>
     );
   }
