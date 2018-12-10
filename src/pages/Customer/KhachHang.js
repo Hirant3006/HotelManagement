@@ -10,7 +10,7 @@ const columns = [
   {
     title: "Loại Khách Hàng",
     dataIndex: "LoaiKhachHang",
-    key: "LoaiKhachHang"
+    key: "_id"
   },
   {
     title: "Họ Tên",

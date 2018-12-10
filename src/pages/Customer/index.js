@@ -7,8 +7,7 @@ import LoaiKhachHang from './LoaiKhachHang/index'
 import{
   getListKhachHangRequest,
   addKhachHangRequest,
-  
-} from "../../actions/khachhang";
+  } from "../../actions/khachhang";
 import { 
   getListLoaiKhachHangRequest,
   addLoaiKHRequest,

@@ -3,10 +3,11 @@ import { reducer as formReducer } from 'redux-form'
 import loaiphong from './loaiphong';
 import phong from './phong';
 import khachhang from './khachhang'
-import huhong from './huhong'
+import thietbi from './thietbi'
 import loaikhachhang from './loaikhachhang'
+import loaithietbi from './loaithietbi'
 
 export default combineReducers({
     form: formReducer,
-    loaiphong,phong,khachhang, huhong,loaikhachhang
+    loaiphong,phong,khachhang, thietbi,loaikhachhang,loaithietbi
 })
