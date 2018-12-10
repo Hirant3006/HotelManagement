@@ -2,10 +2,21 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Modal, Row, Button, Form, Select } from "antd";
 import CustomInput from "../../../component/CustomInput";
+import CustomDatePicker from "../../../component/CustomDatePicker";
 import validate from "./validate";
+
 const FormItem = Form.Item;
 
 class ModalDatPhong extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      KhachHang: "",
+      Phong: "",
+    };
+  }
+
   formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -18,16 +29,31 @@ class ModalDatPhong extends React.Component {
   };
 
   handleDatPhong = (values, onCancel) => {
-    // console.log(values);
+    console.log('Values :',values);
     // const { addLoaiPhongRequest,getListLoaiPhongRequest } = this.props;
     // const TenLoai = values.tenloai;
     // const DonGia = values.dongia;
     // addLoaiPhongRequest(TenLoai,DonGia,onCancel,getListLoaiPhongRequest);
   };
 
+  handleChangeKhachHang = (value) => {
+    this.setState({KhachHang:value})
+  }
+
+  handleChangePhong = (value) => {
+    this.setState({Phong:value})
+  }
+  
   handleRenderSelectKhachHang = data =>
     data.map(item => {
-      <Select.Option value={item._id}>{item.HoTen}</Select.Option>;
+      console.log("Render item ", item);
+      return <Select.Option name="KhachHang" value={item._id}>{item.HoTen}</Select.Option>;
+    });
+
+  handleRenderSelectPhong = data =>
+    data.map(item => {
+      console.log("Render item ", item);
+      return <Select.Option name="Phong" value={item._id}>{item.SoPhong}</Select.Option>;
     });
 
   render() {
@@ -36,7 +62,8 @@ class ModalDatPhong extends React.Component {
       visible,
       onCancel,
       addloaiphong,
-      khachhang
+      khachhang,
+      phong
     } = this.props;
     console.log("Modal dat phong ", this.props);
     return (
@@ -50,28 +77,55 @@ class ModalDatPhong extends React.Component {
       >
         <Form
           onSubmit={handleSubmit(values =>
-            this.handleSuaLoaiPhong(values, onCancel)
+            this.handleDatPhong(values, onCancel)
           )}
         >
           <FormItem label="Khách hàng" {...this.formItemLayout}>
             <Select
-              style={{ width: 120 }}
+              name="KhachHang"
+              style={{ width: 200 }}
               //   onChange={handleChange}s
             >
-              {khachhang.listKhachhang.length != 0
+              {khachhang.listKhachhang.length > 0
                 ? this.handleRenderSelectKhachHang(khachhang.listKhachhang)
-                : null}
+                : console.log("Không có list")}
             </Select>
           </FormItem>
 
-          <FormItem label="Đơn giá" {...this.formItemLayout}>
+          <FormItem label="Phòng" {...this.formItemLayout}>
+            <Select
+              name="Phong"
+              style={{ width: 200 }}
+              //   onChange={handleChange}s
+            >
+              {khachhang.listKhachhang.length > 0
+                ? this.handleRenderSelectPhong(phong.listPhong)
+                : console.log("Không có list")}
+            </Select>
+          </FormItem>
+
+          <FormItem label="Ngày đến" {...this.formItemLayout}>
             <Field
-              name="dongia"
-              type="number"
-              component={CustomInput}
-              placeholder="Nhập dơn giá"
+              name="NgayDen"
+              component={CustomDatePicker}
+              placeholder="Ngày đến"
             />
           </FormItem>
+          <FormItem label="Ngày đi" {...this.formItemLayout}>
+            <Field
+              name="NgayDi"
+              component={CustomDatePicker}
+              placeholder="Staff"
+            />
+          </FormItem>
+          <FormItem label="Đặt cọc" {...this.formItemLayout}>
+            <Field
+              name="DatCoc"
+              component={CustomInput}
+              placeholder="Tiền cọc"
+            />
+          </FormItem>
+
           {/* <Field name="age" type="number" component={renderField} label="Age" /> */}
           <Row type="flex" justify="end">
             <Button
