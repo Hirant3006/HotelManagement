@@ -1,17 +1,22 @@
 import React from "react";
 import { Row, Col, Spin, Select, Button } from "antd";
 import ListPhong from "./ListPhong";
-
+import { connect } from "react-redux";
+import Phong from "../Phong"
+import{
+  getListPhongRequest,
+} from "../../../actions/phong";
 const Option = Select.Option;
 
-export default class Phong extends React.PureComponent {
+class Room extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      Phong: []
+      Phong: [],
+
     };
   }
-
+ 
   handleChange = value => {
     let listphongfilter = this.state.Phong;
     listphongfilter=listphongfilter.filter(phong => phong.TenLoaiPhong === value);
@@ -24,7 +29,7 @@ export default class Phong extends React.PureComponent {
       ? this.setState({ Phong: this.props.phong.listPhong })
       : null;
     return (
-      <Col span={24}>
+      <Col span={20}>
         <Row>
           <Select
             showSearch
@@ -76,3 +81,23 @@ export default class Phong extends React.PureComponent {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+   phong : state.phong.phong,
+    //loaiphong: state.loaiphong.loaiphong,
+  //  khachhang: state.khachhang.khachhang,
+  // loaiphong: state.phong.loaiphongtheoid,
+  addphong: state.khachhang.addkhachhang,
+  };
+};
+const mapDispatchToProps = {
+  
+  getListPhongRequest,
+  
+  
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Room);

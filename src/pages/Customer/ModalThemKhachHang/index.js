@@ -1,11 +1,20 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+<<<<<<< HEAD
 import { Modal, Row, Button, Form } from "antd";
 import CustomInput from "../../../component/CustomInput";
 import RadioItem from "../../../component/radio/RadioItem";
 import Calendars from "../../../component/calendar/Calendars";
 import validate from "./validate";
 // import moment from "moment"
+=======
+import { Modal, Row, Button, Form} from "antd";
+import CustomInput from '../../../component/CustomInput'
+import RadioItem from '../../../component/radio/RadioItem'
+import Calendars from '../../../component/calendar/Calendars'
+import validate from './validate'
+import moment from "moment"
+>>>>>>> 0812_Van
 const FormItem = Form.Item;
 
 class ModalThemKhachHang extends React.Component {
@@ -20,13 +29,22 @@ class ModalThemKhachHang extends React.Component {
     }
   };
 
+<<<<<<< HEAD
   handleThemKhachHang = (values, onCancel) => {
     console.log("Values: ", values);
     const { addKhachHangRequest, getListKhachHangRequest } = this.props;
     const GioiTinh = values.GioiTinh;
+=======
+  handleThemKhachHang = (values,onCancel) => {
+
+    console.log("Values: ",values);
+    const { addKhachHangRequest,getListKhachHangRequest } = this.props;
+    const LoaiKhachHang= values.LoaiKhachHang;
+>>>>>>> 0812_Van
     const HoTen = values.HoTen;
     const CMND = values.CMND;
     const NgaySinh = values.NgaySinh;
+<<<<<<< HEAD
     const DiaChi = values.DiaChi;
     const QuocTich = values.QuocTich;
     const Email = values.Email;
@@ -41,6 +59,10 @@ class ModalThemKhachHang extends React.Component {
       onCancel,
       getListKhachHangRequest
     );
+=======
+ 
+    addKhachHangRequest(HoTen,CMND,NgaySinh,LoaiKhachHang,onCancel,getListKhachHangRequest);
+>>>>>>> 0812_Van
   };
 
   render() {
@@ -60,6 +82,7 @@ class ModalThemKhachHang extends React.Component {
             this.handleThemKhachHang(values, onCancel)
           )}
         >
+<<<<<<< HEAD
           <FormItem label="Giới Tính" {...this.formItemLayout}>
             <RadioItem
               name="GioiTinh"
@@ -68,6 +91,19 @@ class ModalThemKhachHang extends React.Component {
               component={RadioItem}
             />
           </FormItem>
+=======
+
+         <FormItem label="Loại Khách Hàng" {...this.formItemLayout}>
+            <Field
+              name="TenLoaiKhach"
+              type="text"
+              component={CustomInput}
+              placeholder="Nhập loại khách hàng"
+            />
+          </FormItem>
+
+        
+>>>>>>> 0812_Van
 
           <FormItem label="Họ Tên" {...this.formItemLayout}>
             <Field
@@ -78,7 +114,11 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
+<<<<<<< HEAD
           <FormItem label="CMND" {...this.formItemLayout}>
+=======
+  <FormItem label="CMND" {...this.formItemLayout}>
+>>>>>>> 0812_Van
             <Field
               name="CMND"
               type="text"
@@ -87,6 +127,7 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
+<<<<<<< HEAD
           {/* <FormItem label="Ngày Sinh" {...this.formItemLayout}>
             <Field
               name="NgaySinh"
@@ -141,6 +182,22 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
+=======
+  
+
+          <FormItem label="Ngày Sinh" {...this.formItemLayout}>
+            <Field
+              name = "NgaySinh"
+              type="default"
+              component={Calendars}  
+             
+            />
+          </FormItem>
+
+        
+        
+
+>>>>>>> 0812_Van
           <Row type="flex" justify="end">
             <Button
               type="primary"
@@ -149,9 +206,9 @@ class ModalThemKhachHang extends React.Component {
               loading={addkhachhang.isFetching} // true
               disabled={addkhachhang.isFetching}
             >
-              Add
+            Add
             </Button>
-          </Row>
+         </Row>
         </form>
       </Modal>
     );

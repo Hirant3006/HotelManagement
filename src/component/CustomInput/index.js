@@ -1,8 +1,7 @@
-import React, { PureComponent } from 'react';
-// import { change } from 'redux-form';
-import { Input, Icon, Alert } from 'antd';
+import React, { PureComponent } from "react";
+import { change } from 'redux-form';
+import { Input, Alert,Icon } from "antd";
 import CurrencyInput from 'react-currency-input';
-
 type Props = {
   icon: String,
   type: String,
@@ -45,7 +44,7 @@ class CustomInput extends PureComponent<Props> {
           placeholder={touched && error ? error : placeholder}
           precision="0"
           thousandSeparator="."
-          suffix=" VNĐ/Giờ"
+      //    suffix=" VNĐ/Giờ"
           className={CustomClassName ? `ant-input ${CustomClassName}` : 'ant-input'}
           {...input}
         />

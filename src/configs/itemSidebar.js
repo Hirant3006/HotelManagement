@@ -19,8 +19,8 @@ export default () => {
     },
     {
       iconType: "database",
-      name: 'Repair',
-      url:'/repair',
+      name: 'Device',
+      url:'/device',
 
     }
     // { path: 'heroes',
