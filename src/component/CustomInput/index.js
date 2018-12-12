@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 // import { change } from 'redux-form';
-import { Input, Icon, Alert } from 'antd';
-import CurrencyInput from 'react-currency-input';
+import { Input, Icon, Alert } from "antd";
+import CurrencyInput from "react-currency-input";
 
 type Props = {
   icon: String,
@@ -13,12 +13,15 @@ type Props = {
   placeholder: String,
   defaultValue: any,
   meta: any,
-  rest: any,
-}
+  rest: any
+};
 
 class CustomInput extends PureComponent<Props> {
   componentDidMount() {
-    const { defaultValue, input: { onChange } } = this.props;
+    const {
+      defaultValue,
+      input: { onChange }
+    } = this.props;
     if (defaultValue !== null) {
       onChange(defaultValue);
     }
@@ -34,45 +37,54 @@ class CustomInput extends PureComponent<Props> {
       placeholder,
       addonBefore,
       defaultValue,
-      meta: { touched, error },
+      meta: { touched, error }
       // ...rest
     } = this.props;
-    const CustomClassName = touched && error ? 'has-error ' + className : className;
-    if (type === 'number') return (
-      <div>
-        <CurrencyInput
-          value={defaultValue}
-          placeholder={touched && error ? error : placeholder}
-          precision="0"
-          thousandSeparator="."
-          suffix=" VNĐ/Giờ"
-          className={CustomClassName ? `ant-input ${CustomClassName}` : 'ant-input'}
-          {...input}
-        />
-        {touched && error ?
-          <Alert type="error" message={error} banner /> : null
-        }
-      </div>
-    )
+    const CustomClassName =
+      touched && error ? "has-error " + className : className;
+    if (type === "number")
+      return (
+        <div>
+          <CurrencyInput
+            value={defaultValue}
+            placeholder={touched && error ? error : placeholder}
+            precision="0"
+            thousandSeparator="."
+            suffix=" VNĐ/Giờ"
+            className={
+              CustomClassName ? `ant-input ${CustomClassName}` : "ant-input"
+            }
+            {...input}
+          />
+          {touched && error ? (
+            <Alert type="error" message={error} banner />
+          ) : null}
+        </div>
+      );
     return (
       <div>
         <Input
-          type={type || 'text'}
+          type={type || "text"}
           value={defaultValue}
           className={CustomClassName}
           placeholder={touched && error ? error : placeholder}
-          prefix={icon ? <Icon type={icon} style={{ color: 'rgba(0,0,0,.25)' }} /> : null}
+          prefix={
+            icon ? (
+              <Icon type={icon} style={{ color: "rgba(0,0,0,.25)" }} />
+            ) : null
+          }
           addonBefore={addonBefore}
           addonAfter={addonAfter}
-          min="0.01" step="0.01"
+          min="0.01"
+          step="0.01"
           {...input}
         />
-        {touched && error ?
-          <Alert type="error" message={error} banner /> : null
-        }
+        {touched && error ? (
+          <Alert type="error" message={error} banner />
+        ) : null}
       </div>
-    )
-  };
+    );
+  }
 }
 
 export default CustomInput;

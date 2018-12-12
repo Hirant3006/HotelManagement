@@ -1,7 +1,4 @@
-import routes from './routes';
-import itemSidebar from './itemSidebar';
+import routes from "./routes";
+import itemSidebar from "./itemSidebar";
 
-export {
-  routes,
-  itemSidebar
-}
+export { routes, itemSidebar };
