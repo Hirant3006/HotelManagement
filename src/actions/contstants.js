@@ -54,3 +54,12 @@ export const ADD_DATPHONG_FAILURE = 'ADD_DATPHONG_FAILURE';
 
 //=====================================BOOKING=======================================//
 export const PICK_CARD_PHONG = 'PICK_CARD_PHONG';
+
+//==============================DICHVU=====================================//
+export const GET_LIST_DICHVU_REQUEST = 'GET_LIST_DICHVU_REQUEST';
+export const GET_LIST_DICHVU_SUCCESS = 'GET_LIST_DICHVU_SUCCESS';
+export const GET_LIST_DICHVU_FAILURE = 'GET_LIST_DICHVU_FAILURE';
+
+export const ADD_DICHVU_REQUEST = 'ADD_DICHVU_REQUEST';
+export const ADD_DICHVU_SUCCESS = 'ADD_DICHVU_SUCCESS';
+export const ADD_DICHVU_FAILURE = 'ADD_DICHVU_FAILURE';
