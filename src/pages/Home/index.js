@@ -7,22 +7,19 @@ import { getDatPhongByPhongRequest,addDatPhongRequest } from "../../actions/datp
 import { getListKhachHangRequest } from "../../actions/khachhang"
 import ModalPhong from "./ModalPhong";
 import ModalDatPhong from "./ModalDatPhong";
-import {getListDVRequest } from "../../actions/dichvu";
-import ModalThemDV from "./ModalPhong/ModalThemDV/index"
+
 class Home extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       visibleModalPhong: false,
       visibleModalDatPhong: false,
-    //  visibleDichVu: false,
     };
   }
 
   componentDidMount() {
     this.props.getListKhachHangRequest();
     this.props.getListPhongRequest();
-    this.props.getListDVRequest();
   }
 
   handleOnclick = data => {
@@ -53,18 +50,6 @@ class Home extends React.PureComponent {
     });
   };
 
-
-  ontoggleModalDichVuOpen = () => {
-    this.setState({
-     // visibleDichVu: true
-    });
-  };
-
-  ontoggleModalDichVuClose = () => {
-    this.setState({
-      visibleDichVu: false
-    });
-  };
   handleRenderList = data =>
     data.map(item => {
       console.log("Data ", item);
@@ -140,7 +125,6 @@ class Home extends React.PureComponent {
           onCancel={this.ontoggleModalDatPhongClose}
           {...this.props}
         />
-
       </div>
     );
   }
@@ -152,11 +136,7 @@ const mapStateToProps = state => {
     dataPhong: state.phong.dataPhong,
     datphongbyphong: state.datphong.datphongbyphong,
     khachhang: state.khachhang.khachhang,
-<<<<<<< HEAD
-    dichvu: state.dichvu.dichvu,
-=======
     adddatphong : state.datphong.adddatphong,
->>>>>>> 003a9ce64e55bb0c6c84c060e56eb0c1c30aeafe
   };
 };
 
@@ -165,98 +145,10 @@ const mapDispatchToProps = {
   getDatPhongByPhongRequest,
   pickCardPhong,
   getListKhachHangRequest,
-<<<<<<< HEAD
-  getListDVRequest,
-=======
   addDatPhongRequest
->>>>>>> 003a9ce64e55bb0c6c84c060e56eb0c1c30aeafe
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Home);
-<<<<<<< HEAD
-
-// const sample = <Row>
-// <Col span={18}>
-//   {dataPhong === null ? (
-//     <b>Hotel Management Application 0.1</b>
-//   ) : (
-//     // <div style={{ padding: 24, background: "#fff", height: "auto" }}>
-//     <Row>
-//       <Col span={18}>
-//         {dataPhong != null ? (
-//           <div>
-//             <b>Tầng :</b> {dataPhong.Tang.TenTang}
-//             <b style={{ marginLeft: "2rem" }}>Loại phòng :</b>{" "}
-//             {/* {dataPhong.LoaiPhong[0].TenLoaiPhong} */}
-//             <List
-//               title="DS dịch vụ"
-//               itemLayout="horizontal"
-//               dataSource={
-//                 datphongbyphong.listdatphong.ChiTietSuDungDichVu
-//               }
-//               pagination={{
-//                 onChange: page => {
-//                   console.log(page);
-//                 },
-//                 pageSize: 3
-//               }}
-//               renderItem={item => (
-//                 <List.Item>
-//                   <List.Item.Meta description={item.DichVu[0]} />
-//                 </List.Item>
-//               )}
-//             />
-//           </div>
-//         ) : (
-//           "Không có dữ liệu"
-//         )}
-//       </Col>
-//       <Col span={6}>Hello</Col>
-//     </Row>
-//     // </div>
-//   )}
-// </Col>
-// <Col span={6}>Hello</Col>
-// </Row>
-// <Row>
-// <Col span={24}>
-//   {phong.isFetching === true ? (
-//     <Spin />
-//   ) : (
-//     <List
-//       grid={{
-//         gutter: 16,
-//         xs: 1,
-//         sm: 2,
-//         md: 3,
-//         lg: 3,
-//         xl: 4,
-//         xxl: 3
-//       }}
-//       dataSource={phong.listPhong}
-//       renderItem={item => (
-//         <List.Item>
-//           <CustomCard
-//             data={item}
-//             onOpenModal={this.ontoggleModalOpen}
-//             {...this.props}
-//           />
-//         </List.Item>
-//       )}
-//     />
-//   )}
-// </Col>
-// <Col
-//   span={5}
-//   style={{
-//     textAlign: "center",
-//     marginLeft: "1rem",
-//     marginRight: "1rem"
-//   }}
-// />
-// </Row>
-=======
->>>>>>> 003a9ce64e55bb0c6c84c060e56eb0c1c30aeafe

@@ -4,7 +4,7 @@ import datphong from "../../../reducers/datphong";
 import { Form as ReduxForm, Field, reduxForm  } from "redux-form";
 import CustomInput from "../../../component/CustomInput";
 import ModalThemDV from "./ModalThemDV"
-
+import TagThemDichVu from "./TagThemDichVu"
 const FormItem = Form.Item;
 class ModalPhong extends React.Component {
 
@@ -125,6 +125,10 @@ class ModalPhong extends React.Component {
           pagination={{ pageSize: 5 }}
           {...this.props}
           />
+ 
+ <TagThemDichVu/>
+
+
         </div>
                     ) : (
               <Spin/>

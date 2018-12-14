@@ -25,22 +25,6 @@ export const getDatPhongByPhongRequest = MaPhong => async dispatch => {
     });
 };
 
-<<<<<<< HEAD
-// export const addDatPhongRequest = (NgayDen,NgayDi,DatCoc,KhachHang,) => async dispatch => {
-//   dispatch({ type: GET_DATPHONG_BY_PHONG_REQUEST });
-//   const res = await axios.get(keys.backend + "/datphong/phong/" + MaPhong);
-
-//   if ((res.status = 200))
-//     dispatch({
-//       type: GET_DATPHONG_BY_PHONG_SUCCESS,
-//       listdatphong: res.data
-//     });
-//   else
-//     dispatch({
-//       type: GET_DATPHONG_BY_PHONG_FAILURE
-//     });
-// };
-=======
 export const addDatPhongRequest = (NgayDen,NgayDi,DatCoc,KhachHang,Phong,onCancel) => async dispatch => {
   dispatch({ type: ADD_DATPHONG_REQUEST });
   const res = await axios.post(keys.backend + "/datphong",{NgayDen,NgayDi,DatCoc,KhachHang,Phong});
@@ -61,4 +45,3 @@ export const addDatPhongRequest = (NgayDen,NgayDi,DatCoc,KhachHang,Phong,onCance
 
   }
 };
->>>>>>> 003a9ce64e55bb0c6c84c060e56eb0c1c30aeafe

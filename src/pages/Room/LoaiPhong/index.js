@@ -16,8 +16,8 @@ export default class CustomTable extends Component {
 
   columns = [
     {
-      title: "Tên",
-      dataIndex: "TenLoai",
+      title: "Tên Loại Phòng",
+      dataIndex: "TenLoaiPhong",
       key: "_id"
     },
     {
