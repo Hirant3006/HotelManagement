@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { Modal, Row, Button, Form, Select } from "antd";
+import { Modal, Row, Button, Form, Select ,message } from "antd";
 import CustomInput from "../../../component/CustomInput";
 import CustomDatePicker from "../../../component/CustomDatePicker";
 import validate from "./validate";
@@ -28,9 +28,15 @@ class ModalDatPhong extends React.Component {
     }
   };
 
-  handleDatPhong = (values, onCancel) => {
+  handleDatPhong = (values) => {
     console.log('Values :',values);
-    // const { addLoaiPhongRequest,getListLoaiPhongRequest } = this.props;
+    const { KhachHang,Phong } = this.state;
+    console.log(this.state);
+    const { addDatPhongRequest,onCancel} = this.props;
+    if (KhachHang==="" || Phong === "" ) {
+      message.error("Không được bỏ trống khách hàng và phòng");
+    } else 
+    addDatPhongRequest(values,KhachHang,Phong);
     // const TenLoai = values.tenloai;
     // const DonGia = values.dongia;
     // addLoaiPhongRequest(TenLoai,DonGia,onCancel,getListLoaiPhongRequest);
@@ -38,10 +44,12 @@ class ModalDatPhong extends React.Component {
 
   handleChangeKhachHang = (value) => {
     this.setState({KhachHang:value})
+    console.log(value);
   }
 
   handleChangePhong = (value) => {
     this.setState({Phong:value})
+    console.log(value);
   }
   
   handleRenderSelectKhachHang = data =>
@@ -61,11 +69,12 @@ class ModalDatPhong extends React.Component {
       handleSubmit,
       visible,
       onCancel,
-      addloaiphong,
+      adddatphong,
       khachhang,
       phong
     } = this.props;
     console.log("Modal dat phong ", this.props);
+    onCancel();
     return (
       <Modal
         title="Đặt phòng"
@@ -84,7 +93,7 @@ class ModalDatPhong extends React.Component {
             <Select
               name="KhachHang"
               style={{ width: 200 }}
-              //   onChange={handleChange}s
+                onChange={this.handleChangeKhachHang}
             >
               {khachhang.listKhachhang.length > 0
                 ? this.handleRenderSelectKhachHang(khachhang.listKhachhang)
@@ -96,7 +105,7 @@ class ModalDatPhong extends React.Component {
             <Select
               name="Phong"
               style={{ width: 200 }}
-              //   onChange={handleChange}s
+                onChange={this.handleChangePhong}
             >
               {khachhang.listKhachhang.length > 0
                 ? this.handleRenderSelectPhong(phong.listPhong)
@@ -132,8 +141,8 @@ class ModalDatPhong extends React.Component {
               type="primary"
               htmlType="submit"
               className="button"
-              //   loading={addloaiphong.isFetching} // true
-              //   disabled={addloaiphong.isFetching}
+                loading={adddatphong.isFetching} // true
+                disabled={adddatphong.isFetching}
             >
               Tạo
             </Button>

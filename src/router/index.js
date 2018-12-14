@@ -3,21 +3,7 @@ import { routes } from "../configs";
 import { Route } from "react-router-dom";
 
 export default class RouterConfig extends PureComponent {
-  
-  // renderComponent = (item) =>{
-  //   return (
-  //     <div>
-  //       {<Breadcrumb style={{ margin: "16px 0  10px 15px" }}>
-  //         <Breadcrumb.Item{item.description}</Breadcrumb.Item>
-  //       </Breadcrumb>}
-  //       <item.component >/>
-  //     </div>
-  //   );
-  // };
-  
   renderRoute = () => {
-
-   
     const route = routes();
     return route.map((item, index) => {
       return (
@@ -30,22 +16,6 @@ export default class RouterConfig extends PureComponent {
       );
     });
   };
-
-
-  // _renderRoute = (multiLang) => {
-  // 	const route = routes(multiLang)
-  // 	return route.map((item, index) => {
-  // 		return (
-  // 			<AuthorizedRoute
-  // 				key={index}
-  // 				path={item.path}
-  // 				authority={item.authority === false ? false : true}
-  // 				component={(props) => this._renderLayout(item, props)}
-  // 				exact={item.exact ? true : false}
-  // 			/>
-  // 		)
-  // 	})
-  // }
 
   render() {
     return <div>{this.renderRoute()}</div>;

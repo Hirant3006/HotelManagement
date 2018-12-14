@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // import CustomCard from "./CustomCard";
 import { Card, List, Col, Row, Button, Layout, Avatar, Spin } from "antd";
 import { getListPhongRequest, pickCardPhong } from "../../actions/phong";
-import { getDatPhongByPhongRequest } from "../../actions/datphong";
+import { getDatPhongByPhongRequest,addDatPhongRequest } from "../../actions/datphong";
 import { getListKhachHangRequest } from "../../actions/khachhang"
 import ModalPhong from "./ModalPhong";
 import ModalDatPhong from "./ModalDatPhong";
@@ -152,7 +152,11 @@ const mapStateToProps = state => {
     dataPhong: state.phong.dataPhong,
     datphongbyphong: state.datphong.datphongbyphong,
     khachhang: state.khachhang.khachhang,
+<<<<<<< HEAD
     dichvu: state.dichvu.dichvu,
+=======
+    adddatphong : state.datphong.adddatphong,
+>>>>>>> 003a9ce64e55bb0c6c84c060e56eb0c1c30aeafe
   };
 };
 
@@ -161,13 +165,18 @@ const mapDispatchToProps = {
   getDatPhongByPhongRequest,
   pickCardPhong,
   getListKhachHangRequest,
+<<<<<<< HEAD
   getListDVRequest,
+=======
+  addDatPhongRequest
+>>>>>>> 003a9ce64e55bb0c6c84c060e56eb0c1c30aeafe
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Home);
+<<<<<<< HEAD
 
 // const sample = <Row>
 // <Col span={18}>
@@ -249,3 +258,5 @@ export default connect(
 //   }}
 // />
 // </Row>
+=======
+>>>>>>> 003a9ce64e55bb0c6c84c060e56eb0c1c30aeafe

@@ -4,7 +4,9 @@ import {
   GET_DATPHONG_BY_PHONG_REQUEST,
   GET_DATPHONG_BY_PHONG_SUCCESS,
   GET_DATPHONG_BY_PHONG_FAILURE,
-  
+  ADD_DATPHONG_REQUEST,
+  ADD_DATPHONG_SUCCESS,
+  ADD_DATPHONG_FAILURE
 } from "../actions/contstants";
 
 const initialState = {
@@ -12,7 +14,9 @@ const initialState = {
     data: null,
     isFetching: false
   },
- 
+  adddatphong: {
+    isFetching: false
+  },
   error: null
 };
 export default function(state = initialState, action) {
@@ -38,7 +42,26 @@ export default function(state = initialState, action) {
         },
         error: { $set: action.error }
       });
-    
+    case ADD_DATPHONG_REQUEST:
+      return update(state, {
+         adddatphong: {
+          isFetching: { $set: true }
+        }
+      });
+    case ADD_DATPHONG_SUCCESS:
+      return update(state, {
+         adddatphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case ADD_DATPHONG_FAILURE:
+      return update(state, {
+         adddatphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
     default:
       return state;
   }
