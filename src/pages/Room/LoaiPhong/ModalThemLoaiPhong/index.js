@@ -36,7 +36,7 @@ class ModalThemLoaiPhong extends React.Component {
           {
           onCancel();   
         }}
-        footer={null}
+       // footer={null}
       >
         <Form
           onSubmit={handleSubmit(values => this.handleThemLoaiPhong(values,onCancel))}

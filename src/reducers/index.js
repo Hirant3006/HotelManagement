@@ -6,8 +6,10 @@ import khachhang from './khachhang'
 import thietbi from './thietbi'
 import loaikhachhang from './loaikhachhang'
 import loaithietbi from './loaithietbi'
+import datphong from './datphong'
+import dichvu from './dichvu'
 
 export default combineReducers({
     form: formReducer,
-    loaiphong,phong,khachhang, thietbi,loaikhachhang,loaithietbi
+    loaiphong,phong,khachhang, thietbi,loaikhachhang,loaithietbi, datphong, dichvu
 })

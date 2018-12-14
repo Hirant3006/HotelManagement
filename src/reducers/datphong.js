@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   datphongbyphong: {
-    listdatphong: [],
+    data: null,
     isFetching: false
   },
  
@@ -26,7 +26,7 @@ export default function(state = initialState, action) {
     case GET_DATPHONG_BY_PHONG_SUCCESS:
       return update(state, {
         datphongbyphong: {
-          listdatphong: { $set: action.listdatphong },
+          data: { $set: action.listdatphong },
           isFetching: { $set: false }
         },
         error: { $set: null }
