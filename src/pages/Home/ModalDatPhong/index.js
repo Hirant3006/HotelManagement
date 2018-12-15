@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { Modal, Row, Button, Form, Select ,message } from "antd";
+import { Modal, Row, Button, Form, Select, message } from "antd";
 import CustomInput from "../../../component/CustomInput";
 import CustomDatePicker from "../../../component/CustomDatePicker";
 import validate from "./validate";
@@ -8,12 +8,11 @@ import validate from "./validate";
 const FormItem = Form.Item;
 
 class ModalDatPhong extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       KhachHang: "",
-      Phong: "",
+      Phong: ""
     };
   }
 
@@ -28,40 +27,47 @@ class ModalDatPhong extends React.Component {
     }
   };
 
-  handleDatPhong = (values) => {
-    console.log('Values :',values);
-    const { KhachHang,Phong } = this.state;
-    console.log(this.state);
-    const { addDatPhongRequest,onCancel} = this.props;
-    if (KhachHang==="" || Phong === "" ) {
-      message.error("Không được bỏ trống khách hàng và phòng");
-    } else 
-    addDatPhongRequest(values,KhachHang,Phong);
+  handleDatPhong = values => {
+    const { KhachHang, Phong } = this.state;
+    const { addDatPhongRequest, onCancel, getDatPhongByPhongRequest } = this.props;
+    const NgayDen = values.NgayDen;
+    const NgayDi = values.NgayDi;
+    const DatCoc = values.DatCoc;
+    console.log("HandleDatPhong", this.props);
+    if (KhachHang === "" || Phong === "") {
+      message.error("Không được bỏ trống ,khách hàng và phòng");
+    } else addDatPhongRequest(NgayDen, NgayDi, DatCoc, KhachHang, Phong, onCancel, getDatPhongByPhongRequest);
     // const TenLoai = values.tenloai;
     // const DonGia = values.dongia;
     // addLoaiPhongRequest(TenLoai,DonGia,onCancel,getListLoaiPhongRequest);
   };
 
-  handleChangeKhachHang = (value) => {
-    this.setState({KhachHang:value})
+  handleChangeKhachHang = value => {
+    this.setState({ KhachHang: value });
     console.log(value);
-  }
+  };
 
-  handleChangePhong = (value) => {
-    this.setState({Phong:value})
+  handleChangePhong = value => {
+    this.setState({ Phong: value });
     console.log(value);
-  }
-  
+  };
+
   handleRenderSelectKhachHang = data =>
     data.map(item => {
-      console.log("Render item ", item);
-      return <Select.Option name="KhachHang" value={item._id}>{item.HoTen}</Select.Option>;
+      return (
+        <Select.Option name="KhachHang" value={item._id}>
+          {item.HoTen}
+        </Select.Option>
+      );
     });
 
   handleRenderSelectPhong = data =>
     data.map(item => {
-      console.log("Render item ", item);
-      return <Select.Option name="Phong" value={item._id}>{item.SoPhong}</Select.Option>;
+      return (
+        <Select.Option name="Phong" value={item._id}>
+          {item.SoPhong}
+        </Select.Option>
+      );
     });
 
   render() {
@@ -74,7 +80,7 @@ class ModalDatPhong extends React.Component {
       phong
     } = this.props;
     console.log("Modal dat phong ", this.props);
-    onCancel();
+    console.log("Visible dat phong ", visible);
     return (
       <Modal
         title="Đặt phòng"
@@ -93,7 +99,7 @@ class ModalDatPhong extends React.Component {
             <Select
               name="KhachHang"
               style={{ width: 200 }}
-                onChange={this.handleChangeKhachHang}
+              onChange={this.handleChangeKhachHang}
             >
               {khachhang.listKhachhang.length > 0
                 ? this.handleRenderSelectKhachHang(khachhang.listKhachhang)
@@ -105,7 +111,7 @@ class ModalDatPhong extends React.Component {
             <Select
               name="Phong"
               style={{ width: 200 }}
-                onChange={this.handleChangePhong}
+              onChange={this.handleChangePhong}
             >
               {khachhang.listKhachhang.length > 0
                 ? this.handleRenderSelectPhong(phong.listPhong)
@@ -141,8 +147,8 @@ class ModalDatPhong extends React.Component {
               type="primary"
               htmlType="submit"
               className="button"
-                loading={adddatphong.isFetching} // true
-                disabled={adddatphong.isFetching}
+              loading={adddatphong.isFetching} // true
+              disabled={adddatphong.isFetching}
             >
               Tạo
             </Button>

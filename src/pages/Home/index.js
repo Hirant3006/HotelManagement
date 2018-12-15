@@ -52,13 +52,13 @@ class Home extends React.PureComponent {
 
   handleRenderList = data =>
     data.map(item => {
-      console.log("Data ", item);
-      if (item.TrangThai == "false")
+      if (item.TrangThai === "false")
         return (
           <Card.Grid
             key={item._id}
             style={{ width: "25%", textAlign: "center" ,backgroundColor:"#FFFA51",border:"solid"}}
             onClick={() => {
+              const { getListPhongRequest } = this.props;
               this.ontoggleModalOpen();
               this.props.pickCardPhong(item);
               this.props.getDatPhongByPhongRequest(item._id);
@@ -72,10 +72,13 @@ class Home extends React.PureComponent {
           <Card.Grid
             key={item._id}
             style={{ width: "25%", textAlign: "center",backgroundColor:"#A8FFD4",border:"solid"}}
-            // onClick={() => {
-            //   this.ontoggleModalOpen();
-            //   this.props.pickCardPhong(item);
-            // }}
+            onClick={() => {
+              this.ontoggleModalOpen();
+              // const { getListPhongRequest } = this.props;
+              this.props.pickCardPhong(item);
+              this.props.getDatPhongByPhongRequest(item._id);
+              
+            }}
           >
             {item.SoPhong}
           </Card.Grid>
