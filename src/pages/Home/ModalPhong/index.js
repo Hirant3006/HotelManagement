@@ -14,28 +14,16 @@ import {
 import datphong from "../../../reducers/datphong";
 import { Form as ReduxForm, Field, reduxForm } from "redux-form";
 import CustomInput from "../../../component/CustomInput";
-import ModalThemDV from "./ModalThemDV/index";
-const data = [
-  {
-    title: "Ant Design Title 1"
-  },
-  {
-    title: "Ant Design Title 2"
-  },
-  {
-    title: "Ant Design Title 3"
-  },
-  {
-    title: "Ant Design Title 4"
-  }
-];
+import ModalThemDV from "./ModalThemDV"
+import TagThemDichVu from "./TagThemDichVu"
 const FormItem = Form.Item;
 class ModalPhong extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       visible: false,
-      visibleDatPhong: false
+      visibleDatPhong:false,
+      visibleDichVu: false,
       //visibleSuaLoaiPhong: false,
       //dataSualoaiphong: {TenLoai:'',DonGia:0},
     };
@@ -71,17 +59,41 @@ class ModalPhong extends React.Component {
     });
     this.props.reset("them-loai-phong");
   };
+
+  handleOkThemDV = e => {
+    this.setState({
+      visibleDichVu: false
+    });
+  };
+
+  handleCancelThemDV = e => {
+    this.setState({
+      visibleDichVu: false
+    });
+    this.props.reset('them-dichvu')
+  };
+
+  onToggleModal = e => {
+    this.setState({ visible: !this.state.visible });
+ };
+
+   onToggleModalThemDV = e => {
+     this.setState({visibleDichVu: !this.state.visibleDichVu });
+  };
+ 
   render() {
-    const { visible, onCancel, dataPhong, datphongbyphong } = this.props;
+    const { visible, onCancel, dataPhong,datphongbyphong,visibleDichVu } = this.props;
     console.log("ModalPhong :", this.props);
     return (
+      
       <Modal
-        title={dataPhong != null ? dataPhong.SoPhong : "None"}
+        title={dataPhong != null ? dataPhong.SoPhong: dataPhong }
         visible={visible}
+        //visibleDichVu={visibleDichVu }
         onCancel={() => {
           onCancel();
         }}
-        footer={null}
+       // footer={null}
         width="80rem"
       >
         <Row>
@@ -148,6 +160,12 @@ class ModalPhong extends React.Component {
         />
       </Modal>
     );
+  //   <ModalThemDV
+  //   visible={this.visibleDichVu}
+  //   onCancel={this.handleCancelThemDV}
+  //   onOk={this.handleOkThemDV}
+  //   {...this.props}
+  // />
   }
 }
 

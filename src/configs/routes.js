@@ -1,7 +1,7 @@
 import Home from "../pages/Home";
 import Room from "../pages/Room";
 import Customer from "../pages/Customer";
-import Repair from '../pages/Repair'
+import Device from '../pages/Device'
 export default () => {
   return [
     {
@@ -25,8 +25,8 @@ export default () => {
       component: Customer
     },
     {
-      path: "/repair",
-      component: Repair
+      path: "/device",
+      component: Device
     }
   ];
 };

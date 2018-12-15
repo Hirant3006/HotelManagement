@@ -149,9 +149,9 @@ class ModalThemKhachHang extends React.Component {
               loading={addkhachhang.isFetching} // true
               disabled={addkhachhang.isFetching}
             >
-              Add
+            Add
             </Button>
-          </Row>
+         </Row>
         </form>
       </Modal>
     );

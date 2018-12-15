@@ -8,17 +8,16 @@ import { Table, Button, Icon, Row } from "antd";
 import ModalThemKhachHang from "./ModalThemKhachHang/index";
 const columns = [
   {
+    title: "Loại Khách Hàng",
+    dataIndex: "LoaiKhachHang",
+    key: "_id"
+  },
+  {
     title: "Họ Tên",
     dataIndex: "HoTen",
     key: "_id"
   },
-  {
-    title: "Giới Tính ",
-    dataIndex: "GioiTinh",
-    key: "GioiTinh",
-    render: sex => (sex === true ? "Nam" : "Nữ")
-  },
-  {
+   {
     title: "Ngày sinh",
     dataIndex: "NgaySinh",
     key: "NgaySinh",
@@ -28,20 +27,10 @@ const columns = [
     }
   },
   {
-    title: "Địa chỉ",
-    dataIndex: "DiaChi",
-    key: "Diachi"
+    title: "CMND",
+    dataIndex: "CMND",
+    key: "CMND"
   },
-  {
-    title: "Quốc Tịch",
-    dataIndex: "QuocTich",
-    key: "QuocTich"
-  },
-  {
-    title: "Email",
-    dataIndex: "Email",
-    key: "Email"
-  }
 ];
 
 export default class CustomTable extends Component {
@@ -85,10 +74,10 @@ export default class CustomTable extends Component {
             <Icon type="file-add" />
           </Button>
         </Row>
-        <Row>
+     
           <Table
             loading={khachhang.isFetching}
-            columns={columns}
+            columns={this.columns}
             dataSource={khachhang.listKhachhang}
             rowKey="_id"
             pagination={{ pageSize: 5 }}
@@ -102,7 +91,7 @@ export default class CustomTable extends Component {
             onOk={this.handleOk}
             {...this.props}
           />
-        </Row>
+      
       </div>
     );
   }

@@ -17,18 +17,9 @@ export default () => {
     },
     {
       iconType: "database",
-      name: "Service",
-      url: "/service"
-    },
-    {
-      iconType: "database",
-      name: "Booking",
-      url: "/booking"
-    },
-    {
-      iconType: "database",
-      name: "Container",
-      url: "/container"
+      name: 'Device',
+      url:'/device',
+
     }
     // { path: 'heroes',
     //   component: HeroListComponent,

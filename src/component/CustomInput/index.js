@@ -1,8 +1,7 @@
 import React, { PureComponent } from "react";
-// import { change } from 'redux-form';
-import { Input, Icon, Alert } from "antd";
-import CurrencyInput from "react-currency-input";
-
+import { change } from 'redux-form';
+import { Input, Alert,Icon } from "antd";
+import CurrencyInput from 'react-currency-input';
 type Props = {
   icon: String,
   type: String,
@@ -40,27 +39,23 @@ class CustomInput extends PureComponent<Props> {
       meta: { touched, error }
       // ...rest
     } = this.props;
-    const CustomClassName =
-      touched && error ? "has-error " + className : className;
-    if (type === "number")
-      return (
-        <div>
-          <CurrencyInput
-            value={defaultValue}
-            placeholder={touched && error ? error : placeholder}
-            precision="0"
-            thousandSeparator="."
-            suffix=" VNĐ/Giờ"
-            className={
-              CustomClassName ? `ant-input ${CustomClassName}` : "ant-input"
-            }
-            {...input}
-          />
-          {touched && error ? (
-            <Alert type="error" message={error} banner />
-          ) : null}
-        </div>
-      );
+    const CustomClassName = touched && error ? 'has-error ' + className : className;
+    if (type === 'number') return (
+      <div>
+        <CurrencyInput
+          value={defaultValue}
+          placeholder={touched && error ? error : placeholder}
+          precision="0"
+          thousandSeparator="."
+      //    suffix=" VNĐ/Giờ"
+          className={CustomClassName ? `ant-input ${CustomClassName}` : 'ant-input'}
+          {...input}
+        />
+        {touched && error ?
+          <Alert type="error" message={error} banner /> : null
+        }
+      </div>
+    )
     return (
       <div>
         <Input

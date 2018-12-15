@@ -1,52 +1,47 @@
 import React, { Component } from "react";
 import "antd/dist/antd.css";
 import { Table, Divider, Button, Icon, Row, Popconfirm } from "antd";
-import ModalThemLoaiPhong from "./ModalThemLoaiPhong";
-import ModalSuaLoaiPhong from './ModalSuaLoaiPhong/';
-
+import { Field, reduxForm } from "redux-form";
+import ModalThemLoaiThiteBi from "./ModalThemLoaiThietBi/index"
 export default class CustomTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
       visible: false,
-      visibleSuaLoaiPhong: false,
-      dataSualoaiphong: {TenLoai:'',DonGia:0},
+     // visibleSuaLoaiPhong: false,
+     // dataSualoaiphong: {TenLoai:'',DonGia:0},
     };
   }
 
   columns = [
     {
-      title: "Tên Loại Phòng",
-      dataIndex: "TenLoaiPhong",
+      title: "Tên Loại TB",
+      dataIndex: "TenLoaiTB",
       key: "_id"
     },
-    {
-      title: "Đơn giá",
-      dataIndex: "DonGia",
-      key: "DonGia"
-    },
-    {
-      title: "Thao tác",
-      key: "action",
-      render: (text, record) => (
-        <span>
-          <a onClick={() => this.onToggleModalSuaLoaiPhong(record)}>Sửa</a>
-          <Divider type="vertical" />
-          {this.props.deleteloaiphong.isFetching ? (
-            <Icon type="loading" />
-          ) : (
-            <Popconfirm
-              title="Bạn có chắc muốn xóa loại phòng này?"
-              onConfirm={() =>this.handelDeleteLoaiPhong(record)}
-              okText="Có"
-              cancelText="Không"
-            >
-              <a style={{color:"red"}}>Xóa</a>
-            </Popconfirm>
-          )}
-        </span>
-      )
-    }
+   
+    // {
+    //   title: "Thao tác",
+    //   key: "action",
+    //   render: (text, record) => (
+    //     <span>
+    //       <a onClick={() => this.onToggleModalSuaLoaiPhong(record)}>Sửa</a>
+    //       <Divider type="vertical" />
+    //       {this.props.deleteloaiphong.isFetching ? (
+    //         <Icon type="loading" />
+    //       ) : (
+    //         <Popconfirm
+    //           title="Bạn có chắc muốn xóa loại phòng này?"
+    //           onConfirm={() =>this.handelDeleteLoaiPhong(record)}
+    //           okText="Có"
+    //           cancelText="Không"
+    //         >
+    //           <a style={{color:"red"}}>Xóa</a>
+    //         </Popconfirm>
+    //       )}
+    //     </span>
+    //   )
+    // }
   ];
 
   handelDeleteLoaiPhong = record => {
@@ -65,7 +60,7 @@ export default class CustomTable extends Component {
     this.setState({
       visible: false
     });
-    this.props.reset('them-loai-phong')
+   // this.props.reset('them-loai-phong')
   };
 
   handleOkSuaLoaiPhong = e => {
@@ -90,8 +85,8 @@ export default class CustomTable extends Component {
   };
 
   render() {
-    const { loaiphong } = this.props;
-    const { visibleSuaLoaiPhong } = this.state;
+    const { loaithietbi } = this.props;
+    //const { visibleSuaLoaiPhong } = this.state;
     
     return (
       <div>
@@ -106,20 +101,22 @@ export default class CustomTable extends Component {
         </Row>
         <Row>
           <Table
-            loading={loaiphong.isFetching}
+            loading={loaithietbi.isFectching}
             columns={this.columns}
-            dataSource={loaiphong.listloaiPhong}
+            dataSource={loaithietbi.listLoaiTB_act}
             rowKey="_id"
             pagination={{ pageSize: 5 }}
             {...this.props}
           />
-          <ModalThemLoaiPhong
+          <ModalThemLoaiThiteBi
             visible={this.state.visible}
             // showModal={this.showModal}
             onCancel={this.handleCancel}
             onOk={this.handleOk}
             {...this.props}
           />
+
+{/*
           {visibleSuaLoaiPhong ?
           <ModalSuaLoaiPhong
             visible={this.state.visibleSuaLoaiPhong}
@@ -128,7 +125,7 @@ export default class CustomTable extends Component {
             onOk={this.handleOkSuaLoaiPhong}
             data={this.state.dataSualoaiphong}
             {...this.props}
-          /> : null }
+          /> : null } */}
         </Row>
       </div>
     );

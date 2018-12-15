@@ -16,7 +16,7 @@ export const getListDVRequest = () => async dispatch => {
   if ((res.status = 200))
     dispatch({
       type: GET_LIST_DICHVU_SUCCESS,
-      listKhachhang: res.data
+      listDV: res.data
     });
   else
     dispatch({
@@ -24,23 +24,23 @@ export const getListDVRequest = () => async dispatch => {
     });
 };
 
-export const addDichVuRequest = ( GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email,onCancel,getListKhachHangRequest ) => async (dispatch,getState) => {
+export const addDichVuRequest = ( TenDV,DonGia,LoaiDichVu,onCancel,getListDVRequest ) => async (dispatch,getState) => {
   dispatch({ type: ADD_DICHVU_REQUEST });
   // const { phong } = getState();
   // listloaiphong = phong.listloaiPhong;
   // listloaiphong.put({TenLoai:})
   const res = await axios.post(keys.backend + "/dichvu", {
-    GioiTinh,HoTen,CMND,NgaySinh,DiaChi,QuocTich,Email
+    TenDV,DonGia,LoaiDichVu
   });
   if ((res.status = 200)){
     dispatch({
-      type: ADD_KHACHHANG_SUCCESS
+      type: ADD_DICHVU_SUCCESS
     });
-    getListKhachHangRequest();
+    getListDVRequest();
     onCancel();
   }
   else
     dispatch({
-      type: ADD_KHACHHANG_FAILURE
+      type: ADD_DICHVU_FAILURE
     });
 };
