@@ -182,7 +182,5 @@ export default function(state = initialState, action) {
       return state;
   }
 
-  function newFunction() {
-    return true;
-  }
+ 
 }

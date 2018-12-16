@@ -5,6 +5,7 @@ import { Card, List, Col, Row, Button, Layout, Avatar, Spin } from "antd";
 import { getListPhongRequest, pickCardPhong } from "../../actions/phong";
 import { getDatPhongByPhongRequest,addDatPhongRequest } from "../../actions/datphong";
 import { getListKhachHangRequest } from "../../actions/khachhang"
+import {getListDVRequest} from"../../actions/dichvu"
 import ModalPhong from "./ModalPhong";
 import ModalDatPhong from "./ModalDatPhong";
 
@@ -140,6 +141,7 @@ const mapStateToProps = state => {
     datphongbyphong: state.datphong.datphongbyphong,
     khachhang: state.khachhang.khachhang,
     adddatphong : state.datphong.adddatphong,
+    dichvu: state.dichvu.dichvu,
   };
 };
 
@@ -148,7 +150,8 @@ const mapDispatchToProps = {
   getDatPhongByPhongRequest,
   pickCardPhong,
   getListKhachHangRequest,
-  addDatPhongRequest
+  addDatPhongRequest,
+   getListDVRequest
 };
 
 export default connect(

@@ -34,7 +34,7 @@ class Customer extends React.Component {
 
   render() {
    console.log(this.props);
-  // const {khachhang} = this.props;
+   const {khachhang} = this.props;
    const {loaikhachhang} = this.props;
  //  console.log(khachhang);
    console.log(loaikhachhang);

@@ -151,13 +151,7 @@ class ModalPhong extends React.Component {
           </Col>
         </Row>
 
-        <ModalThemDV
-          visible={this.visibleDatPhong}
-          showModal={this.showModal}
-          onCancel={this.handleCancel}
-          onOk={this.handleOk}
-          {...this.props}
-        />
+      
       </Modal>
     );
   //   <ModalThemDV
