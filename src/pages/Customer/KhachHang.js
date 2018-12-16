@@ -3,19 +3,19 @@ import "antd/dist/antd.css";
 import moment from "moment";
 import { Table, Button, Icon, Row } from "antd";
 // import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
-// import khachhang from "../../reducers/khachhang";
+ import khachhang from "../../reducers/khachhang";
 // import CustomerTable from './CustomTable'
 import ModalThemKhachHang from "./ModalThemKhachHang/index";
 const columns = [
   {
     title: "Loại Khách Hàng",
-    dataIndex: "LoaiKhachHang",
-    key: "_id"
+    dataIndex: "LoaiKhachHang.TenLoaiKhach",
+    key: "TenLoaiKhach"
   },
   {
     title: "Họ Tên",
     dataIndex: "HoTen",
-    key: "_id"
+    key: "HoTen"
   },
    {
     title: "Ngày sinh",
@@ -25,7 +25,7 @@ const columns = [
       var dateTime = new Date(date);
       return dateTime = moment(dateTime).format("DD-MM-YYYY");
     }
-  },
+    },
   {
     title: "CMND",
     dataIndex: "CMND",
@@ -80,17 +80,17 @@ export default class CustomTable extends Component {
             columns={this.columns}
             dataSource={khachhang.listKhachhang}
             rowKey="_id"
-            pagination={{ pageSize: 5 }}
+            pagination={{ pageSize: 35 }}
             {...this.props}
           />
 
-          <ModalThemKhachHang
+          {/* <ModalThemKhachHang
             visible={this.state.visible}
             showModal={this.showModal}
             onCancel={this.handleCancel}
             onOk={this.handleOk}
             {...this.props}
-          />
+          /> */}
       
       </div>
     );
