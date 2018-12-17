@@ -6,32 +6,7 @@ import { Table, Button, Icon, Row } from "antd";
  import khachhang from "../../reducers/khachhang";
 // import CustomerTable from './CustomTable'
 import ModalThemKhachHang from "./ModalThemKhachHang/index";
-const columns = [
-  {
-    title: "Loại Khách Hàng",
-    dataIndex: "LoaiKhachHang.TenLoaiKhach",
-    key: "TenLoaiKhach"
-  },
-  {
-    title: "Họ Tên",
-    dataIndex: "HoTen",
-    key: "HoTen"
-  },
-   {
-    title: "Ngày sinh",
-    dataIndex: "NgaySinh",
-    key: "NgaySinh",
-    render: date => {
-      var dateTime = new Date(date);
-      return dateTime = moment(dateTime).format("DD-MM-YYYY");
-    }
-    },
-  {
-    title: "CMND",
-    dataIndex: "CMND",
-    key: "CMND"
-  },
-];
+
 
 export default class CustomTable extends Component {
   constructor(props) {
@@ -40,7 +15,32 @@ export default class CustomTable extends Component {
       visible: false
     };
   }
-
+  columns = [
+    {
+      title: "Loại Khách Hàng",
+      dataIndex: "LoaiKhachHang.TenLoaiKhach",
+      key: "TenLoaiKhach"
+    },
+    {
+      title: "Họ Tên",
+      dataIndex: "HoTen",
+      key: "HoTen"
+    },
+     {
+      title: "Ngày sinh",
+      dataIndex: "NgaySinh",
+      key: "NgaySinh",
+      render: date => {
+        var dateTime = new Date(date);
+        return dateTime = moment(dateTime).format("DD-MM-YYYY");
+      }
+      },
+    {
+      title: "CMND",
+      dataIndex: "CMND",
+      key: "CMND"
+    },
+  ];
   handleOk = e => {
     console.log("Ok");
     this.setState({
@@ -61,7 +61,7 @@ export default class CustomTable extends Component {
   };
 
   render() {
-    const { khachhang } = this.props;
+     const { khachhang } = this.props;
     console.log(this.props);
     return (
       <div>
@@ -84,13 +84,13 @@ export default class CustomTable extends Component {
             {...this.props}
           />
 
-          {/* <ModalThemKhachHang
+          <ModalThemKhachHang
             visible={this.state.visible}
             showModal={this.showModal}
             onCancel={this.handleCancel}
             onOk={this.handleOk}
             {...this.props}
-          /> */}
+          />
       
       </div>
     );

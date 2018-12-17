@@ -4,6 +4,7 @@ import { Modal, Row, Button, Form } from "antd";
 import CustomInput from "../../../component/CustomInput";
 import RadioItem from "../../../component/radio/RadioItem";
 import Calendars from "../../../component/calendar/Calendars";
+import CustomerDatePicker from "../../../component/CustomDatePicker"
 import validate from "./validate";
 // import moment from "moment"
 const FormItem = Form.Item;
@@ -23,21 +24,23 @@ class ModalThemKhachHang extends React.Component {
   handleThemKhachHang = (values, onCancel) => {
     console.log("Values: ", values);
     const { addKhachHangRequest, getListKhachHangRequest } = this.props;
-    const GioiTinh = values.GioiTinh;
+    // const GioiTinh = values.GioiTinh;
     const HoTen = values.HoTen;
     const CMND = values.CMND;
     const NgaySinh = values.NgaySinh;
-    const DiaChi = values.DiaChi;
-    const QuocTich = values.QuocTich;
-    const Email = values.Email;
+    // const DiaChi = values.DiaChi;
+    // const QuocTich = values.QuocTich;
+    // const Email = values.Email;
+    const LoaiKhachHang = values.LoaiKhachHang;
     addKhachHangRequest(
-      GioiTinh,
+      // GioiTinh,
       HoTen,
       CMND,
       NgaySinh,
-      DiaChi,
-      QuocTich,
-      Email,
+      // DiaChi,
+      // QuocTich,
+      // Email,
+      LoaiKhachHang,
       onCancel,
       getListKhachHangRequest
     );
@@ -60,14 +63,14 @@ class ModalThemKhachHang extends React.Component {
             this.handleThemKhachHang(values, onCancel)
           )}
         >
-          <FormItem label="Giới Tính" {...this.formItemLayout}>
+          {/* <FormItem label="Giới Tính" {...this.formItemLayout}>
             <RadioItem
               name="GioiTinh"
               type="radio"
               //    value={this.state.isFetching}
               component={RadioItem}
             />
-          </FormItem>
+          </FormItem> */}
 
           <FormItem label="Họ Tên" {...this.formItemLayout}>
             <Field
@@ -100,46 +103,46 @@ class ModalThemKhachHang extends React.Component {
             <Field
               name="NgaySinh"
               type="text"
-              component={Calendars}
+              component={CustomerDatePicker}
               // placeholder="Nhập ngày sinh khách hàng"
             />
           </FormItem>
 
-          <FormItem label="Địa chỉ" {...this.formItemLayout}>
+          {/* <FormItem label="Địa chỉ" {...this.formItemLayout}>
             <Field
               name="DiaChi"
               type="text"
               component={CustomInput}
               placeholder="Nhập địa chỉ khách hàng"
             />
-          </FormItem>
+          </FormItem> */}
 
-          <FormItem label="Quốc Tịch" {...this.formItemLayout}>
+          {/* <FormItem label="Quốc Tịch" {...this.formItemLayout}>
             <Field
               name="QuocTich"
               type="text"
               component={CustomInput}
               placeholder="Nhập quốc tịch khách hàng"
             />
-          </FormItem>
-
-          {/* <FormItem label="SĐT" {...this.formItemLayout}>
-            <Field
-              name="SDT"
-              type="text"
-              component={CustomInput}
-              placeholder="Nhập SDT khách hàng"
-            />
           </FormItem> */}
 
-          <FormItem label="Email" {...this.formItemLayout}>
+          <FormItem label="Loại Khách" {...this.formItemLayout}>
+            <Field
+              name="LoaiKhachHang.TenLoaiKhach"
+              type="text"
+              component={CustomInput}
+              placeholder="Nhập Loại khách hàng"
+            />
+          </FormItem>
+
+          {/* <FormItem label="Email" {...this.formItemLayout}>
             <Field
               name="Email"
               type="text"
               component={CustomInput}
               placeholder="Nhập Email khách hàng"
             />
-          </FormItem>
+          </FormItem> */}
 
           <Row type="flex" justify="end">
             <Button
@@ -147,7 +150,7 @@ class ModalThemKhachHang extends React.Component {
               htmlType="submit"
               className="button"
               loading={addkhachhang.isFetching} // true
-              disabled={addkhachhang.isFetching}
+             disabled={addkhachhang.isFetching}
             >
             Add
             </Button>

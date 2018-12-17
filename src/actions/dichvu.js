@@ -24,23 +24,23 @@ export const getListDVRequest = () => async dispatch => {
     });
 };
 
-export const addDichVuRequest = ( TenDV,DonGia,LoaiDichVu,onCancel,getListDVRequest ) => async (dispatch,getState) => {
-  dispatch({ type: ADD_DICHVU_REQUEST });
-  // const { phong } = getState();
-  // listloaiphong = phong.listloaiPhong;
-  // listloaiphong.put({TenLoai:})
-  const res = await axios.post(keys.backend + "/dichvu", {
-    TenDV,DonGia,LoaiDichVu
-  });
-  if ((res.status = 200)){
-    dispatch({
-      type: ADD_DICHVU_SUCCESS
-    });
-    getListDVRequest();
-    onCancel();
-  }
-  else
-    dispatch({
-      type: ADD_DICHVU_FAILURE
-    });
-};
+// export const addDichVuRequest = ( TenDV,DonGia,LoaiDichVu,onCancel,getListDVRequest ) => async (dispatch,getState) => {
+//   dispatch({ type: ADD_DICHVU_REQUEST });
+//   // const { phong } = getState();
+//   // listloaiphong = phong.listloaiPhong;
+//   // listloaiphong.put({TenLoai:})
+//   const res = await axios.post(keys.backend + "/dichvu", {
+//     TenDV,DonGia,LoaiDichVu
+//   });
+//   if ((res.status = 200)){
+//     dispatch({
+//       type: ADD_DICHVU_SUCCESS
+//     });
+//     getListDVRequest();
+//     onCancel();
+//   }
+//   else
+//     dispatch({
+//       type: ADD_DICHVU_FAILURE
+//     });
+// };
