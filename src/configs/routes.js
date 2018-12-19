@@ -27,6 +27,13 @@ export default () => {
     {
       path: "/device",
       component: Device
+    },
+    {
+      path: "/service",
+      // component: 
+    },
+    {
+      path: "/booking"
     }
   ];
 };

@@ -29,14 +29,14 @@ class ModalDatPhong extends React.Component {
 
   handleDatPhong = values => {
     const { KhachHang, Phong } = this.state;
-    const { addDatPhongRequest, onCancel, getDatPhongByPhongRequest } = this.props;
+    const { addDatPhongRequest, onCancel, getListPhongRequest } = this.props;
     const NgayDen = values.NgayDen;
     const NgayDi = values.NgayDi;
     const DatCoc = values.DatCoc;
     console.log("HandleDatPhong", this.props);
     if (KhachHang === "" || Phong === "") {
       message.error("Không được bỏ trống ,khách hàng và phòng");
-    } else addDatPhongRequest(NgayDen, NgayDi, DatCoc, KhachHang, Phong, onCancel, getDatPhongByPhongRequest);
+    } else addDatPhongRequest(NgayDen, NgayDi, DatCoc, KhachHang, Phong, onCancel, getListPhongRequest);
     // const TenLoai = values.tenloai;
     // const DonGia = values.dongia;
     // addLoaiPhongRequest(TenLoai,DonGia,onCancel,getListLoaiPhongRequest);

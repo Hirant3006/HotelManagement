@@ -1,10 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 // import CustomCard from "./CustomCard";
-import { Card, List, Col, Row, Button, Layout, Avatar, Spin } from "antd";
+import { Card, List, Col, Row, Button, Layout, Avatar, Spin, Icon } from "antd";
 import { getListPhongRequest, pickCardPhong } from "../../actions/phong";
-import { getDatPhongByPhongRequest,addDatPhongRequest } from "../../actions/datphong";
-import { getListKhachHangRequest } from "../../actions/khachhang"
+import {
+  getDatPhongByPhongRequest,
+  addDatPhongRequest
+} from "../../actions/datphong";
+import { getListKhachHangRequest } from "../../actions/khachhang";
 import ModalPhong from "./ModalPhong";
 import ModalDatPhong from "./ModalDatPhong";
 
@@ -13,7 +16,7 @@ class Home extends React.PureComponent {
     super(props);
     this.state = {
       visibleModalPhong: false,
-      visibleModalDatPhong: false,
+      visibleModalDatPhong: false
     };
   }
 
@@ -56,7 +59,12 @@ class Home extends React.PureComponent {
         return (
           <Card.Grid
             key={item._id}
-            style={{ width: "25%", textAlign: "center" ,backgroundColor:"#FFFA51",border:"solid"}}
+            style={{
+              width: "25%",
+              textAlign: "center",
+              backgroundColor: "#FFFA51",
+              border: "solid"
+            }}
             onClick={() => {
               const { getListPhongRequest } = this.props;
               this.ontoggleModalOpen();
@@ -64,23 +72,27 @@ class Home extends React.PureComponent {
               this.props.getDatPhongByPhongRequest(item._id);
             }}
           >
-            {item.SoPhong}
+            {item.SoPhong} ({item.LoaiPhong.TenLoaiPhong})
           </Card.Grid>
         );
       else
         return (
           <Card.Grid
             key={item._id}
-            style={{ width: "25%", textAlign: "center",backgroundColor:"#A8FFD4",border:"solid"}}
+            style={{
+              width: "25%",
+              textAlign: "center",
+              backgroundColor: "#A8FFD4",
+              border: "solid"
+            }}
             onClick={() => {
               this.ontoggleModalOpen();
               // const { getListPhongRequest } = this.props;
               this.props.pickCardPhong(item);
               this.props.getDatPhongByPhongRequest(item._id);
-              
             }}
           >
-            {item.SoPhong}
+            {item.SoPhong} ({item.LoaiPhong.TenLoaiPhong})
           </Card.Grid>
         );
     });
@@ -101,17 +113,56 @@ class Home extends React.PureComponent {
             </Card>
           </Col>
           <Col span="3">
-            <Button
-              style={{ float: "right", marginBottom: "0.5rem", width: "6rem" }}
-              onClick={this.ontoggleModalDatPhongOpen}
+            <Row>
+              <Button
+                style={{
+                  float: "right",
+                  marginBottom: "0.5rem",
+                  width: "6rem"
+                }}
+                onClick={this.ontoggleModalDatPhongOpen}
+              >
+                Đặt phòng
+              </Button>
+              <Button
+                style={{
+                  float: "right",
+                  marginBottom: "0.5rem",
+                  width: "6rem"
+                }}
+              >
+                Thanh toán
+              </Button>
+            </Row>
+            <div
+              style={{
+                float: "right",
+                marginBottom: "0.5rem",
+                width: "6rem",
+                fontSize:"8pt"
+              }}
             >
-              Đặt phòng
-            </Button>
-            <Button
-              style={{ float: "right", marginBottom: "0.5rem", width: "6rem" }}
-            >
-              Thanh toán
-            </Button>
+              {/* Trạng Thái :
+              <Icon type="file" style={{fontSize:"16px",color:"#A8FFD4"}}  /> */}
+              <table class="src">
+                <tbody>
+                  <tr>
+                    <th width="50%">Màu</th>
+                    <th width="50%">Trạng Thái</th>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#A8FFD4">&nbsp;</td>
+                    <td>Trống</td>{" "}
+                  </tr>
+                  <tr>
+                    <td bgcolor="#FFFA51">&nbsp;</td>
+                    <td>Có người</td>{" "}
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+            <br />
             {/* <Button></Button> */}
           </Col>
         </Row>
@@ -139,7 +190,7 @@ const mapStateToProps = state => {
     dataPhong: state.phong.dataPhong,
     datphongbyphong: state.datphong.datphongbyphong,
     khachhang: state.khachhang.khachhang,
-    adddatphong : state.datphong.adddatphong,
+    adddatphong: state.datphong.adddatphong
   };
 };
 

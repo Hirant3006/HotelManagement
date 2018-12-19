@@ -100,7 +100,7 @@ class ModalPhong extends React.Component {
         onCancel={() => {
           onCancel();
         }}
-       // footer={null}
+       footer={null}
         width="80rem"
       >
         <Row>

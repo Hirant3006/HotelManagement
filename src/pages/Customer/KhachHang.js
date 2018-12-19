@@ -8,11 +8,6 @@ import { Table, Button, Icon, Row } from "antd";
 import ModalThemKhachHang from "./ModalThemKhachHang/index";
 const columns = [
   {
-    title: "Loại Khách Hàng",
-    dataIndex: "LoaiKhachHang",
-    key: "_id"
-  },
-  {
     title: "Họ Tên",
     dataIndex: "HoTen",
     key: "_id"
@@ -62,7 +57,7 @@ export default class CustomTable extends Component {
 
   render() {
     const { khachhang } = this.props;
-    console.log(this.props);
+    console.log("Khach Hang" ,this.props);
     return (
       <div>
         <Row>
@@ -77,7 +72,7 @@ export default class CustomTable extends Component {
      
           <Table
             loading={khachhang.isFetching}
-            columns={this.columns}
+            columns={columns}
             dataSource={khachhang.listKhachhang}
             rowKey="_id"
             pagination={{ pageSize: 5 }}

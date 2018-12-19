@@ -20,6 +20,16 @@ export default () => {
       name: 'Device',
       url:'/device',
 
+    },
+    {
+      iconType: "database",
+      name: 'Service',
+      url:'/Service',
+    },
+    {
+      iconType: "database",
+      name: 'Booking',
+      url:'/Booking',
     }
     // { path: 'heroes',
     //   component: HeroListComponent,
