@@ -2,6 +2,8 @@ import Home from "../pages/Home";
 import Room from "../pages/Room";
 import Customer from "../pages/Customer";
 import Device from '../pages/Device'
+import Booking from "../pages/Booking";
+
 export default () => {
   return [
     {
@@ -14,6 +16,11 @@ export default () => {
       path: "/home",
       description: 'Trang chủ',
       component: Home,
+    },
+    {
+      path: "/booking",
+      description: "Đặt phòng",
+      component: Booking,
     },
     {
       path: "/room",

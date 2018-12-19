@@ -2,35 +2,36 @@ export default () => {
   return [
     {
       iconType: "home",
-      name: "Home",
+      name: "Trang chủ",
       url: "/home"
     },
     {
       iconType: "database",
-      name: "Room",
+      name: 'Đặt phòng',
+      url:'/Booking',
+    },
+    {
+      iconType: "database",
+      name: "Phòng",
       url: "/room"
     },
     {
       iconType: "database",
-      name: "Customer",
+      name: "Khách Hàng",
       url: "/customer"
     },
     {
       iconType: "database",
-      name: 'Device',
+      name: 'Thiết bị',
       url:'/device',
 
     },
     {
       iconType: "database",
-      name: 'Service',
+      name: 'Dịch vụ',
       url:'/Service',
     },
-    {
-      iconType: "database",
-      name: 'Booking',
-      url:'/Booking',
-    }
+ 
     // { path: 'heroes',
     //   component: HeroListComponent,
     //   data: { title: 'Heroes List' }

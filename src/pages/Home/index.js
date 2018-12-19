@@ -3,9 +3,15 @@ import { connect } from "react-redux";
 // import CustomCard from "./CustomCard";
 import { Card, List, Col, Row, Button, Layout, Avatar, Spin, Icon } from "antd";
 import { getListPhongRequest, pickCardPhong } from "../../actions/phong";
-import { getDatPhongByPhongRequest,addDatPhongRequest } from "../../actions/datphong";
-import { getListKhachHangRequest } from "../../actions/khachhang"
-import {getListDVRequest} from"../../actions/dichvu"
+import {
+  getDatPhongByPhongRequest,
+  addDatPhongRequest,
+  getThanhToanByDatPhongRequest,
+  addThanhToanRequest,
+  checkoutDatPhongRequest
+} from "../../actions/datphong";
+import { getListKhachHangRequest } from "../../actions/khachhang";
+import { getListDVRequest } from "../../actions/dichvu";
 import ModalPhong from "./ModalPhong";
 import ModalDatPhong from "./ModalDatPhong";
 
@@ -14,7 +20,8 @@ class Home extends React.PureComponent {
     super(props);
     this.state = {
       visibleModalPhong: false,
-      visibleModalDatPhong: false
+      visibleModalDatPhong: false,
+      visibleModalThanhToan: false
     };
   }
 
@@ -128,6 +135,7 @@ class Home extends React.PureComponent {
                   marginBottom: "0.5rem",
                   width: "6rem"
                 }}
+                onClick={this.ontoggleModalThanhToanOpen}
               >
                 Thanh toán
               </Button>
@@ -137,7 +145,7 @@ class Home extends React.PureComponent {
                 float: "right",
                 marginBottom: "0.5rem",
                 width: "6rem",
-                fontSize:"8pt"
+                fontSize: "8pt"
               }}
             >
               {/* Trạng Thái :
@@ -156,7 +164,6 @@ class Home extends React.PureComponent {
                     <td bgcolor="#FFFA51">&nbsp;</td>
                     <td>Có người</td>{" "}
                   </tr>
-                 
                 </tbody>
               </table>
             </div>
@@ -188,18 +195,25 @@ const mapStateToProps = state => {
     dataPhong: state.phong.dataPhong,
     datphongbyphong: state.datphong.datphongbyphong,
     khachhang: state.khachhang.khachhang,
-    adddatphong : state.datphong.adddatphong,
+    adddatphong: state.datphong.adddatphong,
     dichvu: state.dichvu.dichvu,
+    thanhtoan: state.datphong.thanhtoanbydatphong,
+    addtthanhtoan: state.datphong.addtthanhtoan,
+    checkoutdatphong : state.datphong.checkoutdatphong
   };
 };
 
 const mapDispatchToProps = {
+  addThanhToanRequest,
   getListPhongRequest,
   getDatPhongByPhongRequest,
   pickCardPhong,
+  addThanhToanRequest,
   getListKhachHangRequest,
   addDatPhongRequest,
-   getListDVRequest
+  getListDVRequest,
+  getThanhToanByDatPhongRequest,
+  checkoutDatPhongRequest
 };
 
 export default connect(

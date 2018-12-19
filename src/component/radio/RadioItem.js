@@ -26,8 +26,8 @@ export default class RadioItem extends React.Component {
      } = this.props;
     return (
       <RadioGroup onChange={this.onChange} value={this.state.value} type={type}>
-        <Radio style={radioStyle} value={1}>Male</Radio>
-        <Radio style={radioStyle} value={0}>Female</Radio>       
+        <Radio style={radioStyle} value={1}>Nam</Radio>
+        <Radio style={radioStyle} value={0}>Nữ</Radio>       
       </RadioGroup>
     );
   }
