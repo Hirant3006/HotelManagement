@@ -45,17 +45,30 @@ export const addDatPhongRequest = (
     Phong
   });
   const MaPhong = Phong ;
-  if ((res.status = 200)) {
+  console.log(typeof(res.status));
+  console.log(res);
+
+  if ((res.status === 200)) {
     dispatch({
       type: ADD_DATPHONG_SUCCESS
     });
     message.success("Đặt phòng thành công");
     getDatPhongByPhongRequest(MaPhong);
     onCancel();
-  } else {
+  } 
+  // else if(res.status = 404) {
+  //   console.log('Failed')
+  //   console.log(res.data);
+  //   dispatch({
+  //     type: ADD_DATPHONG_FAILURE
+  //   });
+  //   message.error(res.data.message)
+  // } 
+  else if(res.status===201) {
+    console.log('Failed 2')
     dispatch({
       type: ADD_DATPHONG_FAILURE
     });
-    message.error("Đặt phòng thất bại");
+    message.error(res.data.message);
   }
 };

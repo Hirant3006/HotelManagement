@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import {
   Form,
   Modal,
@@ -84,6 +85,12 @@ class ModalPhong extends React.Component {
   render() {
     const { visible, onCancel, dataPhong,datphongbyphong,visibleDichVu } = this.props;
     console.log("ModalPhong :", this.props);
+    if (datphongbyphong.data!= null) {
+      var NgayDen = new Date(datphongbyphong.data.NgayDen);
+      var NgayDi = new Date(datphongbyphong.data.NgayDi);
+      NgayDen = moment(NgayDen).format("DD-MM-YYYY");
+      NgayDi =  moment(NgayDi).format("DD-MM-YYYY");
+    }
     return (
       
       <Modal
@@ -113,11 +120,9 @@ class ModalPhong extends React.Component {
                   <div>
                     Khách hàng : {datphongbyphong.data.KhachHang.HoTen}
                     <hr />
-                    Ngày Đến : {datphongbyphong.data.NgayDen}
+                    Ngày Đến : {NgayDen}
                     <hr />
-                    Ngày Đi : {datphongbyphong.data.NgayDi}
-                    <hr />
-                    ThanhToán : {datphongbyphong.data.DaThanhToan}
+                    Ngày Đi : {NgayDi}
                     <hr />
                     Đặt Cọc : {datphongbyphong.data.DatCoc}
                     <hr />
