@@ -19,7 +19,23 @@ import {
   UPDATE_LOAI_PHONG_THEO_ID_REQUEST,
   UPDATE_LOAI_PHONG_THEO_ID_SUCCESS,
   UPDATE_LOAI_PHONG_THEO_ID_FAILURE,
+
+  ADD_PHONG_REQUEST,
+  ADD_PHONG_SUCCESS,
+  ADD_PHONG_FAILURE,
+  FIND_PHONG_THEO_ID_REQUEST,
+  FIND_PHONG_THEO_ID_SUCCESS,
+  FIND_PHONG_THEO_ID_FAILURE,
+  DELETE_PHONG_THEO_ID_REQUEST,
+  DELETE_PHONG_THEO_ID_SUCCESS,
+  DELETE_PHONG_THEO_ID_FAILURE,
+  UPDATE_PHONG_THEO_ID_REQUEST,
+  UPDATE_PHONG_THEO_ID_SUCCESS,
+  UPDATE_PHONG_THEO_ID_FAILURE,
   PICK_CARD_PHONG
+
+
+
 } from "../actions/contstants";
 
 const initialState = {
@@ -42,6 +58,19 @@ const initialState = {
     isFetching: false
   },
   updateloaiphong: {
+    isFetching: false
+  },
+  addphong: {
+    isFetching: false
+  },
+  phongtheoid: {
+    phong: null,
+    isFetching: false
+  },
+  deletephong: {
+    isFetching: false
+  },
+  updatephong: {
     isFetching: false
   },
   dataPhong: null,
@@ -174,6 +203,89 @@ export default function(state = initialState, action) {
         },
         error: { $set: action.error }
       });
+      //=========================================================//
+      case ADD_PHONG_REQUEST:
+      return update(state, {
+        addphong: {
+          isFetching: { $set: true }
+        }
+      });
+    case ADD_PHONG_SUCCESS:
+      return update(state, {
+        addphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case ADD_PHONG_FAILURE:
+      return update(state, {
+        addphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
+    case FIND_PHONG_THEO_ID_REQUEST:
+      return update(state, {
+        phongtheoid: {
+          isFetching: { $set: true }
+        }
+      });
+    case FIND_PHONG_THEO_ID_SUCCESS:
+      return update(state, {
+        phongtheoid: {
+          phong: { $set: action.loaiphongtheoid },
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case FIND_PHONG_THEO_ID_FAILURE:
+      return update(state, {
+        phongtheoid: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
+    case DELETE_PHONG_THEO_ID_REQUEST:
+      return update(state, {
+        deletephong: {
+          isFetching: { $set: true }
+        }
+      });
+    case DELETE_PHONG_THEO_ID_SUCCESS:
+      return update(state, {
+        deletephong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case DELETE_PHONG_THEO_ID_FAILURE:
+      return update(state, {
+        deletephong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
+    case UPDATE_PHONG_THEO_ID_REQUEST:
+      return update(state, {
+        updatephong: {
+          isFetching: { $set: true }
+        }
+      });
+    case UPDATE_PHONG_THEO_ID_SUCCESS:
+      return update(state, {
+        updatephong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case UPDATE_PHONG_THEO_ID_FAILURE:
+      return update(state, {
+        updatephong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
+
     case PICK_CARD_PHONG: {
       return update(state, {
         dataPhong: { $set: action.dataPhong }

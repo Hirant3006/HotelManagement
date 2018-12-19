@@ -4,6 +4,7 @@ import { Modal, Row, Button, Form } from "antd";
 import CustomInput from "../../../component/CustomInput";
 import RadioItem from "../../../component/radio/RadioItem";
 import Calendars from "../../../component/calendar/Calendars";
+import CustomerDatePicker from "../../../component/CustomDatePicker"
 import validate from "./validate";
 // import moment from "moment"
 const FormItem = Form.Item;
@@ -25,19 +26,21 @@ class ModalThemKhachHang extends React.Component {
     const { addKhachHangRequest, getListKhachHangRequest } = this.props;
     const GioiTinh = values.GioiTinh;
     const HoTen = values.HoTen;
-    const CMND = values.CMND;
+    //const CMND = values.CMND;
     const NgaySinh = values.NgaySinh;
-    const DiaChi = values.DiaChi;
+    // const DiaChi = values.DiaChi;
     const QuocTich = values.QuocTich;
-    const Email = values.Email;
+    // const Email = values.Email;
+    const LoaiKhachHang = values.LoaiKhachHang;
     addKhachHangRequest(
       GioiTinh,
       HoTen,
-      CMND,
+      //CMND,
       NgaySinh,
-      DiaChi,
+      // DiaChi,
       QuocTich,
-      Email,
+      // Email,
+      LoaiKhachHang,
       onCancel,
       getListKhachHangRequest
     );
@@ -78,14 +81,14 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-          <FormItem label="CMND" {...this.formItemLayout}>
+          {/* <FormItem label="Giới Tính" {...this.formItemLayout}>
             <Field
-              name="CMND"
+              name="GioiTinh"
               type="text"
               component={CustomInput}
-              placeholder="Nhập số CMND khách hàng"
+              placeholder="Nhập Giới Tính khách hàng"
             />
-          </FormItem>
+          </FormItem> */}
 
           {/* <FormItem label="Ngày Sinh" {...this.formItemLayout}>
             <Field
@@ -100,19 +103,19 @@ class ModalThemKhachHang extends React.Component {
             <Field
               name="NgaySinh"
               type="text"
-              component={Calendars}
+              component={CustomerDatePicker}
               // placeholder="Nhập ngày sinh khách hàng"
             />
           </FormItem>
 
-          <FormItem label="Địa chỉ" {...this.formItemLayout}>
+          {/* <FormItem label="Địa chỉ" {...this.formItemLayout}>
             <Field
               name="DiaChi"
               type="text"
               component={CustomInput}
               placeholder="Nhập địa chỉ khách hàng"
             />
-          </FormItem>
+          </FormItem> */}
 
           <FormItem label="Quốc Tịch" {...this.formItemLayout}>
             <Field
@@ -123,23 +126,23 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-          {/* <FormItem label="SĐT" {...this.formItemLayout}>
+          <FormItem label="Loại Khách" {...this.formItemLayout}>
             <Field
-              name="SDT"
+              name="LoaiKhachHang.TenLoaiKhach"
               type="text"
               component={CustomInput}
-              placeholder="Nhập SDT khách hàng"
+              placeholder="Nhập Loại khách hàng"
             />
-          </FormItem> */}
+          </FormItem>
 
-          <FormItem label="Email" {...this.formItemLayout}>
+          {/* <FormItem label="Email" {...this.formItemLayout}>
             <Field
               name="Email"
               type="text"
               component={CustomInput}
               placeholder="Nhập Email khách hàng"
             />
-          </FormItem>
+          </FormItem> */}
 
           <Row type="flex" justify="end">
             <Button
@@ -147,7 +150,7 @@ class ModalThemKhachHang extends React.Component {
               htmlType="submit"
               className="button"
               loading={addkhachhang.isFetching} // true
-              disabled={addkhachhang.isFetching}
+             disabled={addkhachhang.isFetching}
             >
             Add
             </Button>
@@ -160,5 +163,6 @@ class ModalThemKhachHang extends React.Component {
 
 export default reduxForm({
   form: "syncValidation", // a unique identifier for this form
-  validate // <--- validation function given to redux-form
+  validate, // <--- validation function given to redux-form
+  forceUnregisterOnUnmount: true,
 })(ModalThemKhachHang);

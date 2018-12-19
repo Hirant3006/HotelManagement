@@ -1,7 +1,7 @@
 import React from "react";
 import CustomCard from "./CustomCard";
 import { List } from "antd";
-
+import ModalThemPhong from "./ModalThemPhong"
 export default class ListPhong extends React.Component {
   _handleRenderCard = data => {
     data.map(item => {
@@ -30,6 +30,13 @@ export default class ListPhong extends React.Component {
                 title={item.SoPhong}
                 description={item.LoaiPhong.TenLoaiPhong}
               />
+                <ModalThemPhong
+            visible={this.state.visible}
+            // showModal={this.showModal}
+            onCancel={this.handleCancel}
+            onOk={this.handleOk}
+            {...this.props}
+          />
             </List.Item>
           )}
         />

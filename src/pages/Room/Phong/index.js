@@ -3,6 +3,7 @@ import { Row, Col, Spin, Select, Button, Icon, Table } from "antd";
 import ListPhong from "./ListPhong";
 import { connect } from "react-redux";
 import Phong from "../Phong"
+import ModalThemPhong from "./ModalThemPhong"
 import{
   getListPhongRequest,
 } from "../../../actions/phong";
@@ -121,6 +122,13 @@ class Room extends React.PureComponent {
           pagination={{ pageSize: 5 }}
           {...this.props}
         />
+         <ModalThemPhong
+            visible={this.state.visible}
+            // showModal={this.showModal}
+            onCancel={this.handleCancel}
+            onOk={this.handleOk}
+            {...this.props}
+          />
         {/* <ModalThemLoaiPhong
           visible={this.state.visible}
           // showModal={this.showModal}
@@ -149,7 +157,8 @@ const mapStateToProps = state => {
     //loaiphong: state.loaiphong.loaiphong,
   //  khachhang: state.khachhang.khachhang,
   // loaiphong: state.phong.loaiphongtheoid,
-  addphong: state.khachhang.addkhachhang,
+  //addphong: state.khachhang.addkhachhang,
+  addphong: state.phong.addphong,
   };
 };
 const mapDispatchToProps = {

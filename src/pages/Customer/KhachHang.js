@@ -3,30 +3,9 @@ import "antd/dist/antd.css";
 import moment from "moment";
 import { Table, Button, Icon, Row } from "antd";
 // import ModalThemLoaiPhong from "../Room/Component/ModalThemLoaiPhong";
-// import khachhang from "../../reducers/khachhang";
+import khachhang from "../../reducers/khachhang";
 // import CustomerTable from './CustomTable'
 import ModalThemKhachHang from "./ModalThemKhachHang/index";
-const columns = [
-  {
-    title: "Họ Tên",
-    dataIndex: "HoTen",
-    key: "_id"
-  },
-   {
-    title: "Ngày sinh",
-    dataIndex: "NgaySinh",
-    key: "NgaySinh",
-    render: date => {
-      var dateTime = new Date(date);
-      return dateTime = moment(dateTime).format("DD-MM-YYYY");
-    }
-  },
-  {
-    title: "CMND",
-    dataIndex: "CMND",
-    key: "CMND"
-  },
-];
 
 export default class CustomTable extends Component {
   constructor(props) {
@@ -35,7 +14,32 @@ export default class CustomTable extends Component {
       visible: false
     };
   }
-
+  columns = [
+    {
+      title: "Họ Tên",
+      dataIndex: "HoTen",
+      key: "HoTen"
+    },
+    {
+      title: "Giới Tính",
+      dataIndex: "GioiTinh",
+      key: "GioiTinh"
+    },
+    {
+      title: "Ngày sinh",
+      dataIndex: "NgaySinh",
+      key: "NgaySinh",
+      render: date => {
+        var dateTime = new Date(date);
+        return (dateTime = moment(dateTime).format("DD-MM-YYYY"));
+      }
+    },
+    {
+      title: "Loại Khách Hàng",
+      dataIndex: "LoaiKhachHang.TenLoaiKhach",
+      key: "TenLoaiKhach"
+    }
+  ];
   handleOk = e => {
     console.log("Ok");
     this.setState({
@@ -57,7 +61,7 @@ export default class CustomTable extends Component {
 
   render() {
     const { khachhang } = this.props;
-    console.log("Khach Hang" ,this.props);
+    console.log(this.props);
     return (
       <div>
         <Row>
@@ -69,24 +73,23 @@ export default class CustomTable extends Component {
             <Icon type="file-add" />
           </Button>
         </Row>
-     
-          <Table
-            loading={khachhang.isFetching}
-            columns={columns}
-            dataSource={khachhang.listKhachhang}
-            rowKey="_id"
-            pagination={{ pageSize: 5 }}
-            {...this.props}
-          />
 
-          <ModalThemKhachHang
-            visible={this.state.visible}
-            showModal={this.showModal}
-            onCancel={this.handleCancel}
-            onOk={this.handleOk}
-            {...this.props}
-          />
-      
+        <Table
+          loading={khachhang.isFetching}
+          columns={this.columns}
+          dataSource={khachhang.listKhachhang}
+          rowKey="_id"
+          pagination={{ pageSize: 35 }}
+          {...this.props}
+        />
+
+        <ModalThemKhachHang
+          visible={this.state.visible}
+          showModal={this.showModal}
+          onCancel={this.handleCancel}
+          onOk={this.handleOk}
+          {...this.props}
+        />
       </div>
     );
   }
