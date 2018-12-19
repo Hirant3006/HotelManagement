@@ -24,21 +24,21 @@ class ModalThemKhachHang extends React.Component {
   handleThemKhachHang = (values, onCancel) => {
     console.log("Values: ", values);
     const { addKhachHangRequest, getListKhachHangRequest } = this.props;
-    // const GioiTinh = values.GioiTinh;
+    const GioiTinh = values.GioiTinh;
     const HoTen = values.HoTen;
-    const CMND = values.CMND;
+    //const CMND = values.CMND;
     const NgaySinh = values.NgaySinh;
     // const DiaChi = values.DiaChi;
-    // const QuocTich = values.QuocTich;
+    const QuocTich = values.QuocTich;
     // const Email = values.Email;
     const LoaiKhachHang = values.LoaiKhachHang;
     addKhachHangRequest(
-      // GioiTinh,
+      GioiTinh,
       HoTen,
-      CMND,
+      //CMND,
       NgaySinh,
       // DiaChi,
-      // QuocTich,
+      QuocTich,
       // Email,
       LoaiKhachHang,
       onCancel,
@@ -63,14 +63,14 @@ class ModalThemKhachHang extends React.Component {
             this.handleThemKhachHang(values, onCancel)
           )}
         >
-          {/* <FormItem label="Giới Tính" {...this.formItemLayout}>
+          <FormItem label="Giới Tính" {...this.formItemLayout}>
             <RadioItem
               name="GioiTinh"
               type="radio"
               //    value={this.state.isFetching}
               component={RadioItem}
             />
-          </FormItem> */}
+          </FormItem>
 
           <FormItem label="Họ Tên" {...this.formItemLayout}>
             <Field
@@ -81,14 +81,14 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem>
 
-          <FormItem label="CMND" {...this.formItemLayout}>
+          {/* <FormItem label="Giới Tính" {...this.formItemLayout}>
             <Field
-              name="CMND"
+              name="GioiTinh"
               type="text"
               component={CustomInput}
-              placeholder="Nhập số CMND khách hàng"
+              placeholder="Nhập Giới Tính khách hàng"
             />
-          </FormItem>
+          </FormItem> */}
 
           {/* <FormItem label="Ngày Sinh" {...this.formItemLayout}>
             <Field
@@ -117,14 +117,14 @@ class ModalThemKhachHang extends React.Component {
             />
           </FormItem> */}
 
-          {/* <FormItem label="Quốc Tịch" {...this.formItemLayout}>
+          <FormItem label="Quốc Tịch" {...this.formItemLayout}>
             <Field
               name="QuocTich"
               type="text"
               component={CustomInput}
               placeholder="Nhập quốc tịch khách hàng"
             />
-          </FormItem> */}
+          </FormItem>
 
           <FormItem label="Loại Khách" {...this.formItemLayout}>
             <Field
@@ -163,5 +163,6 @@ class ModalThemKhachHang extends React.Component {
 
 export default reduxForm({
   form: "syncValidation", // a unique identifier for this form
-  validate // <--- validation function given to redux-form
+  validate, // <--- validation function given to redux-form
+  forceUnregisterOnUnmount: true,
 })(ModalThemKhachHang);

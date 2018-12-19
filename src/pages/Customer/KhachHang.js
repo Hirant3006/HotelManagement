@@ -16,15 +16,16 @@ export default class CustomTable extends Component {
     };
   }
   columns = [
-    {
-      title: "Loại Khách Hàng",
-      dataIndex: "LoaiKhachHang.TenLoaiKhach",
-      key: "TenLoaiKhach"
-    },
+  
     {
       title: "Họ Tên",
       dataIndex: "HoTen",
       key: "HoTen"
+    },
+    {
+      title: "Giới Tính",
+      dataIndex: "GioiTinh",
+      key: "GioiTinh"
     },
      {
       title: "Ngày sinh",
@@ -35,11 +36,11 @@ export default class CustomTable extends Component {
         return dateTime = moment(dateTime).format("DD-MM-YYYY");
       }
       },
-    {
-      title: "CMND",
-      dataIndex: "CMND",
-      key: "CMND"
-    },
+      {
+        title: "Loại Khách Hàng",
+        dataIndex: "LoaiKhachHang.TenLoaiKhach",
+        key: "TenLoaiKhach"
+      },
   ];
   handleOk = e => {
     console.log("Ok");
