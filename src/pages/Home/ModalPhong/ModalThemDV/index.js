@@ -1,114 +1,105 @@
 import React from "react";
-import { Form,Modal, Col, Row,List,Avatar,Spin,Table, Button, Icon} from "antd";
-///import datphong from "../../../reducers/datphong";
-import { Form as ReduxForm, Field, reduxForm  } from "redux-form";
-//import CustomInput from "../../../component/CustomInput";
-import { GET_LIST_DICHVU_REQUEST } from "../../../../actions/contstants";
-import { getListDVRequest } from "../../../../actions/dichvu";
-
+import { Field, reduxForm } from "redux-form";
+import { Modal, Row, Button, Form, Select, message } from "antd";
+import validate from "./validate";
+import CustomInput from "../../../../component/CustomInput";
 
 const FormItem = Form.Item;
-class ModalThemDV extends React.Component {
 
+class ModalThemDV extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      visible: false,
-     // visibleDatPhong:false,
-      visibleDichVu: false,
-      //visibleSuaLoaiPhong: false,
-      //dataSualoaiphong: {TenLoai:'',DonGia:0},
-    };
+    this.state = { DichVu: "" };
   }
 
-  columns = [
-    {
-      title: "Tên Dịch vụ",
-      dataIndex: "DichVu",
-      key: "DichVu"
+  formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 4 }
     },
-   
-  ]
-
-  handleOk = e => {
-    this.setState({
-      visible: false
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 20 }
+    }
+  };
+  handleRenderSelectDichvu = data =>
+    data.map(item => {
+      return (
+        <Select.Option name="DichVu" value={item._id}>
+          {item.TenDV}
+        </Select.Option>
+      );
     });
+
+  handleChangeDichVu = value => {
+    this.setState({ DichVu: value });
+    console.log(value);
   };
 
-  handleCancel = e => {
-    this.setState({
-      visible: false
-    });
-    this.props.reset('them-dichvu')
-  };
-
-  onToggleModal = e => {
-    this.setState({ visible: !this.state.visible });
- };
+  handleThemDichVu = value => {
+    const {addDichVuByPhongRequest,datphongbyphong,onCancelDichVu,getDatPhongByPhongRequest} = this.props;
+    const MaDatPhong = datphongbyphong.data._id;
+    addDichVuByPhongRequest(MaDatPhong,this.state.DichVu,value.SoLuong,onCancelDichVu,datphongbyphong,getDatPhongByPhongRequest)
+  }
 
   render() {
-    const { visible, onCancel, dataPhong, dataDV ,dichvu,datphongbyphong } = this.props;
-    //console.log("ModalDV :", this.props);
-    console.log("visible :", this.props);
+    const {
+      handleSubmit,
+      thanhtoan,
+      dichvu,
+      visibledichvu,
+      onCancelDichVu
+    } = this.props;
+    console.log("Modal thanh toan ", this.props);
+
     return (
-      
       <Modal
-        title={dataPhong != null ? dataPhong.SoPhong : "None"}
-        visible={visible}
+        title="Thêm dịch vụ"
+        visible={visibledichvu}
         onCancel={() => {
-          onCancel();
+          onCancelDichVu();
         }}
-       // footer={null}
-        width="80rem"
+        footer={null}
       >
-           <Row>        
-          <Col span={24}>
-            {datphongbyphong.data!=null ?(
-       
-        <div>Dịch Vụ
-               <Table
-            loading={dichvu.isFetching}
-            columns={this.columns}
-            dataSource={dichvu.listDV}
-            rowKey="_id"
-            pagination={{ pageSize: 5 }}
-            {...this.props}
-          />
-          
-
-          <Col >
-          <Button
-            type="primary"
-            onClick={this.onToggleModal}
-            style={{ float: "right", marginBottom: 10 }}
-          >
-            <Icon type="file-add" />
+        <Form onSubmit={handleSubmit(values => this.handleThemDichVu(values))}>
+          <FormItem label="Dịch vụ" {...this.formItemLayout}>
+            <Select
+              name="DichVu"
+              style={{ width: 200 }}
+              onChange={this.handleChangeDichVu}
+            >
+              {dichvu.listDV.length > 0
+                ? this.handleRenderSelectDichvu(dichvu.listDV)
+                : console.log("Không có list")}
+            </Select>
+          </FormItem>
+          <FormItem label="Số lượng" {...this.formItemLayout}>
+            <Field
+              name="SoLuong"
+              component={CustomInput}
+              placeholder="Số lượng"
+            />
+          </FormItem>
+          <Row type="flex" justify="end">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="button"
+              //   loading={adddatphong.isFetching} // true
+              //   disabled={adddatphong.isFetching}
+            >
+              Thêm
             </Button>
-         
- 
-        </Col>
-        {/* <Table
-          loading={datphongbyphong.isFetching}
-          columns={this.columns}
-          dataSource={datphongbyphong.data.ChiTietSuDungDichVu}
-          rowKey="_id"
-          pagination={{ pageSize: 5 }}
-          {...this.props}
-          /> */}
-        </div>
-                  ) : (
-                    <Spin/>
-                  )}
-          </Col>
-        </Row>
-     
-     </Modal>
-        
-
-         
+          </Row>
+        </Form>
+      </Modal>
     );
   }
 }
+
+ModalThemDV = reduxForm({
+  form: "dat-phong", // a unique identifier for this form
+  validate // <--- validation function given to redux-form
+})(ModalThemDV);
 
 export default ModalThemDV;

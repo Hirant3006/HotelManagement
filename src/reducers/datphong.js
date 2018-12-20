@@ -16,9 +16,15 @@ import {
   ADD_THANHTOAN_REQUEST,
   ADD_THANHTOAN_SUCCESS,
   ADD_THANHTOAN_FAILURE,
+  ADD_DICHVU_BY_PHONG_REQUEST,
+  ADD_DICHVU_BY_PHONG_SUCCESS,
+  ADD_DICHVU_BY_PHONG_FAILURE,
   CHECKOUT_DATPHONG_REQUEST,
   CHECKOUT_DATPHONG_SUCCESS,
-  CHECKOUT_DATPHONG_FAILURE
+  CHECKOUT_DATPHONG_FAILURE,
+  CHECKIN_DATPHONG_REQUEST,
+  CHECKIN_DATPHONG_SUCCESS,
+  CHECKIN_DATPHONG_FAILURE
 } from "../actions/contstants";
 
 const initialState = {
@@ -41,6 +47,12 @@ const initialState = {
     isFetching: false
   },
   checkoutdatphong: {
+    isFetching: false
+  },
+  checkindatphong: {
+    isFetching: false
+  },
+  adddichvubyphong: {
     isFetching: false
   },
   error: null
@@ -150,6 +162,26 @@ export default function(state = initialState, action) {
         },
         error: { $set: action.error }
       });
+    case ADD_DICHVU_BY_PHONG_REQUEST:
+      return update(state, {
+        adddichvubyphong: {
+          isFetching: { $set: true }
+        }
+      });
+    case ADD_DICHVU_BY_PHONG_SUCCESS:
+      return update(state, {
+        adddichvubyphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case ADD_DICHVU_BY_PHONG_FAILURE:
+      return update(state, {
+        adddichvubyphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
     case CHECKOUT_DATPHONG_REQUEST:
       return update(state, {
         checkoutdatphong: {
@@ -166,6 +198,26 @@ export default function(state = initialState, action) {
     case CHECKOUT_DATPHONG_FAILURE:
       return update(state, {
         checkoutdatphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
+    case CHECKIN_DATPHONG_REQUEST:
+      return update(state, {
+        checkindatphong: {
+          isFetching: { $set: true }
+        }
+      });
+    case CHECKIN_DATPHONG_SUCCESS:
+      return update(state, {
+        checkindatphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case CHECKIN_DATPHONG_FAILURE:
+      return update(state, {
+        checkindatphong: {
           isFetching: { $set: false }
         },
         error: { $set: action.error }

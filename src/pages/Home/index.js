@@ -8,17 +8,25 @@ import {
   addDatPhongRequest,
   getThanhToanByDatPhongRequest,
   addThanhToanRequest,
-  checkoutDatPhongRequest
+  checkoutDatPhongRequest,
+  checkinDatPhongRequest,
+  addDichVuByPhongRequest
 } from "../../actions/datphong";
 import { getListKhachHangRequest } from "../../actions/khachhang";
 import { getListDVRequest } from "../../actions/dichvu";
 import ModalPhong from "./ModalPhong";
 import ModalDatPhong from "./ModalDatPhong";
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js"
+});
 
 class Home extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      sophong: 0,
+      phongtrong: 0,
+      phongconguoi: 0,
       visibleModalPhong: false,
       visibleModalDatPhong: false,
       visibleModalThanhToan: false
@@ -28,6 +36,7 @@ class Home extends React.PureComponent {
   componentDidMount() {
     this.props.getListKhachHangRequest();
     this.props.getListPhongRequest();
+    this.props.getListDVRequest();
   }
 
   handleOnclick = data => {
@@ -77,7 +86,9 @@ class Home extends React.PureComponent {
               this.props.getDatPhongByPhongRequest(item._id);
             }}
           >
-            {item.SoPhong} ({item.LoaiPhong.TenLoaiPhong})
+            {item.SoPhong}
+            <hr />
+            {item.LoaiPhong.TenLoaiPhong}
           </Card.Grid>
         );
       else
@@ -97,13 +108,33 @@ class Home extends React.PureComponent {
               this.props.getDatPhongByPhongRequest(item._id);
             }}
           >
-            {item.SoPhong} ({item.LoaiPhong.TenLoaiPhong})
+            {item.SoPhong}
+            <hr />
+            {item.LoaiPhong.TenLoaiPhong}
           </Card.Grid>
         );
     });
 
   render() {
     const { phong, dataPhong, datphongbyphong } = this.props;
+    if (phong.listPhong.length !== 0) {
+      console.log(phong);
+      console.log(phong.listPhong.length);
+      let phongtrong = 0;
+      let phongconguoi = 0;
+      // const listphong= phong.listphong;
+      console.log(phong.listPhong);
+      for (let i=0;i<phong.listPhong.length;i++) {
+        if (phong.listPhong[i].TrangThai === "true") {
+          phongtrong++;
+        } else phongconguoi++;
+      }
+      this.setState({
+        phongtrong,
+        phongconguoi,
+        sophong: phong.listPhong.length
+      });
+    }
     console.log("List props ", this.props);
     return (
       <div>
@@ -129,17 +160,38 @@ class Home extends React.PureComponent {
               >
                 Đặt phòng
               </Button>
-              <Button
-                style={{
-                  float: "right",
-                  marginBottom: "0.5rem",
-                  width: "6rem"
-                }}
-                onClick={this.ontoggleModalThanhToanOpen}
-              >
-                Thanh toán
-              </Button>
             </Row>
+            <div
+              style={{
+                float: "right",
+                marginBottom: "0.5rem",
+                width: "6rem",
+                fontSize: "8pt"
+              }}
+            >
+              {/* Trạng Thái :
+              <Icon type="file" style={{fontSize:"16px",color:"#A8FFD4"}}  /> */}
+              <table class="src">
+                <tbody>
+                  <tr>
+                    <th width="70%">Tình trạng</th>
+                    <th width="30%" />
+                  </tr>
+                  <tr>
+                    <td>Phòng: </td>
+                    <td>{this.state.sophong}</td>
+                  </tr>
+                  <tr>
+                    <td>Trống: </td>
+                    <td>{this.state.phongtrong}</td>
+                  </tr>
+                  <tr>
+                    <td>Đầy:</td>
+                    <td>{this.state.phongconguoi}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <div
               style={{
                 float: "right",
@@ -199,7 +251,9 @@ const mapStateToProps = state => {
     dichvu: state.dichvu.dichvu,
     thanhtoan: state.datphong.thanhtoanbydatphong,
     addtthanhtoan: state.datphong.addtthanhtoan,
-    checkoutdatphong : state.datphong.checkoutdatphong
+    checkoutdatphong: state.datphong.checkoutdatphong,
+    checkindatphong: state.datphong.checkindatphong,
+    adddichvubyphong: state.datphong.adddichvubyphong
   };
 };
 
@@ -213,7 +267,9 @@ const mapDispatchToProps = {
   addDatPhongRequest,
   getListDVRequest,
   getThanhToanByDatPhongRequest,
-  checkoutDatPhongRequest
+  checkoutDatPhongRequest,
+  checkinDatPhongRequest,
+  addDichVuByPhongRequest
 };
 
 export default connect(

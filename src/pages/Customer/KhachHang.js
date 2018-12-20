@@ -23,7 +23,10 @@ export default class CustomTable extends Component {
     {
       title: "Giới Tính",
       dataIndex: "GioiTinh",
-      key: "GioiTinh"
+      key: "GioiTinh",
+      render: gioitinh =>{
+        if (gioitinh==false) {return "Nữ"} else return "Nam"
+      }
     },
     {
       title: "Ngày sinh",

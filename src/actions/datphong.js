@@ -14,12 +14,18 @@ import {
   ADD_DATPHONG_REQUEST,
   ADD_DATPHONG_SUCCESS,
   ADD_DATPHONG_FAILURE,
+  ADD_DICHVU_BY_PHONG_REQUEST,
+  ADD_DICHVU_BY_PHONG_SUCCESS,
+  ADD_DICHVU_BY_PHONG_FAILURE,
   ADD_THANHTOAN_REQUEST,
   ADD_THANHTOAN_SUCCESS,
   ADD_THANHTOAN_FAILURE,
   CHECKOUT_DATPHONG_REQUEST,
   CHECKOUT_DATPHONG_SUCCESS,
-  CHECKOUT_DATPHONG_FAILURE
+  CHECKOUT_DATPHONG_FAILURE,
+  CHECKIN_DATPHONG_REQUEST,
+  CHECKIN_DATPHONG_SUCCESS,
+  CHECKIN_DATPHONG_FAILURE
 } from "./contstants";
 
 export const getDatPhongRequest = () => async dispatch => {
@@ -34,6 +40,33 @@ export const getDatPhongRequest = () => async dispatch => {
   } else
     dispatch({
       type: GET_DATPHONG_FAILURE
+    });
+};
+
+export const addDichVuByPhongRequest = (
+  MaDatPhong,
+  DichVu,
+  SoLuong,
+  onCancelDichVu,
+  datphongbyphong,
+  getDatPhongByPhongRequest
+) => async dispatch => {
+  dispatch({ type: ADD_DICHVU_BY_PHONG_REQUEST });
+  const res = await axios.post(
+    keys.backend + "/datphong/" + MaDatPhong + "/dichvu/",
+    { DichVu, SoLuong }
+  );
+
+  if ((res.status = 201)) {
+    dispatch({
+      type: ADD_DICHVU_BY_PHONG_SUCCESS
+    });
+    message.success("Thêm dịch vụ thành công");
+    getDatPhongByPhongRequest(datphongbyphong.data.Phong._id);
+    onCancelDichVu();
+  } else
+    dispatch({
+      type: ADD_DICHVU_BY_PHONG_FAILURE
     });
 };
 
@@ -77,6 +110,29 @@ export const checkoutDatPhongRequest = (
     });
 };
 
+export const checkinDatPhongRequest = (
+  MaDatPhong,
+  onCancel,
+  getListPhongRequest
+) => async dispatch => {
+  dispatch({ type: CHECKIN_DATPHONG_REQUEST });
+  const res = await axios.post(
+    keys.backend + "/datphong/" + MaDatPhong + "/checkin"
+  );
+
+  if ((res.status = 200)) {
+    dispatch({
+      type: CHECKIN_DATPHONG_SUCCESS
+    });
+    message.success("Checkin thành công");
+    getListPhongRequest();
+    onCancel();
+  } else
+    dispatch({
+      type: CHECKIN_DATPHONG_FAILURE
+    });
+};
+
 export const addThanhToanRequest = (
   MaDatPhong,
   TongTienThu,
@@ -84,7 +140,8 @@ export const addThanhToanRequest = (
   TienPhong,
   TienDaTra,
   onCancelThanhToan,
-  getListPhongRequest
+  getListPhongRequest,
+  onCancel
 ) => async dispatch => {
   dispatch({ type: ADD_THANHTOAN_REQUEST });
   const res = await axios.post(
@@ -104,6 +161,7 @@ export const addThanhToanRequest = (
     message.success("Thanh toán thành công");
     getListPhongRequest();
     onCancelThanhToan();
+    onCancel();
   } else
     dispatch({
       type: ADD_THANHTOAN_FAILURE

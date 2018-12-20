@@ -24,11 +24,10 @@ class ModalPhong extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      visibleDichVu: false,
       visible: false,
       visibleDatPhong: false,
       visibleModalThanhToan: false
-      //visibleSuaLoaiPhong: false,
-      //dataSualoaiphong: {TenLoai:'',DonGia:0},
     };
   }
 
@@ -85,8 +84,17 @@ class ModalPhong extends React.Component {
     this.setState({ visible: !this.state.visible });
   };
 
-  onToggleModalThemDV = e => {
-    this.setState({ visibleDichVu: !this.state.visibleDichVu });
+  onToggleModalThemDichVuOpen = () => {
+    console.log("Ontoggle them dich vu");
+    this.setState({
+      visibleDichVu: true
+    });
+  };
+
+  onToggleModalThemDichVuClose = () => {
+    this.setState({
+      visibleDichVu: false
+    });
   };
 
   ontoggleModalThanhToanOpen = () => {
@@ -104,9 +112,32 @@ class ModalPhong extends React.Component {
   };
 
   handleCheckout = () => {
-    const {datphongbyphong,onCancel,getListPhongRequest,checkoutDatPhongRequest} = this.props;
-    checkoutDatPhongRequest(datphongbyphong.data._id,onCancel,getListPhongRequest);
-  }
+    const {
+      datphongbyphong,
+      onCancel,
+      getListPhongRequest,
+      checkoutDatPhongRequest
+    } = this.props;
+    checkoutDatPhongRequest(
+      datphongbyphong.data._id,
+      onCancel,
+      getListPhongRequest
+    );
+  };
+
+  handleCheckIn = () => {
+    const {
+      datphongbyphong,
+      onCancel,
+      getListPhongRequest,
+      checkinDatPhongRequest
+    } = this.props;
+    checkinDatPhongRequest(
+      datphongbyphong.data._id,
+      onCancel,
+      getListPhongRequest
+    );
+  };
 
   render() {
     const {
@@ -118,9 +149,11 @@ class ModalPhong extends React.Component {
       getThanhToanByDatPhongRequest,
       checkoutdatphong
     } = this.props;
+    var NgayCheckin = "";
     console.log("ModalPhong :", this.props);
     if (datphongbyphong.data != null) {
       var NgayDen = new Date(datphongbyphong.data.NgayDen);
+      console.log(NgayDen);
       var NgayDi = new Date(datphongbyphong.data.NgayDi);
       NgayDen = moment(NgayDen).format("DD-MM-YYYY");
       NgayDi = moment(NgayDi).format("DD-MM-YYYY");
@@ -150,60 +183,96 @@ class ModalPhong extends React.Component {
               <div>
                 {datphongbyphong.data.length != 0 ? (
                   <div>
+                    <Button
+                      type="primary"
+                      style={{
+                        float: "right",
+                        marginBottom: "0.5rem",
+                        width: "6rem"
+                      }}
+                      onClick={this.onToggleModalThemDichVuOpen}
+                    >
+                      DV mới
+                    </Button>
                     {datphongbyphong.data.PhieuThanhToan.length === 0 ? (
-                      <div>
-                        <Button
-                          type="primary"
-                          style={{
-                            float: "right",
-                            marginBottom: "0.5rem",
-                            width: "6rem"
-                          }}
-                          onClick={this.ontoggleModalThanhToanOpen}
-                        >
-                          Thanh toán
-                        </Button>
-                          <Button
-                            type="primary"
-                            style={{
-                              float: "right",
-                              marginBottom: "0.5rem",
-                              marginRight: "0.5rem",
-                              width: "6rem"
-                            }}
-                            onClick={this.handleCheckout}
-                          >
-                            Checkout
-                          </Button>
-                      </div>
+                      <Button
+                        type="primary"
+                        style={{
+                          float: "right",
+                          marginBottom: "0.5rem",
+                          width: "6rem"
+                        }}
+                        onClick={this.ontoggleModalThanhToanOpen}
+                      >
+                        Thanh toán
+                      </Button>
                     ) : (
-                      <div>
-                        <Button
-                          type="danger"
-                          style={{
-                            float: "right",
-                            marginBottom: "0.5rem",
-                            width: "6rem"
-                          }}
-                          disabled={true}
-                        >
-                          Thanh toán
-                        </Button>
-                        <Button
-                          type="primary"
-                          style={{
-                            float: "right",
-                            marginBottom: "0.5rem",
-                            marginRight: "0.5rem",
-                            width: "6rem"
-                          }}
-                          onClick={this.handleCheckout}
-                          loading={checkoutdatphong.isFetching}
-                          disabled={checkoutdatphong.isFetching}
-                        >
-                          Checkout
-                        </Button>
-                      </div>
+                      <Button
+                        type="primary"
+                        style={{
+                          float: "right",
+                          marginBottom: "0.5rem",
+                          width: "6rem"
+                        }}
+                        disabled={true}
+                      >
+                        Thanh toán
+                      </Button>
+                    )}
+                    {datphongbyphong.data.Checkin === null ? (
+                      <Button
+                        type="primary"
+                        style={{
+                          float: "right",
+                          marginBottom: "0.5rem",
+                          marginRight: "0.5rem",
+                          width: "6rem"
+                        }}
+                        onClick={this.handleCheckIn}
+                      >
+                        Checkin
+                      </Button>
+                    ) : (
+                      <Button
+                        type="primary"
+                        style={{
+                          float: "right",
+                          marginBottom: "0.5rem",
+                          marginRight: "0.5rem",
+                          width: "6rem"
+                        }}
+                        disabled={true}
+                      >
+                        Checkin
+                      </Button>
+                    )}
+                    {datphongbyphong.data.Checkin !== null &&
+                    datphongbyphong.data.PhieuThanhToan.length !== 0 ? (
+                      <Button
+                        type="primary"
+                        style={{
+                          float: "right",
+                          marginBottom: "0.5rem",
+                          marginRight: "0.5rem",
+                          width: "6rem"
+                        }}
+                        onClick={this.handleCheckout}
+                      >
+                        Checkout
+                      </Button>
+                    ) : (
+                      <Button
+                        type="primary"
+                        style={{
+                          float: "right",
+                          marginBottom: "0.5rem",
+                          marginRight: "0.5rem",
+                          width: "6rem"
+                        }}
+                        disabled={true}
+                      >
+                        Checkout
+                      </Button>
                     )}
                     Khách hàng : {datphongbyphong.data.KhachHang.HoTen}
                     <hr />
@@ -211,19 +280,16 @@ class ModalPhong extends React.Component {
                     <hr />
                     Ngày Đi : {NgayDi}
                     <hr />
+                    Ngày Checkin :{" "}
+                    {moment(new Date(datphongbyphong.data.Checkin)).format(
+                      "DD-MM-YYYY HH:mm"
+                    )}
+                    <hr />
                     Đặt Cọc : {datphongbyphong.data.DatCoc}
                     <hr />
                     Chi Tiết Dịch Vụ
                     <br />
-                    <Col>
-                      <Button
-                        type="primary"
-                        onClick={this.onToggleModal}
-                        style={{ float: "right", marginBottom: 10 }}
-                      >
-                        <Icon type="file-add" />
-                      </Button>
-                    </Col>
+                    
                     <Table
                       loading={datphongbyphong.isFetching}
                       columns={this.columns}
@@ -232,6 +298,7 @@ class ModalPhong extends React.Component {
                       pagination={{ pageSize: 5 }}
                       {...this.props}
                     />
+                    
                   </div>
                 ) : (
                   <div>Phòng trống</div>
@@ -243,20 +310,19 @@ class ModalPhong extends React.Component {
           </Col>
         </Row>
         <ModalThanhToan
-          visible={this.state.visibleModalThanhToan}
           visiblethanhtoan={this.state.visibleModalThanhToan}
           showModalThanhToan={this.ontoggleModalThanhToanOpen}
           onCancelThanhToan={this.ontoggleModalThanhToanClose}
           {...this.props}
         />
+        <ModalThemDV
+          visibledichvu={this.state.visibleDichVu}
+          onCancelDichVu={this.onToggleModalThemDichVuClose}
+          showModalDichVu={this.onToggleModalThemDichVuOpen}
+          {...this.props}
+        />
       </Modal>
     );
-    //   <ModalThemDV
-    //   visible={this.visibleDichVu}
-    //   onCancel={this.handleCancelThemDV}
-    //   onOk={this.handleOkThemDV}
-    //   {...this.props}
-    // />
   }
 }
 
