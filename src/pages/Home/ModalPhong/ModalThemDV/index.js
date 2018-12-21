@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Modal, Row, Button, Form, Select, message } from "antd";
-import validate from "./validate";
+import validate from "../../../Booking/TrucTuyen/ModalXacNhan/validate";
 import CustomInput from "../../../../component/CustomInput";
 
 const FormItem = Form.Item;

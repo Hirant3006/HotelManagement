@@ -5,6 +5,9 @@ import {
   GET_DATPHONG_REQUEST,
   GET_DATPHONG_SUCCESS,
   GET_DATPHONG_FAILURE,
+  GET_DATPHONG_ONLINE_REQUEST,
+  GET_DATPHONG_ONLINE_SUCCESS,
+  GET_DATPHONG_ONLINE_FAILURE,
   GET_DATPHONG_BY_PHONG_REQUEST,
   GET_DATPHONG_BY_PHONG_SUCCESS,
   GET_DATPHONG_BY_PHONG_FAILURE,
@@ -25,8 +28,31 @@ import {
   CHECKOUT_DATPHONG_FAILURE,
   CHECKIN_DATPHONG_REQUEST,
   CHECKIN_DATPHONG_SUCCESS,
-  CHECKIN_DATPHONG_FAILURE
+  CHECKIN_DATPHONG_FAILURE,
+  CONFIRM_BOOKING_REQUEST,
+  CONFIRM_BOOKING_SUCCESS,
+  CONFIRM_BOOKING_FAILURE
 } from "./contstants";
+
+export const comfirmBookingRequest = (id, DatCoc,onCancel,getDatPhongOnlineRequest) => async dispatch => {
+  dispatch({ type: CONFIRM_BOOKING_REQUEST });
+  const Step =2;
+  const res = await axios.post(keys.backend + "/online2/" + id, {
+    DatCoc,Step
+  });
+
+  if ((res.status = 201)) {
+    dispatch({
+      type: CONFIRM_BOOKING_SUCCESS
+    });
+    message.success("Xác nhận book online thành công");
+    getDatPhongOnlineRequest();
+    onCancel();
+  } else
+    dispatch({
+      type: CONFIRM_BOOKING_FAILURE
+    });
+};
 
 export const getDatPhongRequest = () => async dispatch => {
   dispatch({ type: GET_DATPHONG_REQUEST });
@@ -40,6 +66,21 @@ export const getDatPhongRequest = () => async dispatch => {
   } else
     dispatch({
       type: GET_DATPHONG_FAILURE
+    });
+};
+
+export const getDatPhongOnlineRequest = () => async dispatch => {
+  dispatch({ type: GET_DATPHONG_ONLINE_REQUEST });
+  const res = await axios.get(keys.backend + "/online");
+
+  if ((res.status = 200)) {
+    dispatch({
+      type: GET_DATPHONG_ONLINE_SUCCESS,
+      listdatphongonline: res.data
+    });
+  } else
+    dispatch({
+      type: GET_DATPHONG_ONLINE_FAILURE
     });
 };
 

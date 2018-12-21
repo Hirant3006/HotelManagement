@@ -5,6 +5,9 @@ import {
   GET_LIST_LOAI_PHONG_REQUEST,
   GET_LIST_LOAI_PHONG_SUCCESS,
   GET_LIST_LOAI_PHONG_FAILURE,
+  GET_PHONG_REQUEST,
+  GET_PHONG_SUCCESS,
+  GET_PHONG_FAILURE,
   ADD_LOAI_PHONG_REQUEST,
   ADD_LOAI_PHONG_SUCCESS,
   ADD_LOAI_PHONG_FAILURE,
@@ -47,6 +50,22 @@ export const getListLoaiPhongRequest = () => async dispatch => {
   else {
     dispatch({
       type: GET_LIST_LOAI_PHONG_FAILURE
+    });
+  }
+};
+
+export const getPhongRequest = (id) => async dispatch => {
+  dispatch({ type: GET_PHONG_REQUEST });
+  const res = await axios.get(keys.backend + "/phong/"+id);
+
+  if ((res.status = 200))
+    dispatch({
+      type: GET_PHONG_SUCCESS,
+      dataPhong: res.data
+    });
+  else {
+    dispatch({
+      type: GET_PHONG_FAILURE
     });
   }
 };

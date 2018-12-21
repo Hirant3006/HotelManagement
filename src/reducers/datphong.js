@@ -4,6 +4,9 @@ import {
   GET_DATPHONG_REQUEST,
   GET_DATPHONG_SUCCESS,
   GET_DATPHONG_FAILURE,
+  GET_DATPHONG_ONLINE_REQUEST,
+  GET_DATPHONG_ONLINE_SUCCESS,
+  GET_DATPHONG_ONLINE_FAILURE,
   GET_DATPHONG_BY_PHONG_REQUEST,
   GET_DATPHONG_BY_PHONG_SUCCESS,
   GET_DATPHONG_BY_PHONG_FAILURE,
@@ -24,11 +27,18 @@ import {
   CHECKOUT_DATPHONG_FAILURE,
   CHECKIN_DATPHONG_REQUEST,
   CHECKIN_DATPHONG_SUCCESS,
-  CHECKIN_DATPHONG_FAILURE
+  CHECKIN_DATPHONG_FAILURE,
+  CONFIRM_BOOKING_REQUEST,
+  CONFIRM_BOOKING_SUCCESS,
+  CONFIRM_BOOKING_FAILURE
 } from "../actions/contstants";
 
 const initialState = {
   datphong: {
+    data: null,
+    isFetching: false
+  },
+  datphongonline: {
     data: null,
     isFetching: false
   },
@@ -55,6 +65,9 @@ const initialState = {
   adddichvubyphong: {
     isFetching: false
   },
+  confirmbooking: {
+    isFetching: false
+  },
   error: null
 };
 export default function(state = initialState, action) {
@@ -76,6 +89,47 @@ export default function(state = initialState, action) {
     case GET_DATPHONG_FAILURE:
       return update(state, {
         datphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
+    case CONFIRM_BOOKING_REQUEST:
+      return update(state, {
+        confirmbooking: {
+          isFetching: { $set: true }
+        }
+      });
+    case CONFIRM_BOOKING_SUCCESS:
+      return update(state, {
+        confirmbooking: {
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case CONFIRM_BOOKING_FAILURE:
+      return update(state, {
+        confirmbooking: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
+    case GET_DATPHONG_ONLINE_REQUEST:
+      return update(state, {
+        datphongonline: {
+          isFetching: { $set: true }
+        }
+      });
+    case GET_DATPHONG_ONLINE_SUCCESS:
+      return update(state, {
+        datphongonline: {
+          data: { $set: action.listdatphongonline },
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case GET_DATPHONG_ONLINE_FAILURE:
+      return update(state, {
+        datphongonline: {
           isFetching: { $set: false }
         },
         error: { $set: action.error }

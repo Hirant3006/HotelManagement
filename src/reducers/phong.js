@@ -4,6 +4,9 @@ import {
   GET_LIST_LOAI_PHONG_REQUEST,
   GET_LIST_LOAI_PHONG_SUCCESS,
   GET_LIST_LOAI_PHONG_FAILURE,
+  GET_PHONG_REQUEST,
+  GET_PHONG_SUCCESS,
+  GET_PHONG_FAILURE,
   GET_LIST_PHONG_REQUEST,
   GET_LIST_PHONG_SUCCESS,
   GET_LIST_PHONG_FAILURE,
@@ -19,7 +22,6 @@ import {
   UPDATE_LOAI_PHONG_THEO_ID_REQUEST,
   UPDATE_LOAI_PHONG_THEO_ID_SUCCESS,
   UPDATE_LOAI_PHONG_THEO_ID_FAILURE,
-
   ADD_PHONG_REQUEST,
   ADD_PHONG_SUCCESS,
   ADD_PHONG_FAILURE,
@@ -33,14 +35,15 @@ import {
   UPDATE_PHONG_THEO_ID_SUCCESS,
   UPDATE_PHONG_THEO_ID_FAILURE,
   PICK_CARD_PHONG
-
-
-
 } from "../actions/contstants";
 
 const initialState = {
   loaiphong: {
     listloaiPhong: [],
+    isFetching: false
+  },
+  phongbyid: {
+    phong: null,
     isFetching: false
   },
   phong: {
@@ -80,7 +83,7 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GET_LIST_LOAI_PHONG_REQUEST:
       return update(state, {
-        phong: {
+        loaiphong: {
           isFetching: { $set: true }
         }
       });
@@ -95,6 +98,27 @@ export default function(state = initialState, action) {
     case GET_LIST_LOAI_PHONG_FAILURE:
       return update(state, {
         loaiphong: {
+          isFetching: { $set: false }
+        },
+        error: { $set: action.error }
+      });
+    case GET_PHONG_REQUEST:
+      return update(state, {
+        phongbyid: {
+          isFetching: { $set: true }
+        }
+      });
+    case GET_PHONG_SUCCESS:
+      return update(state, {
+        phongbyid: {
+          phong: { $set: action.dataPhong },
+          isFetching: { $set: false }
+        },
+        error: { $set: null }
+      });
+    case GET_PHONG_FAILURE:
+      return update(state, {
+        phongbyid: {
           isFetching: { $set: false }
         },
         error: { $set: action.error }
@@ -203,8 +227,8 @@ export default function(state = initialState, action) {
         },
         error: { $set: action.error }
       });
-      //=========================================================//
-      case ADD_PHONG_REQUEST:
+    //=========================================================//
+    case ADD_PHONG_REQUEST:
       return update(state, {
         addphong: {
           isFetching: { $set: true }

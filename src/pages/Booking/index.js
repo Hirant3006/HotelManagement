@@ -4,8 +4,18 @@ import { reset } from "redux-form";
 
 import { Tabs } from "antd";
 //import Phong from './Phong'
-import { getDatPhongRequest } from "../../actions/datphong";
-import Quay from './Quay';
+import {
+  getDatPhongRequest,
+  getDatPhongOnlineRequest,
+  comfirmBookingRequest
+} from "../../actions/datphong";
+
+import {
+  getPhongRequest
+} from "../../actions/phong";
+
+import Quay from "./Quay"
+import TrucTuyen from "./TrucTuyen";
 
 const TabPane = Tabs.TabPane;
 
@@ -16,8 +26,9 @@ class Booking extends React.Component {
   }
 
   componentDidMount() {
-    const { getDatPhongRequest } = this.props;
+    const { getDatPhongRequest, getDatPhongOnlineRequest } = this.props;
     getDatPhongRequest();
+    getDatPhongOnlineRequest();
   }
 
   render() {
@@ -26,10 +37,10 @@ class Booking extends React.Component {
     return (
       <Tabs defaultActiveKey="1">
         <TabPane tab="Quầy" key="1">
-          <Quay {...this.props}/> 
+          <Quay {...this.props} />
         </TabPane>
         <TabPane tab="Trực tuyến" key="2">
-          {/* <LoaiThietBi {...this.props} /> */}
+          <TrucTuyen {...this.props} />
         </TabPane>
       </Tabs>
     );
@@ -38,12 +49,18 @@ class Booking extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    datphong: state.datphong.datphong
+    datphong: state.datphong.datphong,
+    datphongonline: state.datphong.datphongonline,
+    phongbyid: state.phong.phongbyid,
+    confirmbooking: state.datphong.confirmbooking
   };
 };
 
 const mapDispatchToProps = {
-  getDatPhongRequest
+  getDatPhongRequest,
+  getDatPhongOnlineRequest,
+  getPhongRequest,
+  comfirmBookingRequest
 };
 
 export default connect(
