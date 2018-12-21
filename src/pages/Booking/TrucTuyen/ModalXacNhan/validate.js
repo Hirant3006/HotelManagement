@@ -9,9 +9,10 @@ const validate = values => {
   }
   if (!values.tiencoc) {
     errors.tiencoc = "Không được bỏ trống ô này";
-  } else if (isNaN(Number(values.dongia))) {
-    errors.tiencoc = "Đơn giá phải là một con số";
-  }
+  } 
+  // else if (isNaN(Number(values.dongia))) {
+  //   errors.tiencoc = "Đơn giá phải là một con số";
+  // }
   return errors;
 };
 
