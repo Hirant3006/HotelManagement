@@ -210,7 +210,7 @@ class Home extends React.PureComponent {
                   </tr>
                   <tr>
                     <td bgcolor="#A8FFD4">&nbsp;</td>
-                    <td>Trống</td>{" "}
+                    <td>Trống</td>
                   </tr>
                   <tr>
                     <td bgcolor="#FFFA51">&nbsp;</td>
