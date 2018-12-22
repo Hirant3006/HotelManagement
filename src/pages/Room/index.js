@@ -12,6 +12,7 @@ import {
   deleteLoaiPhongTheoIdRequest,
   updateLoaiPhongTheoIdRequest,
   addPhongRequest,
+  deletePhongTheoIdRequest
 } from "../../actions/phong";
 
 const TabPane = Tabs.TabPane;
@@ -53,6 +54,7 @@ const mapStateToProps = state => {
     deleteloaiphong: state.phong.deleteloaiphong,
     updateloaiphong: state.phong.updateloaiphong,
     addphong : state.phong.addphong,
+    deletephong : state.phong.deletephong
   };
 };
 
@@ -64,6 +66,7 @@ const mapDispatchToProps = {
   deleteLoaiPhongTheoIdRequest,
   updateLoaiPhongTheoIdRequest,
   addPhongRequest,
+  deletePhongTheoIdRequest,
   reset
 };
 

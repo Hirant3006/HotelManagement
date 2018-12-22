@@ -1,12 +1,18 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { Modal, Row, Button, Form } from "antd";
+import { Modal, Row, Button, Form ,Select} from "antd";
 import CustomInput from '../../../../component/CustomInput'
 import validate from './validate'
 const FormItem = Form.Item;
 
 
 class ModalThemPhong extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      LoaiPhong: "",
+    };
+  }
   formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -18,35 +24,48 @@ class ModalThemPhong extends React.Component {
     }
   };
 
-  handleThemPhong = (values,onCancel) => {
+  handleThemPhong = (values) => {
     console.log(values);
-    const { addPhongRequest,getListPhongRequest } = this.props;
+    const { addPhongRequest,getListPhongRequest,onCancel } = this.props;
     const Tang = values.Tang;
     const SoPhong = values.SoPhong;
-    const LoaiPhong = values.LoaiPhong;
-    const ChiTietThietBi = values.ChiTietThietBi;
-    addPhongRequest(Tang,SoPhong,LoaiPhong,ChiTietThietBi,onCancel,getListPhongRequest);
+    const LoaiPhong = this.state.LoaiPhong;
+    addPhongRequest(Tang,SoPhong,LoaiPhong,onCancel,getListPhongRequest);
   };
 
+  handleChangeLoaiPhong = value => {
+    this.setState({ LoaiPhong: value });
+  };
+
+
+  handleRenderSelectLoaiPhong = data =>
+    data.map(item => {
+      return (
+        <Select.Option name="TenLoaiPhong" value={item._id}>
+          {item.TenLoaiPhong}
+        </Select.Option>
+      );
+    });
+
+
   render() {
-    const { handleSubmit, visible, onCancel, addphong} = this.props;
+    const { handleSubmit, visible, onCancel, addphong,loaiphong} = this.props;
     return (
       <Modal
-        title="Tạo  phòng "
+        title="Tạo phòng "
         visible={visible}
         onCancel={() => 
           {
           onCancel();   
         }}
-       // footer={null}
+       footer={null}
       >
         <Form
-          onSubmit={handleSubmit(values => this.handleThemPhong(values,onCancel))}
+          onSubmit={handleSubmit(values => this.handleThemPhong(values))}
         >
           <FormItem label="Tầng" {...this.formItemLayout}>
             <Field
               name="Tang"
-              type="text"
               component={CustomInput}
               placeholder="Nhập Tầng"
             />
@@ -55,29 +74,24 @@ class ModalThemPhong extends React.Component {
           <FormItem label="Số Phòng" {...this.formItemLayout}>
             <Field
               name="SoPhong"
-              type="number"
               component={CustomInput}
               placeholder="Nhập số phòng"
             />
           </FormItem>
 
            <FormItem label="Loại Phòng" {...this.formItemLayout}>
-            <Field
+           <Select
               name="LoaiPhong"
-              type="text"
-              component={CustomInput}
-              placeholder="Nhập loại phòng"
-            />
+              style={{ width: 200 }}
+              onChange={this.handleChangeLoaiPhong}
+            >
+              {loaiphong.listloaiPhong.length > 0
+                ? this.handleRenderSelectLoaiPhong(loaiphong.listloaiPhong)
+                : console.log("Không có list")}
+            </Select>
           </FormItem>
 
-          <FormItem label="Chi Tiết TB" {...this.formItemLayout}>
-            <Field
-              name="ChiTietThietBi"
-              type="text"
-              component={CustomInput}
-              placeholder="Nhập Chi Tiết TB"
-            />
-          </FormItem>
+          
 
           {/* <Field name="age" type="number" component={renderField} label="Age" /> */}
           <Row type="flex" justify="end">

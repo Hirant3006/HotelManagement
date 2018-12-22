@@ -65,7 +65,7 @@ export default class CustomTable extends Component {
         return (
           <div>
             {record.Step === 2 ? (
-              <div>Đã xác nhận  </div>
+              <div>Đã xác nhận </div>
             ) : (
               <span>
                 <a onClick={() => this.onToggleModalXacNhanOpen(record)}>
@@ -73,6 +73,8 @@ export default class CustomTable extends Component {
                 </a>
               </span>
             )}
+            <Divider type="vertical" />
+
             <Popconfirm
               title="Bạn có chắc muốn xóa đơn này?"
               onConfirm={() => this.handelDeleteBooking(record)}

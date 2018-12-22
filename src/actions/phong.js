@@ -54,9 +54,9 @@ export const getListLoaiPhongRequest = () => async dispatch => {
   }
 };
 
-export const getPhongRequest = (id) => async dispatch => {
+export const getPhongRequest = id => async dispatch => {
   dispatch({ type: GET_PHONG_REQUEST });
-  const res = await axios.get(keys.backend + "/phong/"+id);
+  const res = await axios.get(keys.backend + "/phong/" + id);
 
   if ((res.status = 200))
     dispatch({
@@ -70,9 +70,12 @@ export const getPhongRequest = (id) => async dispatch => {
   }
 };
 
-export const getListPhongRequest = () => async dispatch => {
+export const getListPhongRequest = option => async dispatch => {
   dispatch({ type: GET_LIST_PHONG_REQUEST });
-  const res = await axios.get(keys.backend + "/phong");
+  let res;
+  if (option !== undefined) {
+    res = await axios.get(keys.backend + "/phong2");
+  } else res = await axios.get(keys.backend + "/phong");
 
   if ((res.status = 200))
     dispatch({
@@ -184,29 +187,26 @@ export function pickCardPhong(data) {
     //     dataPhong: null
     //   });
     // } else
-      dispatch({
-        type: PICK_CARD_PHONG,
-        dataPhong: data
-      });
+    dispatch({
+      type: PICK_CARD_PHONG,
+      dataPhong: data
+    });
   };
 }
 //============================================================================//
 export const addPhongRequest = (
   Tang,
-  TrangThai,
   SoPhong,
   LoaiPhong,
-  ChiTietThietBi,
   onCancel,
   getListPhongRequest
 ) => async (dispatch, getState) => {
   dispatch({ type: ADD_PHONG_REQUEST });
   const res = await axios.post(keys.backend + "/phong", {
     Tang,
-  TrangThai,
-  SoPhong,
-  LoaiPhong,
-  ChiTietThietBi
+    SoPhong,
+    LoaiPhong,
+    TrangThai: true
   });
   if ((res.status = 200)) {
     dispatch({
@@ -238,10 +238,10 @@ export const findPhongTheoIdRequest = id => async (dispatch, getState) => {
     });
 };
 
-export const deletePhongTheoIdRequest = (
-  id,
-  getListPhongRequest
-) => async (dispatch, getState) => {
+export const deletePhongTheoIdRequest = (id, getListPhongRequest) => async (
+  dispatch,
+  getState
+) => {
   dispatch({ type: DELETE_PHONG_THEO_ID_REQUEST });
   const res = await axios.delete(keys.backend + "/phong/" + id);
 
@@ -250,7 +250,7 @@ export const deletePhongTheoIdRequest = (
       type: DELETE_PHONG_THEO_ID_SUCCESS
     });
     message.success("Xóa phòng thành công");
-    getListPhongRequest();
+    getListPhongRequest(1);
   } else
     dispatch({
       type: DELETE_PHONG_THEO_ID_FAILURE
@@ -270,10 +270,10 @@ export const updatePhongTheoIdRequest = (
   const res = await axios.put(keys.backend + "/phong", {
     _id,
     Tang,
-  TrangThai,
-  SoPhong,
-  LoaiPhong,
-  ChiTietThietBi
+    TrangThai,
+    SoPhong,
+    LoaiPhong,
+    ChiTietThietBi
   });
 
   if ((res.status = 200)) {

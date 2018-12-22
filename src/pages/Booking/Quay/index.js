@@ -52,15 +52,6 @@ export default class CustomTable extends Component {
     return (
       <div>
         <Row>
-          <Button
-            type="primary"
-            onClick={this.onToggleModal}
-            style={{ float: "right", marginBottom: 10 }}
-          >
-            <Icon type="file-add" />
-          </Button>
-        </Row>
-        <Row>
           <Table
             loading={datphong.isFectching}
             columns={this.columns}

@@ -45,20 +45,20 @@ class ModalSuaPhong extends React.Component {
         footer={null}
       >
         <ReduxForm onSubmit={handleSubmit(values => this.editPosition(values))}>
-          <FormItem label="Tên " {...this.formItemLayout}>
+          <FormItem label="Số phòng " {...this.formItemLayout}>
             <Field
               name="loaiphong"
               component={CustomInput}
-              placeholder="Nhập tên loại phòng"
+              placeholder="Nhập số phòng"
               defaultValue={data.TenLoai}
             />
           </FormItem>
 
-          <FormItem label="Đơn giá" {...this.formItemLayout}>
+          <FormItem label="Tầng" {...this.formItemLayout}>
             <Field
-              name="dongia"
+              name="tang"
               component={CustomInput}
-							placeholder="DonGia"
+							placeholder="Tầng"
               type="number"							
               defaultValue={data.DonGia}
             />

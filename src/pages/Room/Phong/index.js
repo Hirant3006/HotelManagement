@@ -1,12 +1,20 @@
 import React from "react";
-import { Row, Col, Spin, Select, Button, Icon, Table } from "antd";
+import {
+  Row,
+  Col,
+  Spin,
+  Select,
+  Button,
+  Icon,
+  Table,
+  Divider,
+  Popconfirm
+} from "antd";
 import ListPhong from "./ListPhong";
 import { connect } from "react-redux";
-import Phong from "../Phong"
-import ModalThemPhong from "./ModalThemPhong"
-import{
-  getListPhongRequest,
-} from "../../../actions/phong";
+import Phong from "../Phong";
+import ModalThemPhong from "./ModalThemPhong";
+import { getListPhongRequest } from "../../../actions/phong";
 const Option = Select.Option;
 
 class Room extends React.PureComponent {
@@ -14,10 +22,9 @@ class Room extends React.PureComponent {
     super(props);
     this.state = {
       Phong: [],
-
+      visibleModalThemPhong: false
     };
   }
- 
 
   columns = [
     {
@@ -26,7 +33,6 @@ class Room extends React.PureComponent {
       key: "Tang"
     },
     {
-      
       title: "Số Phòng",
       dataIndex: "SoPhong",
       key: "_id"
@@ -35,101 +41,96 @@ class Room extends React.PureComponent {
       title: "Loại Phòng",
       dataIndex: "LoaiPhong.TenLoaiPhong",
       key: "SoPhong"
+    },
+    {
+      title: "Thao tác",
+      key: "action",
+      render: (text, record) => (
+        <span>
+          <Divider type="vertical" />
+          {this.props.deleteloaiphong.isFetching ? (
+            <Icon type="loading" />
+          ) : (
+            <Popconfirm
+              title="Bạn có chắc muốn xóa phòng này?"
+              onConfirm={() => this.handleDeletePhong(record)}
+              okText="Có"
+              cancelText="Không"
+            >
+              <a style={{ color: "red" }}>Xóa</a>
+            </Popconfirm>
+          )}
+        </span>
+      )
     }
-    
-   
   ];
+
+  handleDeletePhong = value => {
+    const {deletePhongTheoIdRequest,getListPhongRequest} = this.props;
+    // const id = record._id;
+
+    deletePhongTheoIdRequest(value._id,getListPhongRequest);
+  }
+
   handleChange = value => {
     let listphongfilter = this.state.Phong;
-    listphongfilter=listphongfilter.filter(phong => phong.TenLoaiPhong === value);
-    console.log(listphongfilter)
-    this.setState=({Phong:listphongfilter})
+    listphongfilter = listphongfilter.filter(
+      phong => phong.TenLoaiPhong === value
+    );
+    console.log(listphongfilter);
+    this.setState = { Phong: listphongfilter };
+  };
+
+  onToggleModalThemPhongOpen = e => {
+    this.setState({ visibleModalThemPhong: true });
+  };
+
+  onToggleModalThemPhongClose = e => {
+    this.setState({ visibleModalThemPhong: false });
+  };
+
+  onToggleModalSuaPhongOpen = e => {
+    this.setState({ visibleModalSuaPhong: true });
+  };
+
+  onToggleModalSuaPhongClose = e => {
+    this.setState({ visibleModalSuaPhong: false });
   };
 
   render() {
     // this.props.phong
     //   ? this.setState({ Phong: this.props.phong.listPhong })
     //   : null;
+    console.log(this.props);
     const { listLoaiPhong, loaiphong, phong } = this.props;
     return (
-    
-      // <Col span={20}>
-      //   <Row>
-      //     <Select
-      //       showSearch
-      //       style={{ width: 200 }}
-      //       placeholder="Select room type"
-      //       optionFilterProp="children"
-      //       onChange={this.handleChange}
-      //       // onFocus={handleFocus}
-      //       // onBlur={handleBlur}
-      //       filterOption={(input, option) =>
-      //         option.props.children
-      //           .toLowerCase()
-      //           .indexOf(input.toLowerCase()) >= 0
-      //       }
-      //     >
-      //       {this.props.loaiphong.listloaiPhong
-      //         ? this.props.loaiphong.listloaiPhong.map(loaiphong => {
-      //             return (
-      //               <Option key={loaiphong._id} value={loaiphong._id}>
-      //                 {loaiphong.TenLoai}
-      //               </Option>
-      //             );
-      //           })
-      //         : null}
-      //       {/* <Option value="jack">Phòng đơn</Option>
-      //         <Option value="lucy">Phòng đôi</Option>
-      //         <Option value="tom">Phòng vip</Option> */}
-      //     </Select>
-      //     <Button style={{ float: "right" }} type="primary">
-      //       Đặt phòng
-      //     </Button>
-      //   </Row>
-      //   ,
-      //   {this.props.phong.isFetching ? (
-      //     <Row
-      //       style={{
-      //         // marginTop: "50px",
-      //         marginLeft: "auto",
-      //         marginRight: "auto",
-      //         width: "8em"
-      //       }}
-      //     >
-      //       <Spin />
-      //     </Row>
-      //   ) : (
-      //     <ListPhong dataSource={this.state.Phong} {...this.props} />
-      //   )}
-      // </Col>
       <div>
-        
-      <Row>
-        {/* <Button
-          type="primary"
-          onClick={this.onToggleModal}
-          style={{ float: "right", marginBottom: 10 }}
-        >
-          <Icon type="file-add" />
-        </Button> */}
-      </Row>
-      <Row>
-        <Table
-          loading={phong.isFetching}
-          columns={this.columns}
-          dataSource={phong.listPhong}
-          rowKey="_id"
-          pagination={{ pageSize: 5 }}
-          {...this.props}
-        />
-         <ModalThemPhong
-            visible={this.state.visible}
-            // showModal={this.showModal}
-            onCancel={this.handleCancel}
-            onOk={this.handleOk}
+        <Row>
+          <Button
+            type="primary"
+            onClick={this.onToggleModalThemPhongOpen}
+            style={{ float: "right", marginBottom: 10 }}
+          >
+            <Icon type="file-add" />
+          </Button>
+        </Row>
+        <Row>
+          <Table
+            loading={phong.isFetching}
+            columns={this.columns}
+            dataSource={phong.listPhong}
+            rowKey="_id"
+            pagination={{ pageSize: 5 }}
             {...this.props}
           />
-        {/* <ModalThemLoaiPhong
+          <ModalThemPhong
+            visible={this.state.visibleModalThemPhong}
+            // showModal={this.showModal}
+            onCancel={this.onToggleModalThemPhongClose}
+            // onOk={this.handleOk}
+            {...this.props}
+          />
+          {/* <ModalThemLoaiPhong
           visible={this.state.visible}
           // showModal={this.showModal}
           onCancel={this.handleCancel}
@@ -145,27 +146,23 @@ class Room extends React.PureComponent {
           data={this.state.dataSualoaiphong}
           {...this.props}
         /> : null } */}
-      </Row>
-    </div>
-
+        </Row>
+      </div>
     );
   }
 }
 const mapStateToProps = state => {
   return {
-   phong : state.phong.phong,
+    phong: state.phong.phong,
     //loaiphong: state.loaiphong.loaiphong,
-  //  khachhang: state.khachhang.khachhang,
-  // loaiphong: state.phong.loaiphongtheoid,
-  //addphong: state.khachhang.addkhachhang,
-  addphong: state.phong.addphong,
+    //  khachhang: state.khachhang.khachhang,
+    // loaiphong: state.phong.loaiphongtheoid,
+    //addphong: state.khachhang.addkhachhang,
+    addphong: state.phong.addphong
   };
 };
 const mapDispatchToProps = {
-  
-  getListPhongRequest,
-  
-  
+  getListPhongRequest
 };
 
 export default connect(
