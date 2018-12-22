@@ -34,7 +34,7 @@ import {
   CONFIRM_BOOKING_FAILURE
 } from "./contstants";
 
-export const comfirmBookingRequest = (id, DatCoc,onCancel,getDatPhongOnlineRequest) => async dispatch => {
+export const comfirmBookingRequest = (id, DatCoc,onCancel,getDatPhongOnlineRequest,getDatPhongRequest) => async dispatch => {
   dispatch({ type: CONFIRM_BOOKING_REQUEST });
   const Step =2;
   const res = await axios.post(keys.backend + "/online2/" + id, {
@@ -47,6 +47,7 @@ export const comfirmBookingRequest = (id, DatCoc,onCancel,getDatPhongOnlineReque
     });
     message.success("Xác nhận book online thành công");
     getDatPhongOnlineRequest();
+    getDatPhongRequest();
     onCancel();
   } else
     dispatch({
@@ -154,7 +155,8 @@ export const checkoutDatPhongRequest = (
 export const checkinDatPhongRequest = (
   MaDatPhong,
   onCancel,
-  getListPhongRequest
+  getListPhongRequest,
+  dataPhong,
 ) => async dispatch => {
   dispatch({ type: CHECKIN_DATPHONG_REQUEST });
   const res = await axios.post(
@@ -165,8 +167,8 @@ export const checkinDatPhongRequest = (
     dispatch({
       type: CHECKIN_DATPHONG_SUCCESS
     });
-    message.success("Checkin thành công");
-    getListPhongRequest();
+    message.success("Phòng " + dataPhong.SoPhong + " check in thành công");
+    // getListPhongRequest();
     onCancel();
   } else
     dispatch({
@@ -182,7 +184,8 @@ export const addThanhToanRequest = (
   TienDaTra,
   onCancelThanhToan,
   getListPhongRequest,
-  onCancel
+  onCancel,
+  dataPhong
 ) => async dispatch => {
   dispatch({ type: ADD_THANHTOAN_REQUEST });
   const res = await axios.post(
@@ -199,8 +202,8 @@ export const addThanhToanRequest = (
     dispatch({
       type: ADD_THANHTOAN_SUCCESS
     });
-    message.success("Thanh toán thành công");
-    getListPhongRequest();
+    message.success("Phòng " + dataPhong.SoPhong + " thanh toán thành công");
+    // getListPhongRequest();
     onCancelThanhToan();
     onCancel();
   } else
@@ -266,7 +269,6 @@ export const addDatPhongRequest = (
   //   message.error(res.data.message)
   // }
   else if (res.status === 201) {
-    console.log("Failed 2");
     dispatch({
       type: ADD_DATPHONG_FAILURE
     });

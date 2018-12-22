@@ -34,7 +34,7 @@ class ModalPhong extends React.Component {
   columns = [
     {
       title: "Tên Dịch vụ",
-      dataIndex: "DichVu",
+      dataIndex: "TenDichVu",
       key: "DichVu"
     },
     {
@@ -130,12 +130,14 @@ class ModalPhong extends React.Component {
       datphongbyphong,
       onCancel,
       getListPhongRequest,
-      checkinDatPhongRequest
+      checkinDatPhongRequest,
+      dataPhong
     } = this.props;
     checkinDatPhongRequest(
       datphongbyphong.data._id,
       onCancel,
-      getListPhongRequest
+      getListPhongRequest,
+      dataPhong
     );
   };
 
@@ -183,17 +185,6 @@ class ModalPhong extends React.Component {
               <div>
                 {datphongbyphong.data.length != 0 ? (
                   <div>
-                    <Button
-                      type="primary"
-                      style={{
-                        float: "right",
-                        marginBottom: "0.5rem",
-                        width: "6rem"
-                      }}
-                      onClick={this.onToggleModalThemDichVuOpen}
-                    >
-                      DV mới
-                    </Button>
                     {datphongbyphong.data.PhieuThanhToan.length === 0 ? (
                       <Button
                         type="primary"
@@ -212,9 +203,11 @@ class ModalPhong extends React.Component {
                         style={{
                           float: "right",
                           marginBottom: "0.5rem",
-                          width: "6rem"
+                          width: "6rem",
+                          color:"green"
                         }}
                         disabled={true}
+                        // ghost={true}
                       >
                         Thanh toán
                       </Button>
@@ -229,8 +222,10 @@ class ModalPhong extends React.Component {
                           width: "6rem"
                         }}
                         onClick={this.handleCheckIn}
+                        loading={this.props.checkindatphong.isFetching}
+                        disabled={this.props.checkindatphong.isFetching}                      
                       >
-                        Checkin
+                        Check in
                       </Button>
                     ) : (
                       <Button
@@ -239,11 +234,13 @@ class ModalPhong extends React.Component {
                           float: "right",
                           marginBottom: "0.5rem",
                           marginRight: "0.5rem",
-                          width: "6rem"
+                          width: "6rem",
+                          color:"green"
                         }}
                         disabled={true}
+                        // ghost={true}
                       >
-                        Checkin
+                        Check in
                       </Button>
                     )}
                     {datphongbyphong.data.Checkin !== null &&
@@ -257,6 +254,8 @@ class ModalPhong extends React.Component {
                           width: "6rem"
                         }}
                         onClick={this.handleCheckout}
+                        loading={this.props.checkoutdatphong.isFetching}
+                        disabled={this.props.checkoutdatphong.isFetching}
                       >
                         Checkout
                       </Button>
@@ -280,16 +279,28 @@ class ModalPhong extends React.Component {
                     <hr />
                     Ngày Đi : {NgayDi}
                     <hr />
-                    Ngày Checkin :{" "}
-                    {moment(new Date(datphongbyphong.data.Checkin)).format(
-                      "DD-MM-YYYY HH:mm"
-                    )}
+                    Ngày Checkin :
+                    {datphongbyphong.data.Checkin !== null
+                      ? moment(new Date(datphongbyphong.data.Checkin)).format(
+                          "DD-MM-YYYY HH:mm"
+                        )
+                      : <p style={{color:"red"}}>        Chưa check in</p>}
                     <hr />
                     Đặt Cọc : {datphongbyphong.data.DatCoc}
                     <hr />
                     Chi Tiết Dịch Vụ
+                    <Button
+                      type="primary"
+                      style={{
+                        float: "right",
+                        marginBottom: "0.5rem",
+                        width: "6rem"
+                      }}
+                      onClick={this.onToggleModalThemDichVuOpen}
+                    >
+                      DV mới
+                    </Button>
                     <br />
-                    
                     <Table
                       loading={datphongbyphong.isFetching}
                       columns={this.columns}
@@ -298,7 +309,6 @@ class ModalPhong extends React.Component {
                       pagination={{ pageSize: 5 }}
                       {...this.props}
                     />
-                    
                   </div>
                 ) : (
                   <div>Phòng trống</div>

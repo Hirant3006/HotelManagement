@@ -32,6 +32,7 @@ class ModalThanhToan extends React.Component {
       onCancelThanhToan,
       getListPhongRequest,
       onCancel,
+      dataPhong
     } = this.props;
     const MaDatPhong = datphongbyphong.data._id;
     const TongTienThu = thanhtoan.data.TongTien;
@@ -48,6 +49,7 @@ class ModalThanhToan extends React.Component {
       onCancelThanhToan,
       getListPhongRequest,
       onCancel,
+      dataPhong
     );
   };
   render() {

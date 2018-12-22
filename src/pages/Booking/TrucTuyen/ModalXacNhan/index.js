@@ -29,14 +29,16 @@ class ModalXacNhan extends React.Component {
       comfirmBookingRequest,
       data,
       onCancel,
-      getDatPhongOnlineRequest
+      getDatPhongOnlineRequest,
+      getDatPhongRequest
     } = this.props;
 
     comfirmBookingRequest(
       data._id,
       parseInt(value.tiencoc),
       onCancel,
-      getDatPhongOnlineRequest
+      getDatPhongOnlineRequest,
+      getDatPhongRequest
     );
   };
 
