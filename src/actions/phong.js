@@ -90,14 +90,14 @@ export const getListPhongRequest = option => async dispatch => {
 };
 
 export const addLoaiPhongRequest = (
-  TenLoai,
+  TenLoaiPhong,
   DonGia,
   onCancel,
   getListLoaiPhongRequest
 ) => async (dispatch, getState) => {
   dispatch({ type: ADD_LOAI_PHONG_REQUEST });
   const res = await axios.post(keys.backend + "/loaiphong", {
-    TenLoai,
+    TenLoaiPhong,
     DonGia
   });
   if ((res.status = 200)) {
@@ -156,7 +156,7 @@ export const updateLoaiPhongTheoIdRequest = (
   onCancel
 ) => async dispatch => {
   dispatch({ type: UPDATE_LOAI_PHONG_THEO_ID_REQUEST });
-  const res = await axios.put(keys.backend + "/loaiphong", {
+  const res = await axios.patch(keys.backend + "/loaiphong", {
     _id,
     TenLoai,
     DonGia

@@ -22,6 +22,8 @@ class ModalThemLoaiPhong extends React.Component {
     console.log(values);
     const { addLoaiPhongRequest,getListLoaiPhongRequest } = this.props;
     const TenLoai = values.tenloai;
+
+    
     const DonGia = values.dongia;
     addLoaiPhongRequest(TenLoai,DonGia,onCancel,getListLoaiPhongRequest);
   };
@@ -36,7 +38,7 @@ class ModalThemLoaiPhong extends React.Component {
           {
           onCancel();   
         }}
-       // footer={null}
+       footer={null}
       >
         <Form
           onSubmit={handleSubmit(values => this.handleThemLoaiPhong(values,onCancel))}
@@ -53,7 +55,6 @@ class ModalThemLoaiPhong extends React.Component {
           <FormItem label="Đơn giá" {...this.formItemLayout}>
             <Field
               name="dongia"
-              type="number"
               component={CustomInput}
               placeholder="Nhập dơn giá"
             />

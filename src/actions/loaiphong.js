@@ -33,10 +33,11 @@ export const getListLoaiPhongRequest = () => async dispatch => {
     });
 };
 
-export const addLoaiPhongRequest = (TenLoai, DonGia,onCancel,getListLoaiPhongRequest) => async (dispatch,getState) => {
+export const addLoaiPhongRequest = (TenLoaiPhong, DonGia,onCancel,getListLoaiPhongRequest) => async (dispatch,getState) => {
   dispatch({ type: ADD_LOAI_PHONG_REQUEST });
+  console.log(TenLoaiPhong);
   const res = await axios.post(keys.backend + "/loaiphong", {
-    TenLoai,
+    TenLoaiPhong,
     DonGia
   });
   if ((res.status = 200)){

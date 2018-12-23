@@ -12,11 +12,12 @@ class ModalSuaLoaiPhong extends React.Component {
     disabled: true
   };
 
-  editPosition = ({ name }) => {
-    const { editPositionRequest, data } = this.props;
+  editPosition = (values) => {
+    const { updateLoaiPhongTheoIdRequest, data ,onCancel} = this.props;
     const { onToggleModalClose } = this.props;
-    editPositionRequest({ data, name, callback: () => onToggleModalClose() });
+    updateLoaiPhongTheoIdRequest(data._id,values.loaiphong,values.dongia,onCancel);
   };
+
   formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -28,12 +29,13 @@ class ModalSuaLoaiPhong extends React.Component {
     }
   };
   render() {
-
+    console.log(this.props);
     const {
       visible,
       onCancel,
       data,
-      handleSubmit
+      handleSubmit,
+      updateloaiphong
     } = this.props;
     return (
       <Modal
@@ -69,8 +71,8 @@ class ModalSuaLoaiPhong extends React.Component {
               type="primary"
               htmlType="submit"
               className="button"
-              //   loading={editPositionStatus.isFetching()} // true
-              //   disabled={editPositionStatus.isFetching()}
+                loading={updateloaiphong.isFetching} // true
+                disabled={updateloaiphong.isFetching}
             >
               Lưu
             </Button>
